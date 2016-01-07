@@ -53,14 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IClientsService.cs" />
     <Compile Include="Abstract\IFactory.cs" />
     <Compile Include="DAL\AccountDao.cs" />
+    <Compile Include="DAL\ClientDao.cs" />
     <Compile Include="DAL\DefaultContext.cs" />
+    <Compile Include="Domain\Client.cs" />
     <Compile Include="Services\AccountsService.cs" />
     <Compile Include="Domain\Account.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Abstract\IAccountsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ClientsService.cs" />
     <Compile Include="Services\Converter.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,25 +1,28 @@
 'use strict';
 angular.module('finLiteApp').controller('AccountsCtrl', ['$scope', 'repositoryService', 'dialogService', 'notify', function ($scope, repositoryService, dialogService, notify) {
 
+    var accController = this;
+
   var gotAccounts = function(accounts){
-    $scope.accounts = accounts;
+      accController.accounts = accounts;
   };
   var refresh = function () {
-    repositoryService.getAccounts(gotAccounts);
+      repositoryService.getAccounts($scope.main.data.clientId, gotAccounts);
   };
-  $scope.refresh = refresh;
+  accController.refresh = refresh;
 
-  $scope.addAccount = function () {
-    repositoryService.addAccount($scope.newAccount, refresh);
+  accController.addAccount = function () {
+      accController.newAccount.ClientId = $scope.main.data.clientId;
+      repositoryService.addAccount(accController.newAccount, refresh);
   };
 
-  var deleteAccount = function (id) {
+  var deleteAccount = function (account) {
+    return function() {return repositoryService.deleteAccount(account, refresh)};
+  };
+
+  accController.deleteAccount = function (account) {
       debugger;
-    return function() {return repositoryService.deleteAccount(id, refresh)};
-  };
-
-  $scope.deleteAccount = function(id) {
-    dialogService.confirmation('Czy na pewno chcesz usunąć to konto?', deleteAccount(id));
+    dialogService.confirmation('Czy na pewno chcesz usunąć to konto?', deleteAccount(account));
   };
 
   refresh();

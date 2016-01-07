@@ -14,16 +14,16 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     ajaxService.doGet('getOpenings').then(successFunc);
   };
 
-  var getAccounts = function(successFun) {
-      ajaxService.doGet(urlService.accounts.getAccounts).then(successFun);
+  var getAccounts = function(clientId, successFun) {
+      ajaxService.doPost(urlService.accounts.getAccounts, {clientId: clientId}).then(successFun);
   };
 
   var addAccount = function(item, successFunc) {
     ajaxService.doPostWithBlock(urlService.accounts.addAccount, item).then(successFunc);
   };
 
-  var deleteAccount = function (ident, successFunc) {
-    ajaxService.doPostWithBlock(urlService.accounts.deleteAccount, {name: ident}).then(successFunc);
+  var deleteAccount = function (account, successFunc) {
+    ajaxService.doPostWithBlock(urlService.accounts.deleteAccount, {account: account}).then(successFunc);
   };
 
   var getDocuments = function(successFun) {
@@ -42,12 +42,13 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     ajaxService.doGetWithBlock('getReports').then(successFunc);
   };
 
-  var getClients = function(successFunc) {
-      //ajaxService.doGetWithBlock('getClients').then(successFunc);
-      successFunc([
-          { id: 1, name: "UKS" },
-          { id: 2, name: "Równość" }
-      ]);
+  var getClients = function (successFunc) {
+      debugger;
+      ajaxService.doPostWithBlock(urlService.clients.getClients).then(successFunc);
+//      successFunc([
+//          { id: 1, name: "UKS" },
+//          { id: 2, name: "Równość" }
+//      ]);
   };
 
   var getClient = function(successFunc) {

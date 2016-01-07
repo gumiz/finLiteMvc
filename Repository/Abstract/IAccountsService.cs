@@ -5,8 +5,8 @@ namespace Repository.Abstract
 {
 	public interface IAccountsService
 	{
-		IList<Account> GetAccounts();
+		IList<Account> GetAccounts(int clientId);
 		void AddAccount(Account account);
-		void DeleteAccount(string name);
+		void DeleteAccount(Account account);
 	}
 }

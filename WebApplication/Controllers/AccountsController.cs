@@ -18,11 +18,11 @@ namespace WebApplication.Controllers
 			return View("accounts");
 		}
 
-		[HttpGet]
-		public ActionResult GetAccounts()
+		[HttpPost]
+		public ActionResult GetAccounts(int clientId)
 		{
-			var accounts = _factory.GetAccoutnsService().GetAccounts();
-			return new JsonResult {Data = accounts, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+			var accounts = _factory.GetAccoutnsService().GetAccounts(clientId);
+			return new JsonResult {Data = accounts};
 		}
 
 		[HttpPost]
@@ -33,9 +33,9 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult DeleteAccount(string name)
+		public ActionResult DeleteAccount(Account account)
 		{
-			_factory.GetAccoutnsService().DeleteAccount(name);
+			_factory.GetAccoutnsService().DeleteAccount(account);
 			return new JsonResult { Data = true };
 		}
 	}

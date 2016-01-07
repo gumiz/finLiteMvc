@@ -32,7 +32,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<div class="form-group">
-						klient: <select class="form-control combo" ng-options="item.id as item.name for item in main.clients" ng-model="main.clientId" name="clientSelect" required></select>
+						klient: <select style="width: 200px" class="form-control combo" ng-options="item.Id as item.Name for item in main.clients" ng-model="main.data.clientId" ng-change="main.refresh()" name="clientSelect" required></select>
 					</div>
 				</ul>
 			</div>

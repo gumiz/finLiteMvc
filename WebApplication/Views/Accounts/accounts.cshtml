@@ -1,6 +1,6 @@
 ﻿<h1>Accounts</h1>
 
-<div ng-controller="AccountsCtrl">
+<div ng-controller="AccountsCtrl as accounts">
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -10,11 +10,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="ac in accounts">
+			<tr ng-repeat="ac in accounts.accounts">
 				<td>{{ac.Name}}</td>
 				<td>{{ac.Description}}</td>
 				<td class="text-center">
-					<button ng-click="deleteAccount(ac.Name)" class="btn btn-block btn-sm" style="width: 30px"><span class="glyphicon glyphicon-remove"></span></button>
+					<button ng-click="accounts.deleteAccount(ac)" class="btn btn-block btn-sm" style="width: 30px"><span class="glyphicon glyphicon-remove"></span></button>
 				</td>
 			</tr>
 		</tbody>
@@ -26,13 +26,13 @@
 		<tbody>
 			<tr>
 				<td class="col-md-1">
-					<input class="form-control" ng-model="newAccount.Name" placeholder="konto" />
+					<input class="form-control" ng-model="accounts.newAccount.Name" placeholder="konto" />
 				</td>
 				<td class="col-md-8">
-					<input class="form-control" ng-model="newAccount.Description" placeholder="opis" />
+					<input class="form-control" ng-model="accounts.newAccount.Description" placeholder="opis" />
 				</td>
 				<td class="col-xs-0 text-center">
-					<button ng-click="addAccount()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Konto</button>
+					<button ng-click="accounts.addAccount()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Konto</button>
 				</td>
 			</tr>
 		</tbody>

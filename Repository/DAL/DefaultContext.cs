@@ -7,12 +7,13 @@ namespace Repository.DAL
 		public DefaultContext()
 			: base("defaultConnectionFactory")
 		{
-//			Database.SetInitializer<DefaultContext>(new CreateDatabaseIfNotExists<DefaultContext>());
-			Database.SetInitializer<DefaultContext>(new DropCreateDatabaseIfModelChanges<DefaultContext>());
+			Database.SetInitializer<DefaultContext>(new CreateDatabaseIfNotExists<DefaultContext>());
+//			Database.SetInitializer<DefaultContext>(new DropCreateDatabaseIfModelChanges<DefaultContext>());
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<AccountDao>().HasKey(c => new {c.Name, c.ClientId});
 
 //			modelBuilder.Entity<DysponentDao>().HasRequired<DysponentGroupDao>(x => x.DysponentGroup)
 //			.WithMany(y => y.Dysponents)
@@ -20,5 +21,6 @@ namespace Repository.DAL
 		}
 
 		public DbSet<AccountDao> AccountDao{ get; set; }
+		public DbSet<ClientDao> ClientDao { get; set; }
 	}
 }

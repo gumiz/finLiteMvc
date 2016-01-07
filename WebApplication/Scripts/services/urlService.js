@@ -6,8 +6,9 @@ appServices.factory('urlService', ['domService', function (domService) {
         Accounts: 'Accounts',
         Documents: 'Documents',
         Reports: 'Reports',
-        OpeningBalance: 'OpeningBalance'
-    };
+        OpeningBalance: 'OpeningBalance',
+        Clients: 'Clients'
+};
 
     var getBasePath = function () {
         return domService.getBasePath;
@@ -25,6 +26,9 @@ appServices.factory('urlService', ['domService', function (domService) {
     return {
         getIdFromUrl: getIdFromUrl,
         getBasePath: getBasePath(),
+        clients: {
+            getClients: createUrl(controllers.Clients, "GetClients")
+        },
         accounts: {
             getAccounts: createUrl(controllers.Accounts, "GetAccounts"),
             addAccount: createUrl(controllers.Accounts, "AddAccount"),
