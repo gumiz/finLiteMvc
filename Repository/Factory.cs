@@ -1,4 +1,5 @@
 ﻿using Repository.Abstract;
+using Repository.DAL;
 using Repository.Services;
 
 namespace Repository
@@ -7,7 +8,8 @@ namespace Repository
 	{
 		public Factory()
 		{
-			AccountsService = new AccountsService();
+			var dbContext = new DefaultContext();
+			AccountsService = new AccountsService(dbContext);
 		}
 
 		public AccountsService AccountsService { get; set; }

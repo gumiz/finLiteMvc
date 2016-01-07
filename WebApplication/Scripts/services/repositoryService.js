@@ -15,17 +15,15 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var getAccounts = function(successFun) {
-      //    ajaxService.doGet('getAccounts').then(successFun);
-      debugger;
       ajaxService.doGet(urlService.accounts.getAccounts).then(successFun);
   };
 
   var addAccount = function(item, successFunc) {
-    ajaxService.doPostWithBlock('addAccounts', item).then(successFunc);
+    ajaxService.doPostWithBlock(urlService.accounts.addAccount, item).then(successFunc);
   };
 
-  var deleteAccount = function(ident, successFunc) {
-    ajaxService.doPostWithBlock('deleteAccounts', {id: ident}).then(successFunc);
+  var deleteAccount = function (ident, successFunc) {
+    ajaxService.doPostWithBlock(urlService.accounts.deleteAccount, {name: ident}).then(successFunc);
   };
 
   var getDocuments = function(successFun) {

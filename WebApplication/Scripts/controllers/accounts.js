@@ -5,16 +5,16 @@ angular.module('finLiteApp').controller('AccountsCtrl', ['$scope', 'repositorySe
     $scope.accounts = accounts;
   };
   var refresh = function () {
-      debugger;
     repositoryService.getAccounts(gotAccounts);
   };
   $scope.refresh = refresh;
 
-  $scope.addAccount = function() {
+  $scope.addAccount = function () {
     repositoryService.addAccount($scope.newAccount, refresh);
   };
 
-  var deleteAccount = function(id){
+  var deleteAccount = function (id) {
+      debugger;
     return function() {return repositoryService.deleteAccount(id, refresh)};
   };
 
@@ -22,6 +22,5 @@ angular.module('finLiteApp').controller('AccountsCtrl', ['$scope', 'repositorySe
     dialogService.confirmation('Czy na pewno chcesz usunąć to konto?', deleteAccount(id));
   };
 
-  debugger;
   refresh();
 }]);

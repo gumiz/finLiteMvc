@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Repository.Abstract;
+using Repository.Domain;
 
 namespace WebApplication.Controllers
 {
@@ -22,6 +23,20 @@ namespace WebApplication.Controllers
 		{
 			var accounts = _factory.GetAccoutnsService().GetAccounts();
 			return new JsonResult {Data = accounts, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+		}
+
+		[HttpPost]
+		public ActionResult AddAccount(Account account)
+		{
+			_factory.GetAccoutnsService().AddAccount(account);
+			return new JsonResult { Data = true };
+		}
+
+		[HttpPost]
+		public ActionResult DeleteAccount(string name)
+		{
+			_factory.GetAccoutnsService().DeleteAccount(name);
+			return new JsonResult { Data = true };
 		}
 	}
 }

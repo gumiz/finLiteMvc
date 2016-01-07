@@ -26,7 +26,9 @@ appServices.factory('urlService', ['domService', function (domService) {
         getIdFromUrl: getIdFromUrl,
         getBasePath: getBasePath(),
         accounts: {
-            getAccounts: createUrl(controllers.Accounts, "GetAccounts")
+            getAccounts: createUrl(controllers.Accounts, "GetAccounts"),
+            addAccount: createUrl(controllers.Accounts, "AddAccount"),
+            deleteAccount: createUrl(controllers.Accounts, "DeleteAccount")
         }
     };
 }]);
