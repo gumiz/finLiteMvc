@@ -1,0 +1,44 @@
+﻿<h1>Accounts</h1>
+
+<div ng-controller="AccountsCtrl">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th class="col-md-1">Numer</th>
+				<th class="col-md-8">Nazwa</th>
+				<th class="col-xs-0" style="width: 4%"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="ac in accounts">
+				<td>{{ac.Name}}</td>
+				<td>{{ac.Description}}</td>
+				<td class="text-center">
+					<button ng-click="deleteAccount(ac._id)" class="btn btn-block btn-sm" style="width: 30px"><span class="glyphicon glyphicon-remove"></span></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<table class="table">
+		<thead>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="col-md-1">
+					<input class="form-control" ng-model="newAccount.Name" placeholder="konto" />
+				</td>
+				<td class="col-md-8">
+					<input class="form-control" ng-model="newAccount.Description" placeholder="opis" />
+				</td>
+				<td class="col-xs-0 text-center">
+					<button ng-click="addAccount()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Konto</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!--<phonenumber-directive placeholder="myPrompt" model='myModel.phonenumber'></phonenumber-directive>-->
+
+	<p></p>
+</div>

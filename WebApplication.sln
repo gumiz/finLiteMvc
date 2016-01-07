@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{A8ED46A1-525A-493B-B0BA-9F6CC2304BA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{AC172F76-BFDE-416C-A3A0-CAD749930319}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8ED46A1-525A-493B-B0BA-9F6CC2304BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8ED46A1-525A-493B-B0BA-9F6CC2304BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8ED46A1-525A-493B-B0BA-9F6CC2304BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8ED46A1-525A-493B-B0BA-9F6CC2304BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC172F76-BFDE-416C-A3A0-CAD749930319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC172F76-BFDE-416C-A3A0-CAD749930319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC172F76-BFDE-416C-A3A0-CAD749930319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC172F76-BFDE-416C-A3A0-CAD749930319}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FinLite</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Styles.Render("~/Content/template")
+</head>
+
+<body ng-app="finLiteApp" ng-controller="MainCtrl as main" ng-cloak data-baseurl="@Url.Content("~/")">
+	<div growl></div>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+						aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("FinLite", "Index", "Documents", null, new { @class = "navbar-brand"})
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Konta", "Index", "Accounts")</li>
+					<li>@Html.ActionLink("Bilans otwarcia", "Index", "OpeningBalance")</li>
+					<li>@Html.ActionLink("Dokumenty", "Index", "Documents")</li>
+					<li>@Html.ActionLink("Raporty", "Index", "Reports")</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<div class="form-group">
+						klient: <select class="form-control combo" ng-options="item.id as item.name for item in main.clients" ng-model="main.clientId" name="clientSelect" required></select>
+					</div>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<div class="container">
+		<div ng-animate ng-view style="margin-top: 30px">
+			@RenderBody()
+		</div>
+	</div>
+	<!-- /container -->
+	<!-- Site footer -->
+	<footer class="footer">
+		<p>&copy; gumiz 2016</p>
+	</footer>
+	@Scripts.Render("~/bundles/angular")
+	@Scripts.Render("~/bundles/libs")
+	@Scripts.Render("~/bundles/finLite")
+</body>
+
+
+@*<body>*@
+@*	<div class="navbar navbar-inverse navbar-fixed-top">*@
+@*		<div class="container">*@
+@*			<div class="navbar-header">*@
+@*				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">*@
+@*					<span class="icon-bar"></span>*@
+@*					<span class="icon-bar"></span>*@
+@*					<span class="icon-bar"></span>*@
+@*				</button>*@
+@*				@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+@*			</div>*@
+@*			<div class="navbar-collapse collapse">*@
+@*				<ul class="nav navbar-nav">*@
+@*					<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+@*					<li>@Html.ActionLink("About", "About", "Home")</li>*@
+@*					<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+@*				</ul>*@
+@*				@Html.Partial("_LoginPartial")*@
+@*			</div>*@
+@*		</div>*@
+@*	</div>*@
+@*	<div class="container body-content">*@
+@*		@RenderBody()*@
+@*		<hr />*@
+@*		<footer>*@
+@*			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+@*		</footer>*@
+@*	</div>*@
+@**@
+@*	@Scripts.Render("~/bundles/jquery")*@
+@*	@Scripts.Render("~/bundles/bootstrap")*@
+@*	@Scripts.Render("~/bundles/finLite")*@
+@*	@RenderSection("scripts", required: false)*@
+@*</body>*@
+
+</html>
