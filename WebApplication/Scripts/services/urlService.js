@@ -27,12 +27,17 @@ appServices.factory('urlService', ['domService', function (domService) {
         getIdFromUrl: getIdFromUrl,
         getBasePath: getBasePath(),
         clients: {
-            getClients: createUrl(controllers.Clients, "GetClients")
+            getClients: createUrl(controllers.Clients, "GetClients"),
+            initData: createUrl(controllers.Clients, "InitData")
         },
         accounts: {
             getAccounts: createUrl(controllers.Accounts, "GetAccounts"),
             addAccount: createUrl(controllers.Accounts, "AddAccount"),
             deleteAccount: createUrl(controllers.Accounts, "DeleteAccount")
+        },
+        openings: {
+            getOpenings: createUrl(controllers.OpeningBalance, "GetOpenings"),
+            saveOpenings: createUrl(controllers.OpeningBalance, "SaveOpenings")
         }
     };
 }]);

@@ -4,5 +4,6 @@ namespace Repository.Abstract
 	{
 		IAccountsService GetAccoutnsService();
 		IClientsService GetClientsService();
+		IOpeningsService GetOpeningsService();
 	}
 }

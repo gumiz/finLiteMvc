@@ -7,11 +7,11 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var saveOpenings = function(item, successFunc) {
-    ajaxService.doPostWithBlock('saveOpenings', item).then(successFunc);
+    ajaxService.doPostWithBlock(urlService.openings.saveOpenings, item).then(successFunc);
   };
 
-  var getOpenings = function(successFunc) {
-    ajaxService.doGet('getOpenings').then(successFunc);
+  var getOpenings = function (clientId, year, successFunc) {
+      ajaxService.doPost(urlService.openings.getOpenings, { clientId: clientId, year: year }).then(successFunc);
   };
 
   var getAccounts = function(clientId, successFun) {
@@ -43,17 +43,15 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var getClients = function (successFunc) {
-      debugger;
       ajaxService.doPostWithBlock(urlService.clients.getClients).then(successFunc);
-//      successFunc([
-//          { id: 1, name: "UKS" },
-//          { id: 2, name: "Równość" }
-//      ]);
   };
 
   var getClient = function(successFunc) {
-      //    ajaxService.doGet('getClient').then(successFunc);
-      successFunc({ id: 2, name: "Równość" });
+    ajaxService.doGet('getClient').then(successFunc);
+  };
+
+  var initData = function (successFunc) {
+      ajaxService.doPost(urlService.clients.initData).then(successFunc);
   };
 
   return {
@@ -68,6 +66,7 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     deleteDocument: deleteDocument,
     getDocuments: getDocuments,
     getReports: getReports,
-    getClients: getClients
+    getClients: getClients,
+    initData: initData
   }
 }]);

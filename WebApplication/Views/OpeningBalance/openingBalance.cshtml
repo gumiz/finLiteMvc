@@ -1,1 +1,34 @@
-﻿
+﻿<div ng-controller="OpeningBalanceCtrl as openings">
+	<div class="row">
+		rok: <select style="width: 200px" class="form-control combo" ng-options="item in openings.data.allYears" ng-model="openings.data.year" ng-change="openings.commands.getData()" name="yearSelect" required></select>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th class="col-md-1">Numer</th>
+				<th class="col-md-5">Nazwa</th>
+				<th class="col-md-2 text-right">BO Wn</th>
+				<th class="col-md-2 text-right">BO Ma</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="op in openings.data.openings">
+				<td>{{op.Name}}</td>
+				<td>{{op.Description}}</td>
+				<td><input class="form-control text-right" ng-model="op.Dt" placeholder="kwota Wn" /></td>
+				<td><input class="form-control text-right" ng-model="op.Ct" placeholder="kwota Ma" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="text-right"><b>{{openings.data.openings | total : 'Dt' | currency: ""}}</b></td>
+				<td class="text-right"><b>{{openings.data.openings | total : 'Ct' | currency: ""}}</b></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="pull-right">
+		<button ng-click="openings.commands.saveOpenings()" class="btn btn-success right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+	</div>
+	<p></p>
+</div>
+

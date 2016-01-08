@@ -17,6 +17,13 @@ namespace WebApplication
 			);
 
 			routes.MapRoute(
+				name: "Controller",
+				url: "{controller}/{id}",
+				defaults: new { controller = "Accounts", action = "Index" },
+				constraints: new { id = @"\d+" }
+			);
+
+			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Accounts", action = "Index", id = UrlParameter.Optional }

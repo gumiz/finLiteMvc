@@ -14,6 +14,7 @@ namespace Repository.DAL
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<AccountDao>().HasKey(c => new {c.Name, c.ClientId});
+			modelBuilder.Entity<ClientDao>().HasKey(c => new {c.ClientId, c.Name});
 
 //			modelBuilder.Entity<DysponentDao>().HasRequired<DysponentGroupDao>(x => x.DysponentGroup)
 //			.WithMany(y => y.Dysponents)
@@ -22,5 +23,6 @@ namespace Repository.DAL
 
 		public DbSet<AccountDao> AccountDao{ get; set; }
 		public DbSet<ClientDao> ClientDao { get; set; }
+		public DbSet<OpeningDao> OpeningDao { get; set; }
 	}
 }

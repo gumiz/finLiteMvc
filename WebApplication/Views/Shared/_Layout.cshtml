@@ -25,15 +25,19 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Konta", "Index", "Accounts")</li>
-					<li>@Html.ActionLink("Bilans otwarcia", "Index", "OpeningBalance")</li>
-					<li>@Html.ActionLink("Dokumenty", "Index", "Documents")</li>
-					<li>@Html.ActionLink("Raporty", "Index", "Reports")</li>
+@*					<li>@Html.ActionLink("Konta", "Index", "Accounts")</li>*@
+					<li><a ng-href="@Url.Action("Index", "Accounts")/{{main.data.clientId}}" target="_self">Konta</a></li>
+					<li><a ng-href="@Url.Action("Index", "OpeningBalance")/{{main.data.clientId}}" target="_self">Bilans otwarcia</a></li>
+					<li><a ng-href="@Url.Action("Index", "Documents")/{{main.data.clientId}}" target="_self">Dokumenty</a></li>
+					<li><a ng-href="@Url.Action("Index", "Reports")/{{main.data.clientId}}" target="_self">Raporty</a></li>
+					<li><button style="margin-top: 16px"ng-click="main.commands.initData()">Init</button></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<div class="form-group">
-						klient: <select style="width: 200px" class="form-control combo" ng-options="item.Id as item.Name for item in main.clients" ng-model="main.data.clientId" ng-change="main.refresh()" name="clientSelect" required></select>
-					</div>
+					<li>
+						<div class="form-group">
+							klient: <select style="width: 200px" class="form-control combo" ng-options="item.ClientId as item.Name for item in main.clients" ng-model="main.data.clientId" ng-change="main.refresh()" name="clientSelect" required></select>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

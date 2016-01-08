@@ -11,10 +11,12 @@ namespace Repository
 			var dbContext = new DefaultContext();
 			AccountsService = new AccountsService(dbContext);
 			ClientsService = new ClientsService(dbContext);
+			OpeningsService = new OpeningsService(dbContext);
 		}
 
 		public AccountsService AccountsService { get; set; }
 		public IClientsService ClientsService { get; set; }
+		public IOpeningsService OpeningsService { get; set; }
 
 		public IAccountsService GetAccoutnsService()
 		{
@@ -26,5 +28,9 @@ namespace Repository
 			return ClientsService;
 		}
 
+		public IOpeningsService GetOpeningsService()
+		{
+			return OpeningsService;
+		}
 	}
 }

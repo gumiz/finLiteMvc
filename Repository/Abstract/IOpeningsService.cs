@@ -3,9 +3,8 @@ using Repository.Domain;
 
 namespace Repository.Abstract
 {
-	public interface IClientsService
+	public interface IOpeningsService
 	{
-		IList<Client> GetClients();
-		void InitializeData();
+		IList<Opening> GetOpenings(int clientId, int year);
 	}
 }

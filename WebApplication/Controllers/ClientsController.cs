@@ -18,5 +18,12 @@ namespace WebApplication.Controllers
 			var result = _factory.GetClientsService().GetClients();
 			return new JsonResult {Data = result};
 		}
+
+		[HttpPost]
+		public ActionResult InitData()
+		{
+			_factory.GetClientsService().InitializeData();
+			return new JsonResult { Data = true };
+		}
 	}
 }

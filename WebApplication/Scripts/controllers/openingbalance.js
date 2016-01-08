@@ -3,20 +3,26 @@
 angular.module('finLiteApp')
   .controller('OpeningBalanceCtrl', ['$scope', 'repositoryService', 'dialogService', function ($scope, repositoryService, dialogService) {
 
-    //repositoryService.getAccounts( function(data){
-    //  $scope.openings = data;
-    //});
+        var openings = this;
+        openings.data = {};
+        openings.commands = {};
 
-    repositoryService.getOpenings( function(data){
-      debugger;
-      $scope.openings = data;
-    });
+        openings.data.year = 2016;
+        openings.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
 
-    $scope.saveOpenings = function() {
-      repositoryService.saveOpenings($scope.openings, confirmSaved);
-    };
+        openings.commands.getData = function () {
+            debugger;
+            repositoryService.getOpenings($scope.main.data.clientId, openings.data.year, function(data) {
+                openings.data.openings = data;
+            });
+        }
+        openings.commands.getData();
 
-    var confirmSaved = function() {
-      dialogService.showMessage("Zapisano bilans otwarcia");
-    }
+        var confirmSaved = function () {
+            dialogService.showMessage("Zapisano bilans otwarcia");
+        }
+
+        openings.commands.saveOpenings = function () {
+            repositoryService.saveOpenings(openings.data.openings, confirmSaved);
+        };
   }]);
