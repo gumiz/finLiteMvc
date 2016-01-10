@@ -6,15 +6,15 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
     main.data = {};
     main.commands = {};
 
-    main.data.clientId = Number(urlService.getIdFromUrl());
     debugger;
+    main.data.clientId = Number(urlService.getIdFromUrl());
     if (main.data.clientId === 0) main.data.clientId = 1;
 
-    main.getClass = function (path) {
+    main.commands.getClass = function (path) {
       if ($location.path().substr(0, path.length) === path) {
-        return "active"
+          return "active";
       } else {
-        return ""
+          return "";
       }
     };
 
@@ -29,5 +29,21 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
     main.commands.initData = function() {
         repositoryService.initData();
     };
+
+    var getUrl = function(base) {
+        return base + "/" + main.data.clientId;
+    }
+    main.commands.getUrlAccounts = function () {
+        return getUrl(urlService.accounts.index);
+    }
+    main.commands.getUrlOpenings = function () {
+        return getUrl(urlService.openings.index);
+    }
+    main.commands.getUrlDocuments = function () {
+        return getUrl(urlService.documents.index);
+    }
+    main.commands.getUrlReports = function () {
+        return getUrl(urlService.reports.index);
+    }
 
 }]);

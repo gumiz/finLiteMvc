@@ -2,21 +2,16 @@
 
 var appServices = angular.module("finLite.Services", []);
 
-angular
-  .module('finLiteApp', [
-      'finLite.Services',
-//    'ngAnimate',
-    'ngDialog',
-    'angular-growl',
-//    'ui.bootstrap'
-  ])
-  .config(['growlProvider', function (growlProvider) {
-    growlProvider.globalTimeToLive(5000);
-  }])
+
+angular.module('finLiteApp', ['finLite.Services', 'ngDialog', 'angular-growl'], function($locationProvider) {
+        $locationProvider.html5Mode(true);
+    }).config(['growlProvider', function (growlProvider) {
+        growlProvider.globalTimeToLive(5000);
+    }])
 
 //  .directive('autoActive', ['$location', function ($location) {
 //    return {
-//      restrict: 'A',
+//      restrict: 'A',`
 //      scope: false,
 //      link: function (scope, element) {
 //        function setActive() {

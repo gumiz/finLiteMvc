@@ -31,13 +31,22 @@ appServices.factory('urlService', ['domService', function (domService) {
             initData: createUrl(controllers.Clients, "InitData")
         },
         accounts: {
+            index: createUrl(controllers.Accounts, "Index"),
             getAccounts: createUrl(controllers.Accounts, "GetAccounts"),
             addAccount: createUrl(controllers.Accounts, "AddAccount"),
             deleteAccount: createUrl(controllers.Accounts, "DeleteAccount")
         },
         openings: {
+            index: createUrl(controllers.OpeningBalance, "Index"),
             getOpenings: createUrl(controllers.OpeningBalance, "GetOpenings"),
             saveOpenings: createUrl(controllers.OpeningBalance, "SaveOpenings")
+        },
+        documents: {
+            index: createUrl(controllers.Documents, "Index")
+        },
+        reports: {
+            index: createUrl(controllers.Reports, "Index")
         }
+
     };
 }]);

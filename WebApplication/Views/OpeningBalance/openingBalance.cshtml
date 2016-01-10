@@ -1,6 +1,6 @@
 ﻿<div ng-controller="OpeningBalanceCtrl as openings">
 	<div class="row">
-		rok: <select style="width: 200px" class="form-control combo" ng-options="item in openings.data.allYears" ng-model="openings.data.year" ng-change="openings.commands.getData()" name="yearSelect" required></select>
+		rok: <select style="width: 200px" class="form-control combo" ng-options="item as item for item in openings.data.allYears" ng-model="openings.data.year" ng-change="openings.commands.getData()" name="yearSelect" required></select>
 	</div>
 	<table class="table table-striped">
 		<thead>

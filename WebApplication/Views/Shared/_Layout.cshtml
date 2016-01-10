@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+	<base href="/">
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FinLite</title>
@@ -21,15 +22,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				@Html.ActionLink("FinLite", "Index", "Documents", null, new { @class = "navbar-brand"})
+				@Html.ActionLink("FinLite", "Index", "Documents", null, new { @class = "navbar-brand", target = "_self" })
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-@*					<li>@Html.ActionLink("Konta", "Index", "Accounts")</li>*@
-					<li><a ng-href="@Url.Action("Index", "Accounts")/{{main.data.clientId}}" target="_self">Konta</a></li>
-					<li><a ng-href="@Url.Action("Index", "OpeningBalance")/{{main.data.clientId}}" target="_self">Bilans otwarcia</a></li>
-					<li><a ng-href="@Url.Action("Index", "Documents")/{{main.data.clientId}}" target="_self">Dokumenty</a></li>
-					<li><a ng-href="@Url.Action("Index", "Reports")/{{main.data.clientId}}" target="_self">Raporty</a></li>
+					<li ng-class="main.commands.getClass('/Accounts')"><a ng-href="{{main.commands.getUrlAccounts()}}" target = "_self">Konta</a></li>
+					<li ng-class="main.commands.getClass('/OpeningBalance')"><a ng-href="{{main.commands.getUrlOpenings()}}" target = "_self">Bilans otwarcia</a></li>
+					<li ng-class="main.commands.getClass('/Documents')"><a ng-href="{{main.commands.getUrlDocuments()}}" target = "_self">Dokumenty</a></li>
+					<li ng-class="main.commands.getClass('/Reports')"><a ng-href="{{main.commands.getUrlReports()}}" target = "_self">Raporty</a></li>
 					<li><button style="margin-top: 16px"ng-click="main.commands.initData()">Init</button></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
