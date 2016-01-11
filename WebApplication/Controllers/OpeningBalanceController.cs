@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Repository.Abstract;
+using Repository.Domain;
 
 namespace WebApplication.Controllers
 {
@@ -21,6 +23,12 @@ namespace WebApplication.Controllers
 		{
 			var result = _factory.GetOpeningsService().GetOpenings(clientId, year);
 			return new JsonResult {Data = result};
+		}
+
+		public ActionResult SaveOpenings(List<Opening> openings)
+		{
+			_factory.GetOpeningsService().SaveOpenings(openings);
+			return new JsonResult { Data = true };
 		}
 	}
 }

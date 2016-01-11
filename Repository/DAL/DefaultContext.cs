@@ -15,6 +15,7 @@ namespace Repository.DAL
 		{
 			modelBuilder.Entity<AccountDao>().HasKey(c => new {c.Name, c.ClientId});
 			modelBuilder.Entity<ClientDao>().HasKey(c => new {c.ClientId, c.Name});
+			modelBuilder.Entity<OpeningDao>().HasKey(c => new {c.Year, c.ClientId, c.Name});
 
 //			modelBuilder.Entity<DysponentDao>().HasRequired<DysponentGroupDao>(x => x.DysponentGroup)
 //			.WithMany(y => y.Dysponents)

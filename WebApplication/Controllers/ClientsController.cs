@@ -22,7 +22,7 @@ namespace WebApplication.Controllers
 		[HttpPost]
 		public ActionResult InitData()
 		{
-			_factory.GetClientsService().InitializeData();
+			_factory.GetDataInitializatorService().InitializeData();
 			return new JsonResult { Data = true };
 		}
 	}

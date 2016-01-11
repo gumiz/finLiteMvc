@@ -7,7 +7,7 @@ angular.module('finLiteApp')
         openings.data = {};
         openings.commands = {};
 
-        openings.data.year = 2016;
+        openings.data.year = 2015;
         openings.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
 
         openings.commands.getData = function () {
