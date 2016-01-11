@@ -8,9 +8,9 @@ namespace Repository.Domain
 
 		public int ClientId { get; set; }
 
-		public int Year { get; set; }
-
 		public int AutoNumber { get; set; }
+
+		public int Year { get; set; }
 
 		public DateTime Date { get; set; }
 

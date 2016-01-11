@@ -26,8 +26,8 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     ajaxService.doPostWithBlock(urlService.accounts.deleteAccount, {account: account}).then(successFunc);
   };
 
-  var getDocuments = function(successFun) {
-    ajaxService.doGet('getDocuments').then(successFun);
+  var getDocuments = function(clientId, year, successFun) {
+    ajaxService.doPost(urlService.documents.getDocuments, {clientId: clientId, year: year}).then(successFun);
   };
 
   var addDocument = function(item, successFunc) {
@@ -46,10 +46,6 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doPostWithBlock(urlService.clients.getClients).then(successFunc);
   };
 
-  var getClient = function(successFunc) {
-    ajaxService.doGet('getClient').then(successFunc);
-  };
-
   var initData = function (successFunc) {
       ajaxService.doPost(urlService.clients.initData).then(successFunc);
   };
@@ -57,7 +53,6 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   return {
     saveOpenings: saveOpenings,
     getOpenings: getOpenings,
-    getClient: getClient,
     getIdFromUrl: getIdFromUrl,
     addAccount: addAccount,
     deleteAccount: deleteAccount,

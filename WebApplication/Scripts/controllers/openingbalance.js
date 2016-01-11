@@ -11,7 +11,6 @@ angular.module('finLiteApp')
         openings.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
 
         openings.commands.getData = function () {
-            debugger;
             repositoryService.getOpenings($scope.main.data.clientId, openings.data.year, function(data) {
                 openings.data.openings = data;
             });

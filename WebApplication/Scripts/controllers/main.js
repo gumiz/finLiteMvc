@@ -6,7 +6,6 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
     main.data = {};
     main.commands = {};
 
-    debugger;
     main.data.clientId = Number(urlService.getIdFromUrl());
     if (main.data.clientId === 0) main.data.clientId = 1;
 

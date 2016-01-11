@@ -13,11 +13,11 @@ namespace Repository.DAL
 		[Column("CLIENT_ID"), Required]
 		public int ClientId { get; set; }
 
-		[Column("YEAR"), Required]
-		public int Year { get; set; }
-
 		[Column("AUTO_NUMBER"), Required]
 		public int AutoNumber { get; set; }
+
+		[Column("YEAR"), Required]
+		public int Year { get; set; }
 
 		[Column("DATE"), Required]
 		public DateTime Date { get; set; }

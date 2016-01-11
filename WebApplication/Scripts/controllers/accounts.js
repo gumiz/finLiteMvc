@@ -1,7 +1,7 @@
 'use strict';
 angular.module('finLiteApp').controller('AccountsCtrl', ['$scope', 'repositoryService', 'dialogService', 'notify', function ($scope, repositoryService, dialogService, notify) {
 
-    var accController = this;
+  var accController = this;
 
   var gotAccounts = function(accounts){
       accController.accounts = accounts;
