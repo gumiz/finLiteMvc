@@ -226,6 +226,8 @@
     <Content Include="Scripts\controllers\main.js" />
     <Content Include="Scripts\controllers\openingbalance.js" />
     <Content Include="Scripts\controllers\reports.js" />
+    <Content Include="Scripts\directives\currencyMask.js" />
+    <Content Include="Scripts\filters\toMoney.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -233,6 +235,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\accounting\accounting.js" />
     <Content Include="Scripts\libs\moment\moment.js" />
     <Content Include="Scripts\libs\underscore\underscore-min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -243,6 +246,7 @@
     <Content Include="Scripts\services\dateUtils.js" />
     <Content Include="Scripts\services\dialogService.js" />
     <Content Include="Scripts\services\domService.js" />
+    <Content Include="Scripts\services\moneyService.js" />
     <Content Include="Scripts\services\notify.js" />
     <Content Include="Scripts\services\repositoryService.js" />
     <Content Include="Scripts\services\urlService.js" />

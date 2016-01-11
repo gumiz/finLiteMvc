@@ -27,3 +27,8 @@ textarea {
     height: 30px;
     padding: 0;
 }
+
+.currencyEdit {
+    text-align: right;
+    height: 30px
+}

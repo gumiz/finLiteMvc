@@ -47,7 +47,9 @@ namespace WebApplication
 				));
 
 			bundles.Add(new ScriptBundle("~/bundles/finLite").Include(
-					  "~/Scripts/services/*.js",
+					  "~/Scripts/directives/*.js",
+					  "~/Scripts/filters/*.js",
+                      "~/Scripts/services/*.js",
 					  "~/Scripts/controllers/*.js"
 					  ));
 		}
