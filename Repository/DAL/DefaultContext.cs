@@ -16,14 +16,16 @@ namespace Repository.DAL
 			modelBuilder.Entity<AccountDao>().HasKey(c => new {c.Name, c.ClientId});
 			modelBuilder.Entity<ClientDao>().HasKey(c => new {c.ClientId, c.Name});
 			modelBuilder.Entity<OpeningDao>().HasKey(c => new {c.Year, c.ClientId, c.Name});
+			modelBuilder.Entity<DocumentDao>().HasKey(c => new {c.Year, c.ClientId, c.Number, c.AutoNumber});
 
 //			modelBuilder.Entity<DysponentDao>().HasRequired<DysponentGroupDao>(x => x.DysponentGroup)
 //			.WithMany(y => y.Dysponents)
 //			.HasForeignKey(x => x.Group);
 		}
 
-		public DbSet<AccountDao> AccountDao{ get; set; }
-		public DbSet<ClientDao> ClientDao { get; set; }
-		public DbSet<OpeningDao> OpeningDao { get; set; }
+		public DbSet<AccountDao> Accounts{ get; set; }
+		public DbSet<ClientDao> Clients { get; set; }
+		public DbSet<OpeningDao> Openings { get; set; }
+		public DbSet<DocumentDao> Documents { get; set; }
 	}
 }

@@ -60,8 +60,10 @@
     <Compile Include="DAL\AccountDao.cs" />
     <Compile Include="DAL\ClientDao.cs" />
     <Compile Include="DAL\DefaultContext.cs" />
+    <Compile Include="DAL\DocumentDao.cs" />
     <Compile Include="DAL\OpeningDao.cs" />
     <Compile Include="Domain\Client.cs" />
+    <Compile Include="Domain\Document.cs" />
     <Compile Include="Domain\Opening.cs" />
     <Compile Include="Services\AccountsService.cs" />
     <Compile Include="Domain\Account.cs" />

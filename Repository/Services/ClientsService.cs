@@ -17,7 +17,7 @@ namespace Repository.Services
 
 		public IList<Client> GetClients()
 		{
-			var dao = dbContext.ClientDao.ToList();
+			var dao = dbContext.Clients.ToList();
 			var result = Converter.ConvertList<ClientDao, Client>(dao);
 			return result;
 		}

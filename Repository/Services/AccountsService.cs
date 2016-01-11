@@ -17,7 +17,7 @@ namespace Repository.Services
 
 		public IList<Account> GetAccounts(int clientId)
 		{
-			var accountsDao = dbContext.AccountDao.Where(x=>x.ClientId.Equals(clientId)).ToList();
+			var accountsDao = dbContext.Accounts.Where(x=>x.ClientId.Equals(clientId)).ToList();
 			var accounts = Converter.ConvertList<AccountDao, Account>(accountsDao);
 			return accounts;
 		}
@@ -25,14 +25,14 @@ namespace Repository.Services
 		public void AddAccount(Account account)
 		{
 			var accountDao = Converter.Convert<Account, AccountDao>(account);
-			dbContext.AccountDao.Add(accountDao);
+			dbContext.Accounts.Add(accountDao);
 			dbContext.SaveChanges();
 		}
 
 		public void DeleteAccount(Account account)
 		{
-			var accountDao = dbContext.AccountDao.Where(x => x.ClientId.Equals(account.ClientId)).FirstOrDefault(x => x.Name.Equals(account.Name));
-			dbContext.AccountDao.Remove(accountDao);
+			var accountDao = dbContext.Accounts.Where(x => x.ClientId.Equals(account.ClientId)).FirstOrDefault(x => x.Name.Equals(account.Name));
+			dbContext.Accounts.Remove(accountDao);
 			dbContext.SaveChanges();
 		}
 	}

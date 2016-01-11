@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Repository.Abstract;
@@ -46,20 +47,20 @@ namespace Repository.Services
 
 		private void GetAccounts()
 		{
-			var accountsDao = _dbContext.AccountDao.Where(c => c.ClientId.Equals(_clientId)).ToList();
+			var accountsDao = _dbContext.Accounts.Where(c => c.ClientId.Equals(_clientId)).ToList();
 			_accounts = Converter.ConvertList<AccountDao, Account>(accountsDao);
 		}
 
 		private void GetOpenings()
 		{
-			var openingsDao = _dbContext.OpeningDao.Where(x => x.ClientId.Equals(_clientId) && x.Year.Equals(_year)).ToList();
+			var openingsDao = _dbContext.Openings.Where(x => x.ClientId.Equals(_clientId) && x.Year.Equals(_year)).ToList();
 			_openings = Converter.ConvertList<OpeningDao, Opening>(openingsDao);
 		}
 
 		private void AddNewOpenings()
 		{
 			var openingsDao = Converter.ConvertList<Opening, OpeningDao>(_openings);
-			_dbContext.OpeningDao.AddRange(openingsDao);
+			_dbContext.Openings.AddRange(openingsDao);
 			_dbContext.SaveChanges();
 		}
 
@@ -67,8 +68,8 @@ namespace Repository.Services
 		{
 			var year = _openings[0].Year;
 			var clientId = _openings[0].ClientId;
-			var oldOpenings = _dbContext.OpeningDao.Where(c => c.ClientId.Equals(clientId) && c.Year.Equals(year));
-			_dbContext.OpeningDao.RemoveRange(oldOpenings);
+			var oldOpenings = _dbContext.Openings.Where(c => c.ClientId.Equals(clientId) && c.Year.Equals(year));
+			_dbContext.Openings.RemoveRange(oldOpenings);
 		}
 	}
 }

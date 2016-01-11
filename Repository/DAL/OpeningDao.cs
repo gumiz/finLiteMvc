@@ -26,6 +26,5 @@ namespace Repository.DAL
 
 		[Column("DT"), Required]
 		public double Dt { get; set; }
-
 	}
 }
