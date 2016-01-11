@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IClientsService.cs" />
     <Compile Include="Abstract\IDataInitializatorService.cs" />
+    <Compile Include="Abstract\IDocumentsService.cs" />
     <Compile Include="Abstract\IFactory.cs" />
     <Compile Include="Abstract\IOpeningsService.cs" />
     <Compile Include="DAL\AccountDao.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Services\ClientsService.cs" />
     <Compile Include="Services\Converter.cs" />
     <Compile Include="Services\DataInitializatorService.cs" />
+    <Compile Include="Services\DocumentsService.cs" />
     <Compile Include="Services\OpeningsService.cs" />
   </ItemGroup>
   <ItemGroup>

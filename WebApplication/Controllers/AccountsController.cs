@@ -6,7 +6,7 @@ namespace WebApplication.Controllers
 {
 	public class AccountsController : Controller
 	{
-		private IFactory _factory;
+		private readonly IFactory _factory;
 
 		public AccountsController(IFactory factory)
 		{
