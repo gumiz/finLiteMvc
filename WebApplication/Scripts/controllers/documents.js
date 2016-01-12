@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryService', 'dialogService', 'notify', 'datepickerService', 'dateUtils', function ($scope, repositoryService, dialogService, notify, datepickerService, dateUtils) {
+angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryService', 'dialogService', 'notify', 'datepickerService', 'dateUtils', '$q',
+    function ($scope, repositoryService, dialogService, notify, datepickerService, dateUtils, $q) {
 
     var documents = this;
 
@@ -16,15 +17,17 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     cleanNewDocument();
 
     documents.data.newDocument = {};
-    var gotDocuments = function (items) {
-        documents.data.documents = items;
-    };
+
     documents.commands.refresh = function () {
-        repositoryService.getDocuments($scope.main.data.clientId, documents.data.year, gotDocuments);
+        var def = $q.defer();
+        repositoryService.getDocuments($scope.main.data.clientId, documents.data.year, function (items) {
+            documents.data.documents = items;
+            def.resolve();
+        });
+        return def.promise;
     };
     
     var fixPrice = function () {
-        debugger;
         if (documents.data.newDocument.price) {
             documents.data.newDocument.price = documents.data.newDocument.price.replace(",", ".");
         }
@@ -51,6 +54,8 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
         documents.data.accounts = accounts;
     };
     repositoryService.getAccounts($scope.main.data.clientId, gotAccounts);
-    documents.data.datepicker = datepickerService.initDatePicker(documents.data.newDocument.date);
-    documents.commands.refresh();
+
+    documents.commands.refresh().then(function () {
+        documents.data.datepicker = datepickerService.initDatePicker(documents.data.newDocument.Date);
+    });
 }]);

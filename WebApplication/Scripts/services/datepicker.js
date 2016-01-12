@@ -24,6 +24,7 @@ angular.module('finLiteApp').factory('datepickerService', function () {
     datePicker.toggleMin();
 
     datePicker.open = function ($event) {
+        debugger;
       $event.preventDefault();
       $event.stopPropagation();
 
@@ -36,6 +37,8 @@ angular.module('finLiteApp').factory('datepickerService', function () {
     };
 
     datePicker.format = 'yyyy-MM-dd';
+    debugger;
+
     return datePicker;
   };
   return {

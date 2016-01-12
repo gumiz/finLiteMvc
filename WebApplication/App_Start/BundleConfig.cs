@@ -21,6 +21,7 @@ namespace WebApplication
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js",
+					  "~/Scripts/ui-bootstrap-tpls.js",
 					  "~/Scripts/respond.js"));
 
 			bundles.Add(new StyleBundle("~/Content/template").Include(

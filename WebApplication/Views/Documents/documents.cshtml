@@ -31,7 +31,7 @@
 			<tbody>
 				<tr ng-repeat="ac in documents.data.documents | filter: documentSearch">
 					<td>{{ac.AutoNumber}}</td>
-					<td class="text-center">{{ac.Date}}</td>
+					<td class="text-center">{{ac.Date | toDate }}</td>
 					<td>{{ac.Number}}</td>
 					<td>{{ac.Description}}</td>
 					<td class="text-right">{{ac.Price | toMoney}}</td>
@@ -42,6 +42,16 @@
 							<span class="glyphicon glyphicon-remove"></span>
 						</button>
 					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td </td>
+					<td></td>
+					<td class="text-right"><b>suma wszytkiego co się rusza:</b></td>
+					<td class="text-right"><b>{{documents.data.documents | total : 'Price' | toMoney}}</b></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>
@@ -54,11 +64,11 @@
 					<td class="col-xs-0"></td>
 					<td class="col-xs-2">
 						<p style="width:150px" class="input-group">
-							<input type="text" class="form-control" datepicker-popup="{{datepicker.format}}" ng-model="newDocument.date"
-								   is-open="datepicker.opened" datepicker-options="datepicker.dateOptions" ng-required="true"
+							<input type="text" class="form-control" datepicker-popup="{{documents.data.datepicker.format}}" ng-model="documents.data.newDocument.date"
+								   is-open="documents.data.datepicker.opened" datepicker-options="documents.data.datepicker.dateOptions" ng-required="true"
 								   clear-text="Wyczyść" current-text="Dzisiaj" close-text="Zamknij" placeholder="data" />
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-success" ng-click="datepicker.open($event)">
+								<button type="button" class="btn btn-success" ng-click="documents.data.datepicker.open($event)">
 									<i class="glyphicon glyphicon-calendar"></i>
 								</button>
 							</span>
@@ -71,18 +81,18 @@
 						<input class="form-control" ng-model="newDocument.description" placeholder="treść" />
 					</td>
 					<td class="col-xs-1" style="width: 12%">
-						<input class="form-control" ng-model="newDocument.price" placeholder="kwota" />
+						<input class="form-control currencyEditDocument" type='number' ng-model='newDocument.price' currency-mask placeholder="kwota" />
 					</td>
 					<td class="col-sm-1" style="width: 10%">
-						<select class="form-control" ng-options="item.name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+						<select class="form-control smallAcc" ng-options="item.name as item.Name + ': ' + item.Description for item in documents.data.accounts"
 								ng-model="documents.data.newDocument.AccountDt" required></select>
 					</td>
 					<td class="col-sm-1" style="width: 10%">
-						<select class="form-control" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+						<select class="form-control smallAcc" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
 								ng-model="documents.data.newDocument.AccountCt" required></select>
 					</td>
 					<td class="col-xs-0" style="text-align: center">
-						<button ng-click="addDocument()" class="btn btn-success">
+						<button ng-click="documents.commands.addDocument()" class="btn btn-success">
 							<span class="glyphicon glyphicon-plus"></span>
 						</button>
 					</td>

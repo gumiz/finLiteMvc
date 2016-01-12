@@ -227,6 +227,8 @@
     <Content Include="Scripts\controllers\openingbalance.js" />
     <Content Include="Scripts\controllers\reports.js" />
     <Content Include="Scripts\directives\currencyMask.js" />
+    <Content Include="Scripts\filters\toDate.js" />
+    <Content Include="Scripts\filters\total.js" />
     <Content Include="Scripts\filters\toMoney.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -250,6 +252,7 @@
     <Content Include="Scripts\services\notify.js" />
     <Content Include="Scripts\services\repositoryService.js" />
     <Content Include="Scripts\services\urlService.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

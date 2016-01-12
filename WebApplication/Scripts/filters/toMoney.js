@@ -1,5 +1,5 @@
-﻿appFilters.filter('toMoney', ['moneyService', function (moneyService) {
-
-    return moneyService.convertMoney;
-
-}])
+﻿appFilters.filter('toMoney', [
+    'moneyService', function(moneyService) {
+        return moneyService.convertMoney;
+    }
+]);

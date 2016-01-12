@@ -17,7 +17,7 @@ namespace Repository.Services
 
 		public IList<Document> GetDocuments(int year, int clientId)
 		{
-			var documentsDao = _dbContext.Documents.Where(x=>x.Year.Equals(year) && x.ClientId.Equals(clientId)).ToList();
+			var documentsDao = _dbContext.Documents.Where(x=>x.Year.Equals(year) && x.ClientId.Equals(clientId)).OrderBy(x=>x.AutoNumber).ToList();
 			var documents = Converter.ConvertList<DocumentDao, Document>(documentsDao);
 			return documents;
 		}

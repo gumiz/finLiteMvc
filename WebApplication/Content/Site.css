@@ -28,7 +28,17 @@ textarea {
     padding: 0;
 }
 
+.smallAcc {
+    font-size: 0.9em;
+    padding: 5px
+}
+
 .currencyEdit {
     text-align: right;
     height: 30px
+}
+
+.currencyEditDocument {
+    text-align: right;
+    height: 46px
 }
