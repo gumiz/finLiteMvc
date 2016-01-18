@@ -8,6 +8,7 @@ namespace Repository.DAL
 	public class DocumentDao
 	{
 		[Key, Column("ID"), Required]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 
 		[Column("CLIENT_ID"), Required]

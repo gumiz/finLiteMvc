@@ -34,8 +34,9 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     ajaxService.doPostWithBlock('addDocuments', item).then(successFunc);
   };
 
-  var deleteDocument = function(ident, successFunc) {
-    ajaxService.doPostWithBlock('deleteDocuments', {id: ident}).then(successFunc);
+  var deleteDocument = function (ident, successFunc) {
+      debugger;
+      ajaxService.doPostWithBlock(urlService.documents.deleteDocument, { id: ident }).then(successFunc);
   };
 
   var getReports = function(successFunc) {

@@ -38,7 +38,7 @@
 					<td class="text-center text-warning">{{ac.AccountDt}}</td>
 					<td class="text-center text-info">{{ac.AccountCt}}</td>
 					<td style="text-align: center">
-						<button ng-click="documents.commands.deleteDocument(ac._id)" class="btn btn-block btn-sm">
+						<button ng-click="documents.commands.deleteDocument(ac.Id)" class="btn btn-block btn-sm">
 							<span class="glyphicon glyphicon-remove"></span>
 						</button>
 					</td>
@@ -81,7 +81,7 @@
 						<input class="form-control" ng-model="newDocument.description" placeholder="treść" />
 					</td>
 					<td class="col-xs-1" style="width: 12%">
-						<input class="form-control currencyEditDocument" type='number' ng-model='newDocument.price' currency-mask placeholder="kwota" />
+						<input class="form-control currencyEditDocument" type='' ng-model='documents.data.newDocument.Price' currency-mask placeholder="kwota" />
 					</td>
 					<td class="col-sm-1" style="width: 10%">
 						<select class="form-control smallAcc" ng-options="item.name as item.Name + ': ' + item.Description for item in documents.data.accounts"

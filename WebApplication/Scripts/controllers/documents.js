@@ -11,12 +11,10 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     documents.data.year = 2015;
     documents.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
 
-    var cleanNewDocument = function() {
-        documents.data.newDocument = {};
+    var cleanNewDocument = function () {
+        documents.data.newDocument = { Price: 0 };
     }
     cleanNewDocument();
-
-    documents.data.newDocument = {};
 
     documents.commands.refresh = function () {
         var def = $q.defer();

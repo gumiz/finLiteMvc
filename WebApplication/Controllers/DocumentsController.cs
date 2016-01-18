@@ -24,12 +24,18 @@ namespace WebApplication.Controllers
 			return new JsonResult { Data = documents };
 		}
 
-//		[HttpPost]
-//		public ActionResult AddAccount(Account account)
-//		{
-//			_factory.GetAccoutnsService().AddAccount(account);
-//			return new JsonResult { Data = true };
-//		}
+		public ActionResult DeleteDocument(int id)
+		{
+			_factory.GetDocumentsService().DeleteDocument(id);
+			return new JsonResult { Data = true };
+		}
+
+		//		[HttpPost]
+		//		public ActionResult AddAccount(Account account)
+		//		{
+		//			_factory.GetAccoutnsService().AddAccount(account);
+		//			return new JsonResult { Data = true };
+		//		}
 
 	}
 }

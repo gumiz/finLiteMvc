@@ -21,5 +21,12 @@ namespace Repository.Services
 			var documents = Converter.ConvertList<DocumentDao, Document>(documentsDao);
 			return documents;
 		}
+
+		public void DeleteDocument(int id)
+		{
+			var document = _dbContext.Documents.FirstOrDefault(c => c.Id.Equals(id));
+			_dbContext.Documents.Remove(document);
+			_dbContext.SaveChanges();
+		}
 	}
 }
