@@ -13,6 +13,7 @@ namespace Repository
 			ClientsService = new ClientsService(dbContext);
 			OpeningsService = new OpeningsService(dbContext);
 			DocumentsService = new DocumentsService(dbContext);
+			ReportsService = new ReportsService(dbContext);
 			DataInitializatorService = new DataInitializatorService(dbContext);
 		}
 
@@ -20,6 +21,7 @@ namespace Repository
 		public IClientsService ClientsService { get; set; }
 		public IOpeningsService OpeningsService { get; set; }
 		public IDocumentsService DocumentsService { get; set; }
+		public IReportsService ReportsService { get; set; }
 		public IDataInitializatorService DataInitializatorService { get; set; }
 
 		public IAccountsService GetAccoutnsService()
@@ -45,6 +47,11 @@ namespace Repository
 		public IDocumentsService GetDocumentsService()
 		{
 			return DocumentsService;
+		}
+
+		public IReportsService GetReportsService()
+		{
+			return ReportsService;
 		}
 	}
 }

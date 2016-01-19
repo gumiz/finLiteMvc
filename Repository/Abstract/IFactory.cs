@@ -7,5 +7,6 @@ namespace Repository.Abstract
 		IOpeningsService GetOpeningsService();
 		IDataInitializatorService GetDataInitializatorService();
 		IDocumentsService GetDocumentsService();
+		IReportsService GetReportsService();
 	}
 }

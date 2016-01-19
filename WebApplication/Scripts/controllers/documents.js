@@ -12,7 +12,7 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     documents.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
 
     var cleanNewDocument = function () {
-        documents.data.newDocument = { Price: 0 };
+        documents.data.newDocument = { Price: 0, Date: dateUtils.getActualDate() };
     }
     cleanNewDocument();
 
@@ -33,7 +33,8 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
 
     documents.commands.addDocument = function () {
         fixPrice();
-        documents.newDocument.date = dateUtils.dateToString(documents.data.newDocument.date);
+        documents.data.newDocument.Date = dateUtils.dateToString(documents.data.newDocument.Date);
+        documents.data.newDocument.ClientId = $scope.main.data.clientId;
         repositoryService.addDocument(documents.data.newDocument, documents.commands.refresh);
         cleanNewDocument();
     };

@@ -1,1 +1,56 @@
-﻿
+﻿<div ng-controller="reportsCtrl as reports" class="row">
+	<div class="row">
+		<div class="col-md-4">
+			<label>rok:</label> <select style="width: 200px" class="form-control combo" ng-options="item as item for item in reports.data.allYears" ng-model="reports.data.year" ng-change="reports.commands.refresh()" name="yearSelect" required></select>
+		</div>
+		<div class="col-md-8">
+			<div class="input-group col-xs-3 pull-right">
+				<input type="text" class="col-xs-3 search-query form-control" placeholder="Szukaj konta" ng-model="reports.data.reportSearch.AccountName" />
+				<span class="input-group-btn">
+					<button class="btn btn-success" type="button">
+						<span class=" glyphicon glyphicon-search"></span>
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<div class="row container" style="font-size: 80%;">
+		<div class="row">
+			<div ng-repeat="rep in reports.data.reports | filter: reports.data.reportSearch" class="col-md-5 container" style="margin: 10px; padding: 10px; background: #f8f5f0;">
+				<h5>{{rep.AccountName}}</h5>
+				<!--WN-->
+				<div class="col-xs-6 text-warning" style="float: left">
+					<span class="text-center"><strong>wn</strong></span>
+					<table class="table-border-top">
+						<tr ng-repeat="d in rep.Dt | orderBy : 'Id'">
+							<td class="text-left col-xs-4">{{d.AutoNumber}}</td>
+							<td class="text-right col-xs-4">{{d.Price | currency: ""}}</td>
+						</tr>
+						<tr>
+							<td class="text-left col-xs-4 table-border-top"></td>
+							<td class="text-right col-xs-4 table-border-top"><strong>{{rep.Dt | total : 'Price' | currency: ""}}</strong></td>
+						</tr>
+					</table>
+				</div>
+				<!--MA-->
+				<div class="col-xs-6 text-info" style="float: left">
+					<span class="text-center"><strong>ma</strong></span>
+					<table class="table-border-top">
+						<tr ng-repeat="c in rep.Ct | orderBy : 'Id'">
+							<td class="text-left col-xs-4">{{c.AutoNumber}}</td>
+							<td class="text-right col-xs-4">{{c.Price | currency: ""}}</td>
+						</tr>
+						<tr>
+							<td class="text-left col-xs-4 table-border-top"></td>
+							<td class="text-right col-xs-4 table-border-top"><strong>{{rep.Ct | total : 'Price' | currency: ""}}</strong></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -9,6 +9,8 @@ namespace Repository.Services
 	public class DocumentsService : IDocumentsService
 	{
 		private readonly DefaultContext _dbContext;
+		private int _autoNumber;
+		private List<DocumentDao> _allDocs;
 
 		public DocumentsService(DefaultContext dbContext)
 		{
@@ -27,6 +29,27 @@ namespace Repository.Services
 			var document = _dbContext.Documents.FirstOrDefault(c => c.Id.Equals(id));
 			_dbContext.Documents.Remove(document);
 			_dbContext.SaveChanges();
+		}
+
+		public void AddDocument(Document document)
+		{
+			document.Year = document.Date.Year;
+			SetAutoNumber(document);
+			var documentDao = Converter.Convert<Document, DocumentDao>(document);
+			_dbContext.Documents.Add(documentDao);
+			_dbContext.SaveChanges();
+		}
+
+		private void SetAutoNumber(Document document)
+		{
+			_allDocs = _dbContext.Documents.Where(c => c.Year.Equals(document.Date.Year) && c.ClientId.Equals(document.ClientId)).ToList();
+			_autoNumber = 1;
+			if (_allDocs.Any())
+			{
+				_autoNumber = _allDocs.Max(c => c.AutoNumber);
+				_autoNumber++;
+			}
+			document.AutoNumber = _autoNumber;
 		}
 	}
 }

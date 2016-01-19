@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Repository.Abstract;
+using Repository.Domain;
 
 namespace WebApplication.Controllers
 {
@@ -30,12 +31,12 @@ namespace WebApplication.Controllers
 			return new JsonResult { Data = true };
 		}
 
-		//		[HttpPost]
-		//		public ActionResult AddAccount(Account account)
-		//		{
-		//			_factory.GetAccoutnsService().AddAccount(account);
-		//			return new JsonResult { Data = true };
-		//		}
+		[HttpPost]
+		public ActionResult AddDocument(Document document)
+		{
+			_factory.GetDocumentsService().AddDocument(document);
+			return new JsonResult { Data = true };
+		}
 
 	}
 }

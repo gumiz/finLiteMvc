@@ -64,7 +64,7 @@
 					<td class="col-xs-0"></td>
 					<td class="col-xs-2">
 						<p style="width:150px" class="input-group">
-							<input type="text" class="form-control" datepicker-popup="{{documents.data.datepicker.format}}" ng-model="documents.data.newDocument.date"
+							<input type="text" class="form-control" datepicker-popup="{{documents.data.datepicker.format}}" ng-model="documents.data.newDocument.Date"
 								   is-open="documents.data.datepicker.opened" datepicker-options="documents.data.datepicker.dateOptions" ng-required="true"
 								   clear-text="Wyczyść" current-text="Dzisiaj" close-text="Zamknij" placeholder="data" />
 							<span class="input-group-btn">
@@ -75,16 +75,16 @@
 						</p>
 					</td>
 					<td class="col-xs-2">
-						<input class="form-control" ng-model="newDocument.number" placeholder="numer" />
+						<input class="form-control" ng-model="documents.data.newDocument.Number" placeholder="numer" />
 					</td>
 					<td>
-						<input class="form-control" ng-model="newDocument.description" placeholder="treść" />
+						<input class="form-control" ng-model="documents.data.newDocument.Description" placeholder="treść" />
 					</td>
 					<td class="col-xs-1" style="width: 12%">
 						<input class="form-control currencyEditDocument" type='' ng-model='documents.data.newDocument.Price' currency-mask placeholder="kwota" />
 					</td>
 					<td class="col-sm-1" style="width: 10%">
-						<select class="form-control smallAcc" ng-options="item.name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+						<select class="form-control smallAcc" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
 								ng-model="documents.data.newDocument.AccountDt" required></select>
 					</td>
 					<td class="col-sm-1" style="width: 10%">

@@ -31,16 +31,16 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var addDocument = function(item, successFunc) {
-    ajaxService.doPostWithBlock('addDocuments', item).then(successFunc);
+      ajaxService.doPostWithBlock(urlService.documents.addDocument, item).then(successFunc);
   };
 
   var deleteDocument = function (ident, successFunc) {
-      debugger;
       ajaxService.doPostWithBlock(urlService.documents.deleteDocument, { id: ident }).then(successFunc);
   };
 
-  var getReports = function(successFunc) {
-    ajaxService.doGetWithBlock('getReports').then(successFunc);
+  var getReports = function (clientId, year, successFunc) {
+      debugger;
+      ajaxService.doPostWithBlock(urlService.reports.getReports, { clientId: clientId, year: year }).then(successFunc);
   };
 
   var getClients = function (successFunc) {

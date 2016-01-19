@@ -58,6 +58,7 @@
     <Compile Include="Abstract\IDocumentsService.cs" />
     <Compile Include="Abstract\IFactory.cs" />
     <Compile Include="Abstract\IOpeningsService.cs" />
+    <Compile Include="Abstract\IReportsService.cs" />
     <Compile Include="DAL\AccountDao.cs" />
     <Compile Include="DAL\ClientDao.cs" />
     <Compile Include="DAL\DefaultContext.cs" />
@@ -66,6 +67,8 @@
     <Compile Include="Domain\Client.cs" />
     <Compile Include="Domain\Document.cs" />
     <Compile Include="Domain\Opening.cs" />
+    <Compile Include="Domain\Report.cs" />
+    <Compile Include="Domain\ReportDocument.cs" />
     <Compile Include="Services\AccountsService.cs" />
     <Compile Include="Domain\Account.cs" />
     <Compile Include="Factory.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Services\DataInitializatorService.cs" />
     <Compile Include="Services\DocumentsService.cs" />
     <Compile Include="Services\OpeningsService.cs" />
+    <Compile Include="Services\ReportsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
