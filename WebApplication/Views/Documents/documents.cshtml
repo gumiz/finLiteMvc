@@ -17,87 +17,161 @@
 	<div class="row">
 		<table class="table table-striped">
 			<thead>
-				<tr>
-					<th class="col-xs-0 text-center">Lp</th>
-					<th class="col-xs-2 text-center">Data</th>
-					<th class="col-xs-2 text-center">Numer</th>
-					<th class="text-center">Treść</th>
-					<th class="col-xs-1 text-center" style="width: 12%">Kwota</th>
-					<th class="col-sm-1 text-center" style="width: 10%">Wn</th>
-					<th class="col-sm-1 text-center" style="width: 10%">Ma</th>
-					<th class="col-xs-0 text-center"></th>
-				</tr>
+			<tr>
+				<th class="col-xs-0 text-center">Lp</th>
+				<th class="col-xs-2 text-center">Data</th>
+				<th class="col-xs-2 text-center">Numer</th>
+				<th class="text-center">Treść</th>
+				<th class="col-xs-1 text-center" style="width: 12%">Kwota</th>
+				<th class="col-sm-1 text-center" style="width: 10%">Wn</th>
+				<th class="col-sm-1 text-center" style="width: 10%">Ma</th>
+				<th class="col-xs-0 text-center"></th>
+			</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="ac in documents.data.documents | filter: documentSearch">
-					<td>{{ac.AutoNumber}}</td>
-					<td class="text-center">{{ac.Date | toDate }}</td>
-					<td>{{ac.Number}}</td>
-					<td>{{ac.Description}}</td>
-					<td class="text-right">{{ac.Price | toMoney}}</td>
-					<td class="text-center text-warning">{{ac.AccountDt}}</td>
-					<td class="text-center text-info">{{ac.AccountCt}}</td>
-					<td style="text-align: center">
-						<button ng-click="documents.commands.deleteDocument(ac.Id)" class="btn btn-block btn-sm">
-							<span class="glyphicon glyphicon-remove"></span>
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td </td>
-					<td></td>
-					<td class="text-right"><b>suma wszytkiego co się rusza:</b></td>
-					<td class="text-right"><b>{{documents.data.documents | total : 'Price' | toMoney}}</b></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+			<tr ng-repeat="ac in documents.data.documents | filter: documentSearch">
+				<td>{{ac.AutoNumber}}</td>
+				<td class="text-center">{{ac.Date | toDate }}</td>
+				<td>{{ac.Number}}</td>
+				<td>{{ac.Description}}</td>
+				<td class="text-right">{{ac.Price | toMoney}}</td>
+				<td class="text-center text-warning">{{ac.AccountDt}}</td>
+				<td class="text-center text-info">{{ac.AccountCt}}</td>
+				<td style="text-align: center">
+					<button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-xs" ng-click="documents.commands.setItemToEdit(ac)">
+						<span class="glyphicon glyphicon-edit"></span>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td </td>
+				<td></td>
+				<td class="text-right"><b>suma wszytkiego co się rusza:</b></td>
+				<td class="text-right"><b>{{documents.data.documents | total : 'Price' | toMoney}}</b></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
 			</tbody>
 		</table>
-		<br />
+		<br/>
 		<table class="table">
 			<thead>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="col-xs-0"></td>
-					<td class="col-xs-2">
-						<p style="width:150px" class="input-group">
-							<input type="text" class="form-control" datepicker-popup="{{documents.data.datepicker.format}}" ng-model="documents.data.newDocument.Date"
-								   is-open="documents.data.datepicker.opened" datepicker-options="documents.data.datepicker.dateOptions" ng-required="true"
-								   clear-text="Wyczyść" current-text="Dzisiaj" close-text="Zamknij" placeholder="data" />
-							<span class="input-group-btn">
+			<tr>
+				<td class="col-xs-0"></td>
+				<td class="col-xs-2">
+					<p style="width: 150px" class="input-group">
+						<input type="text" class="form-control" datepicker-popup="{{documents.data.datepicker.format}}" ng-model="documents.data.newDocument.Date"
+						       is-open="documents.data.datepicker.opened" datepicker-options="documents.data.datepicker.dateOptions" ng-required="true"
+						       clear-text="Wyczyść" current-text="Dzisiaj" close-text="Zamknij" placeholder="data"/>
+						<span class="input-group-btn">
 								<button type="button" class="btn btn-success" ng-click="documents.data.datepicker.open($event)">
 									<i class="glyphicon glyphicon-calendar"></i>
 								</button>
 							</span>
-						</p>
-					</td>
-					<td class="col-xs-2">
-						<input class="form-control" ng-model="documents.data.newDocument.Number" placeholder="numer" />
-					</td>
-					<td>
-						<input class="form-control" ng-model="documents.data.newDocument.Description" placeholder="treść" />
-					</td>
-					<td class="col-xs-1" style="width: 12%">
-						<input class="form-control currencyEditDocument" type='' ng-model='documents.data.newDocument.Price' currency-mask placeholder="kwota" />
-					</td>
-					<td class="col-sm-1" style="width: 10%">
-						<select class="form-control smallAcc" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
-								ng-model="documents.data.newDocument.AccountDt" required></select>
-					</td>
-					<td class="col-sm-1" style="width: 10%">
-						<select class="form-control smallAcc" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
-								ng-model="documents.data.newDocument.AccountCt" required></select>
-					</td>
-					<td class="col-xs-0" style="text-align: center">
-						<button ng-click="documents.commands.addDocument()" class="btn btn-success">
-							<span class="glyphicon glyphicon-plus"></span>
-						</button>
-					</td>
-				</tr>
+					</p>
+				</td>
+				<td class="col-xs-2">
+					<input class="form-control" ng-model="documents.data.newDocument.Number" placeholder="numer"/>
+				</td>
+				<td>
+					<input class="form-control" ng-model="documents.data.newDocument.Description" placeholder="treść"/>
+				</td>
+				<td class="col-xs-1" style="width: 12%">
+					<input class="form-control currencyEditDocument" type='' ng-model='documents.data.newDocument.Price' currency-mask placeholder="kwota"/>
+				</td>
+				<td class="col-sm-1" style="width: 10%">
+					<select class="form-control smallAcc" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+					        ng-model="documents.data.newDocument.AccountDt" required></select>
+				</td>
+				<td class="col-sm-1" style="width: 10%">
+					<select class="form-control smallAcc" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+					        ng-model="documents.data.newDocument.AccountCt" required></select>
+				</td>
+				<td class="col-xs-0" style="text-align: center">
+					<button ng-click="documents.commands.addDocument()" class="btn btn-success">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</td>
+			</tr>
 			</tbody>
 		</table>
 	</div>
+
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edycja dokumentu</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-2 text-right">Numer:</div>
+						<div class="col-md-8"><input ng-model="documents.data.editItem.Number" class="form-wide-300"/></div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-2 text-right">Opis:</div>
+						<div class="col-md-10">
+							<input ng-model="documents.data.editItem.Description" class="form-wide-500"/>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-2 text-right">Kwota:</div>
+						<div class="col-md-4"><input class="form-control currencyEditDocument" type='' ng-model='documents.data.editItem.Price' currency-mask placeholder="kwota" style="width: 150px; height: 30px"/></div>
+					</div>
+					
+					<div class="row" style="margin-top: 20px">
+						<div class="col-md-2 text-right">Wn:</div>
+						<div class="col-md-10">
+							<select class="form-control smallAcc form-wide-500" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+									ng-model="documents.data.editItem.AccountDt" required></select>
+						</div>
+					</div>
+					<div class="row" style="margin-top: 20px">
+						<div class="col-md-2 text-right">Ma:</div>
+						<div class="col-md-10">
+							<select class="form-control smallAcc form-wide-500" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+									ng-model="documents.data.editItem.AccountDt" required></select>
+						</div>
+					</div>
+
+					<div class="row" style="margin-top: 20px">
+						<div class="col-md-2 text-right">Data:</div>
+						<div class="col-md-4">
+							<p style="width: 150px;" class="input-group">
+								<input type="text" class="form-control" datepicker-popup="{{documents.data.datepicker.format}}" ng-model="documents.data.editItem.Date"
+									   is-open="documents.data.datepicker.opened" datepicker-options="documents.data.datepicker.dateOptions" ng-required="true"
+									   clear-text="Wyczyść" current-text="Dzisiaj" close-text="Zamknij" placeholder="data" />
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-success" ng-click="documents.data.datepicker.open($event)">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="col-md-2">
+						<button ng-click="documents.commands.deleteDocument(documents.data.editItem.Id)" class="btn btn-danger">
+							<span class="glyphicon glyphicon-remove"> Usuń</span>
+						</button>
+					</div>
+					<div class="col-md-10">
+						<button class="btn btn-success" ng-click="documents.commands.edit()"><span class="glyphicon glyphicon-ok"> Zapisz</span></button>
+						<button class="btn btn-default" data-dismiss="modal">Zamknij</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 </div>

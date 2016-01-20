@@ -57,3 +57,18 @@ textarea {
 .valign.bottom > div {
     vertical-align: bottom;
 }
+
+.modal-dialog{
+    width: 800px;
+}
+
+.form-wide-300 {
+    height: 30px;
+    width: 300px;
+    max-width: 300px;
+}
+.form-wide-500 {
+    height: 30px;
+    width: 500px;
+    max-width: 500px;
+}

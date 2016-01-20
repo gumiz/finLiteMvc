@@ -25,15 +25,16 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
         return def.promise;
     };
     
-    var fixPrice = function () {
-        if (documents.data.newDocument.price) {
-            documents.data.newDocument.price = documents.data.newDocument.price.replace(",", ".");
+    var fixDocumentProperties = function (item) {
+        if (item.Price) {
+            item.Price = item.Price.replace(".", ",");
         }
+        item.Date = dateUtils.dateToString(item.Date);
     }
 
     documents.commands.addDocument = function () {
-        fixPrice();
-        documents.data.newDocument.Date = dateUtils.dateToString(documents.data.newDocument.Date);
+        debugger;
+        fixDocumentProperties(documents.data.newDocument);
         documents.data.newDocument.ClientId = $scope.main.data.clientId;
         repositoryService.addDocument(documents.data.newDocument, documents.commands.refresh);
         cleanNewDocument();
@@ -45,10 +46,6 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
         };
     };
 
-    documents.commands.deleteDocument = function (id) {
-        dialogService.confirmation('Czy na pewno chcesz usunąć dokument?', deleteDocument(id));
-    };
-
     var gotAccounts = function (accounts) {
         documents.data.accounts = accounts;
     };
@@ -57,4 +54,24 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     documents.commands.refresh().then(function () {
         documents.data.datepicker = datepickerService.initDatePicker(documents.data.newDocument.Date);
     });
+
+    documents.commands.setItemToEdit = function (item) {
+        documents.data.editItem = JSON.parse(JSON.stringify(item));
+        documents.data.editItem.Date = dateUtils.dateToString(documents.data.editItem.Date);
+    }
+
+    documents.commands.edit = function () {
+        fixDocumentProperties(documents.data.editItem);
+        repositoryService.addDocument(documents.data.editItem, function (){
+            documents.commands.refresh();
+            notify.info("Dokument został zmieniony.");
+        });
+        $('#myModal').modal('hide');
+    };
+
+    documents.commands.deleteDocument = function (id) {
+        $('#myModal').modal('hide');
+        dialogService.confirmation('Czy na pewno chcesz usunąć dokument?', deleteDocument(id));
+    };
+
 }]);

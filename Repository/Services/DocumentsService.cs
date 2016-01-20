@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Repository.Abstract;
 using Repository.DAL;
@@ -36,12 +37,13 @@ namespace Repository.Services
 			document.Year = document.Date.Year;
 			SetAutoNumber(document);
 			var documentDao = Converter.Convert<Document, DocumentDao>(document);
-			_dbContext.Documents.Add(documentDao);
+			_dbContext.Documents.AddOrUpdate(documentDao);
 			_dbContext.SaveChanges();
 		}
 
 		private void SetAutoNumber(Document document)
 		{
+			if (document.AutoNumber > 0) return;
 			_allDocs = _dbContext.Documents.Where(c => c.Year.Equals(document.Date.Year) && c.ClientId.Equals(document.ClientId)).ToList();
 			_autoNumber = 1;
 			if (_allDocs.Any())
