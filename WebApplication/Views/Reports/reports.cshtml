@@ -19,7 +19,7 @@
 	<br />
 	<div class="row container" style="font-size: 80%;">
 		<div class="row">
-			<div ng-repeat="rep in reports.data.reports | filter: reports.data.reportSearch" class="col-md-5 container" style="margin: 10px; padding: 10px; background: #f8f5f0;">
+			<div ng-repeat="rep in reports.data.reports | filter: reports.data.reportSearch" class="col-md-5 container" style="margin: 10px; padding: 10px; background: #f8f5f0; vertical-align: bottom;">
 				<h5>{{rep.AccountName}}</h5>
 				<!--WN-->
 				<div class="col-xs-6 text-warning" style="float: left">
@@ -30,13 +30,17 @@
 							<td class="text-right col-xs-4">{{d.Price | currency: ""}}</td>
 						</tr>
 						<tr>
-							<td class="text-left col-xs-4 table-border-top"></td>
-							<td class="text-right col-xs-4 table-border-top"><strong>{{rep.Dt | total : 'Price' | currency: ""}}</strong></td>
+							<td class="text-left col-xs-4 table-border-top">suma:</td>
+							<td class="text-right col-xs-4 table-border-top"><strong>{{rep.Dt | currency: ""}}</strong></td>
+						</tr>
+						<tr>
+							<td class="text-left col-xs-4">BZ:</td>
+							<td class="text-right col-xs-4"><strong>{{rep.DtClosing | currency: ""}}</strong></td>
 						</tr>
 					</table>
 				</div>
 				<!--MA-->
-				<div class="col-xs-6 text-info" style="float: left">
+				<div class="col-xs-6 text-info" style="float: left;">
 					<span class="text-center"><strong>ma</strong></span>
 					<table class="table-border-top">
 						<tr ng-repeat="c in rep.Ct | orderBy : 'Id'">
@@ -44,8 +48,12 @@
 							<td class="text-right col-xs-4">{{c.Price | currency: ""}}</td>
 						</tr>
 						<tr>
-							<td class="text-left col-xs-4 table-border-top"></td>
+							<td class="text-left col-xs-4 table-border-top">suma:</td>
 							<td class="text-right col-xs-4 table-border-top"><strong>{{rep.Ct | total : 'Price' | currency: ""}}</strong></td>
+						</tr>
+						<tr>
+							<td class="text-left col-xs-4">BZ:</td>
+							<td class="text-right col-xs-4"><strong>{{rep.CtClosing | currency: ""}}</strong></td>
 						</tr>
 					</table>
 				</div>
@@ -54,3 +62,4 @@
 	</div>
 
 </div>
+

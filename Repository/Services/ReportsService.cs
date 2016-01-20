@@ -39,11 +39,26 @@ namespace Repository.Services
 				GetAccountDocumentsForAccountSide(account, report => report.Dt, openings => openings.Dt, document=>document.AccountDt);
 				GetAccountDocumentsForAccountSide(account, report => report.Ct, openings => openings.Ct, document=>document.AccountCt);
 
+				CalculateClosingForSideCt();
+				CalculateClosingForSideDt();
+
 				if (AnyDocumentsExists())
 					_result.Add(_report);
 			}
 
 			return _result;
+		}
+
+		private void CalculateClosingForSideCt()
+		{
+			_report.CtClosing = _report.Ct.Sum(x => x.Price) - _report.Dt.Sum(x => x.Price);
+			if (_report.CtClosing < 0) _report.CtClosing = 0;
+		}
+
+		private void CalculateClosingForSideDt()
+		{
+			_report.DtClosing = _report.Dt.Sum(x => x.Price) - _report.Ct.Sum(x => x.Price);
+			if (_report.DtClosing < 0) _report.DtClosing = 0;
 		}
 
 		private bool AnyDocumentsExists()

@@ -11,12 +11,18 @@ angular.module('finLiteApp').controller('reportsCtrl', ['$scope', 'repositorySer
 
 
     reports.commands.refresh = function () {
-        debugger;
         repositoryService.getReports($scope.main.data.clientId, reports.data.year, function (items) {
             reports.data.reports = items;
         });
     };
 
     reports.commands.refresh();
+
+    reports.commands.getClosing = function (value1, value2) {
+        debugger;
+        var result = value1 - value2;
+        if (result < 0) result = 0;
+        return result;
+    }
 
 }]);

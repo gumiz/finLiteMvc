@@ -39,7 +39,6 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var getReports = function (clientId, year, successFunc) {
-      debugger;
       ajaxService.doPostWithBlock(urlService.reports.getReports, { clientId: clientId, year: year }).then(successFunc);
   };
 

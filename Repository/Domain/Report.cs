@@ -7,5 +7,7 @@ namespace Repository.Domain
 		public string AccountName { get; set; }
 		public IList<ReportDocument> Dt { get; set; }
 		public IList<ReportDocument> Ct { get; set; }
+		public double DtClosing { get; set; }
+		public double CtClosing { get; set; }
 	}
 }
