@@ -16,7 +16,9 @@
 	</div>
 	<br />
 	<br />
-	<br />
+	<br/>
+
+
 	<div class="row container" style="font-size: 80%;">
 		<div class="row">
 			<div ng-repeat="rep in reports.data.reports | filter: reports.data.reportSearch" class="col-md-5 container" style="margin: 10px; padding: 10px; background: #f8f5f0; vertical-align: bottom;">
@@ -29,14 +31,6 @@
 							<td class="text-left col-xs-4">{{d.AutoNumber}}</td>
 							<td class="text-right col-xs-4">{{d.Price | currency: ""}}</td>
 						</tr>
-						<tr>
-							<td class="text-left col-xs-4 table-border-top">suma:</td>
-							<td class="text-right col-xs-4 table-border-top"><strong>{{rep.Dt | currency: ""}}</strong></td>
-						</tr>
-						<tr>
-							<td class="text-left col-xs-4">BZ:</td>
-							<td class="text-right col-xs-4"><strong>{{rep.DtClosing | currency: ""}}</strong></td>
-						</tr>
 					</table>
 				</div>
 				<!--MA-->
@@ -47,19 +41,42 @@
 							<td class="text-left col-xs-4">{{c.AutoNumber}}</td>
 							<td class="text-right col-xs-4">{{c.Price | currency: ""}}</td>
 						</tr>
-						<tr>
-							<td class="text-left col-xs-4 table-border-top">suma:</td>
-							<td class="text-right col-xs-4 table-border-top"><strong>{{rep.Ct | total : 'Price' | currency: ""}}</strong></td>
-						</tr>
-						<tr>
-							<td class="text-left col-xs-4">BZ:</td>
-							<td class="text-right col-xs-4"><strong>{{rep.CtClosing | currency: ""}}</strong></td>
-						</tr>
 					</table>
+				</div>
+
+@*				SUMS*@
+				<div style="clear: both">
+					<div class="col-xs-6 text-warning" style="float: left">
+						<table class="table-border-top">
+							<tr>
+								<td class="text-left col-xs-4 table-border-top">suma:</td>
+								<td class="text-right col-xs-4 table-border-top"><strong>{{rep.DtSum | currency: ""}}</strong></td>
+							</tr>
+							<tr ng-hide="rep.DtClosing==0">
+								<td class="text-left col-xs-4">BZ:</td>
+								<td class="text-right col-xs-4"><strong>{{rep.DtClosing | currency: ""}}</strong></td>
+							</tr>
+						</table>
+					</div>
+					<!--MA-->
+					<div class="col-xs-6 text-info" style="float: left;">
+						<table class="table-border-top">
+							<tr>
+								<td class="text-left col-xs-4 table-border-top">suma:</td>
+								<td class="text-right col-xs-4 table-border-top"><strong>{{rep.CtSum | currency: ""}}</strong></td>
+							</tr>
+							<tr ng-hide="rep.CtClosing==0">
+								<td class="text-left col-xs-4">BZ:</td>
+								<td class="text-right col-xs-4"><strong>{{rep.CtClosing | currency: ""}}</strong></td>
+							</tr>
+						</table>
+					</div>
+					
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 </div>
 

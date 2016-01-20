@@ -38,7 +38,7 @@ namespace Repository.Services
 				GetAccountOpeningsDictionaryForAccount(account);
 				GetAccountDocumentsForAccountSide(account, report => report.Dt, openings => openings.Dt, document=>document.AccountDt);
 				GetAccountDocumentsForAccountSide(account, report => report.Ct, openings => openings.Ct, document=>document.AccountCt);
-
+				CalculateSums();
 				CalculateClosingForSideCt();
 				CalculateClosingForSideDt();
 
@@ -47,6 +47,12 @@ namespace Repository.Services
 			}
 
 			return _result;
+		}
+
+		private void CalculateSums()
+		{
+			_report.CtSum = _report.Ct.Sum(x => x.Price);
+			_report.DtSum = _report.Dt.Sum(x => x.Price);
 		}
 
 		private void CalculateClosingForSideCt()
@@ -74,12 +80,12 @@ namespace Repository.Services
 		private void GetAccountDocumentsForAccountSide(AccountDao account, Func<Report, IList<ReportDocument>> reportLambda, Func<OpeningDao, double> openingsFunction, Func<DocumentDao, string> documentProperty )
 		{
 			foreach (var opening in _openings)
-				reportLambda.Invoke(_report).Add(new ReportDocument { Id = opening.Id, AutoNumber = 0, Number = "0", Price = openingsFunction.Invoke(opening) });
+				reportLambda.Invoke(_report).Add(new ReportDocument { Id = opening.Id, AutoNumber = "BO", Number = "BO", Price = openingsFunction.Invoke(opening) });
 
 			var allDocuments = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).ToList();
 			_documents = allDocuments.Where(c => documentProperty.Invoke(c).Equals(account.Name)).ToList();
 			foreach (var item in _documents)
-				reportLambda.Invoke(_report).Add(new ReportDocument { Id = item.Id, AutoNumber = item.AutoNumber, Number = item.Number, Price = item.Price });
+				reportLambda.Invoke(_report).Add(new ReportDocument { Id = item.Id, AutoNumber = item.AutoNumber.ToString(), Number = item.Number, Price = item.Price });
 		}
 
 		private void GetAccountOpeningsDictionaryForAccount(AccountDao account)
