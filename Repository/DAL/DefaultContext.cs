@@ -4,10 +4,11 @@ namespace Repository.DAL
 {
 	public class DefaultContext : DbContext
 	{
-		public DefaultContext()
-			: base("defaultConnectionFactory")
+//		public DefaultContext(): base("defaultConnectionFactory")
+		public DefaultContext(): base("PostgresConnection")
 		{
 			Database.SetInitializer<DefaultContext>(new CreateDatabaseIfNotExists<DefaultContext>());
+//			Database.SetInitializer<DefaultContext>(new CreateDatabaseIfNotExists<DefaultContext>());
 //			Database.SetInitializer<DefaultContext>(new DropCreateDatabaseIfModelChanges<DefaultContext>());
 		}
 

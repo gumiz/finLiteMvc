@@ -6,7 +6,10 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
     main.data = {};
     main.commands = {};
 
+
     main.data.clientId = Number(urlService.getIdFromUrl());
+    if (isNaN(main.data.clientId))
+        main.data.clientId = 1;
     if (main.data.clientId === 0) main.data.clientId = 1;
 
     main.commands.getClass = function (path) {
@@ -21,17 +24,18 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
         main.clients = data;
     });
 
-    main.refresh = function() {
-        window.location = "/" + main.data.clientId;
+    var getUrl = function (base) {
+        return base + "/" + main.data.clientId;
+    }
+
+    main.refresh = function () {
+        window.location = getUrl(urlService.accounts.index);
     }
 
     main.commands.initData = function() {
         repositoryService.initData();
     };
 
-    var getUrl = function(base) {
-        return base + "/" + main.data.clientId;
-    }
     main.commands.getUrlAccounts = function () {
         return getUrl(urlService.accounts.index);
     }

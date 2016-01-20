@@ -11,7 +11,6 @@ namespace Repository.Services
 	{
 		private readonly DefaultContext _dbContext;
 		private List<Opening> _openings;
-		private List<Opening> _result; 
 		private int _clientId;
 		private int _year;
 		private List<Account> _accounts;
