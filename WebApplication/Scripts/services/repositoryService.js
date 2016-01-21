@@ -7,7 +7,8 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var showPdf = function (data) {
-    window.open("data:application/pdf;base64, " + data);
+      debugger;
+      window.open("data:application/pdf;base64, " + data);
 //      window.open("data:application/pdf," + escape(data));
   };
 

@@ -15,7 +15,7 @@ namespace Repository
 			DocumentsService = new DocumentsService(dbContext);
 			ReportsService = new ReportsService(dbContext);
 			DataInitializatorService = new DataInitializatorService(dbContext);
-			PrintService = new PrintService();
+			PrintService = new PrintService(this);
 		}
 
 		public AccountsService AccountsService { get; set; }

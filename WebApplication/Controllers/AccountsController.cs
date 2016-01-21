@@ -48,11 +48,7 @@ namespace WebApplication.Controllers
 		public ActionResult Print(int clientId)
 		{
 			var pdfBytes = _factory.GetPrintService().GetAccounts(clientId);
-			var fileResult = new FileContentResult(pdfBytes, "application/pdf");
-            fileResult.FileDownloadName = "FinLiteAccounts.pdf";
-
 			var base64EncodedPDF = System.Convert.ToBase64String(pdfBytes);
-
 			return new JsonResult {Data = base64EncodedPDF, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
 		}
 

@@ -1,6 +1,7 @@
 ﻿<h1>Accounts</h1>
 
 <div ng-controller="AccountsCtrl as accounts">
+	<button ng-click="accounts.print()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"> Drukuj</span></button>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -37,9 +38,6 @@
 			</tr>
 		</tbody>
 	</table>
-
-
-	<button ng-click="accounts.print()" class="btn btn-success btn-sm" ><span class="glyphicon glyphicon-print"> Drukuj</span></button>
 
 	<p></p>
 </div>
