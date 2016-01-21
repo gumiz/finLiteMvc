@@ -6,6 +6,11 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     return elems[elems.length - 1];
   };
 
+  var showPdf = function (data) {
+    window.open("data:application/pdf;base64, " + data);
+//      window.open("data:application/pdf," + escape(data));
+  };
+
   var saveOpenings = function(item, successFunc) {
     ajaxService.doPostWithBlock(urlService.openings.saveOpenings, item).then(successFunc);
   };
@@ -20,6 +25,10 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
 
   var addAccount = function(item, successFunc) {
     ajaxService.doPostWithBlock(urlService.accounts.addAccount, item).then(successFunc);
+  };
+
+  var printAccounts = function (clientId) {
+      ajaxService.doGet(urlService.accounts.printAccounts + '?clientId='+ clientId).then(showPdf);
   };
 
   var deleteAccount = function (account, successFunc) {
@@ -57,6 +66,7 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     addAccount: addAccount,
     deleteAccount: deleteAccount,
     getAccounts: getAccounts,
+    printAccounts: printAccounts,
     addDocument: addDocument,
     deleteDocument: deleteDocument,
     getDocuments: getDocuments,

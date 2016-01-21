@@ -33,6 +33,7 @@ appServices.factory('urlService', ['domService', function (domService) {
         accounts: {
             index: createUrl(controllers.Accounts, "Index"),
             getAccounts: createUrl(controllers.Accounts, "GetAccounts"),
+            printAccounts: createUrl(controllers.Accounts, "Print"),
             addAccount: createUrl(controllers.Accounts, "AddAccount"),
             deleteAccount: createUrl(controllers.Accounts, "DeleteAccount")
         },

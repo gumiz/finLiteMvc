@@ -21,9 +21,12 @@ angular.module('finLiteApp').controller('AccountsCtrl', ['$scope', 'repositorySe
   };
 
   accController.deleteAccount = function (account) {
-      debugger;
     dialogService.confirmation('Czy na pewno chcesz usunąć to konto?', deleteAccount(account));
   };
+
+  accController.print = function() {
+      repositoryService.printAccounts($scope.main.data.clientId);
+  }
 
   refresh();
 }]);

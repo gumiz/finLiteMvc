@@ -50,6 +50,10 @@
       <HintPath>..\packages\Npgsql.3.0.5\lib\net45\Npgsql.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NReco.PdfGenerator, Version=1.1.11.0, Culture=neutral, PublicKeyToken=231663d50a41b451, processorArchitecture=MSIL">
+      <HintPath>..\packages\NReco.PdfGenerator.1.1.11.0\lib\net20\NReco.PdfGenerator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -66,6 +70,7 @@
     <Compile Include="Abstract\IDocumentsService.cs" />
     <Compile Include="Abstract\IFactory.cs" />
     <Compile Include="Abstract\IOpeningsService.cs" />
+    <Compile Include="Abstract\IPrintService.cs" />
     <Compile Include="Abstract\IReportsService.cs" />
     <Compile Include="DAL\AccountDao.cs" />
     <Compile Include="DAL\ClientDao.cs" />
@@ -87,6 +92,7 @@
     <Compile Include="Services\DataInitializatorService.cs" />
     <Compile Include="Services\DocumentsService.cs" />
     <Compile Include="Services\OpeningsService.cs" />
+    <Compile Include="Services\PrintService.cs" />
     <Compile Include="Services\ReportsService.cs" />
   </ItemGroup>
   <ItemGroup>
