@@ -33,7 +33,6 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     }
 
     documents.commands.addDocument = function () {
-        debugger;
         fixDocumentProperties(documents.data.newDocument);
         documents.data.newDocument.ClientId = $scope.main.data.clientId;
         repositoryService.addDocument(documents.data.newDocument, documents.commands.refresh);

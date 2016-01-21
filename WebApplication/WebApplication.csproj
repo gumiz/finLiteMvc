@@ -227,6 +227,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\northend.pubxml" />
+    <None Include="Properties\PublishProfiles\notekAni.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\controllers\accounts.js" />
     <Content Include="Scripts\controllers\documents.js" />
@@ -263,7 +264,9 @@
     <Content Include="Scripts\services\urlService.js" />
     <Content Include="Scripts\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
