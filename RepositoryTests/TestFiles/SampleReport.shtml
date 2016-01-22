@@ -2,11 +2,11 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>FinLite</title>
-	<style>body{color:#039;}.right{text-align: right}.col-1{width:8%}.col-2{width:16%}.col-3{width:24%}.col-4{width:32%}.col-5{width:40%}.col-6{width:50%}.col-7{width:58%}.col-8{width:66%}.col-9{width:75%}.col-10{width:83%}.col-11{width:92%}.col-12{width:100%}#one-column-emphasis{font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;font-size:12px;text-align:left;border-collapse:collapse;margin:20px;}#one-column-emphasis th{font-size:14px;font-weight:normal;color:#039;padding:12px 15px;}#one-column-emphasis td{color:#669;border-top:1px solid #e8edff;padding:10px 15px;}.oce-first{background:#d0dafd;border-right:10px solid transparent;border-left:10px solid transparent;}#one-column-emphasis tr:hover td{color:#339;background:#eff2ff;}.title{font-weight:bold; font-size: 1.4em}</style>
+	<style>	body{color:#039;}.bold{font-weight: bold}.right{text-align: right}.col-1{width:8%}.col-2{width:16%}.col-3{width:24%}.col-4{width:32%}.col-5{width:40%}.col-6{width:50%}.col-7{width:58%}.col-8{width:66%}.col-9{width:75%}.col-10{width:83%}.col-11{width:92%}.col-12{width:100%}#one-column-emphasis{font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;font-size:12px;text-align:left;border-collapse:collapse;margin:20px;}#one-column-emphasis th{font-size:14px;font-weight:normal;color:#039;padding:12px 15px;}#one-column-emphasis td{color:#669;border-top:1px solid #e8edff;padding:10px 15px;}.oce-first{background:#d0dafd;border-right:10px solid transparent;border-left:10px solid transparent;}#one-column-emphasis tr:hover td{color:#339;background:#eff2ff;}.title{font-weight:bold; font-size: 1.4em}tbody tr:nth-child(odd){background-color: #dfd7ca;}</style>
 </head>
 <body>
 	<div>
-		<p class="title"><b>Plan kont na rok obrotowy 2015</b> - <i>Uczniowski Klub Sportowy "NET"</i></p><table class="col-8" id="one-column-emphasis">
+		<p class="title"><b>Plan kont na rok obrotowy 2015</b> - <i>Uczniowski Klub Sportowy "NET"</i></p><table class="col-8 bold" id="one-column-emphasis">
 			<thead>
 				<tr><td class="col-1">Nazwa</td><td class="col-5">Opis</td><td class="col-1 right">BO WN</td><td class="col-1 right">BO MA</td></tr>
 			</thead>
@@ -14,6 +14,9 @@
 		</table><table class="col-8" id="one-column-emphasis">
 			<thead></thead>
 			<tbody>
+				<tr><td class="col-1">000</td><td class="col-5">Tets Test Test Test Test Test Test Test</td><td class="col-1 right">50000.95</td><td class="col-1 right">1000.22</td></tr>
+				<tr><td class="col-1">000</td><td class="col-5">Tets Test Test Test Test Test Test Test</td><td class="col-1 right">50000.95</td><td class="col-1 right">1000.22</td></tr>
+				<tr><td class="col-1">000</td><td class="col-5">Tets Test Test Test Test Test Test Test</td><td class="col-1 right">50000.95</td><td class="col-1 right">1000.22</td></tr>
 				<tr><td class="col-1">000</td><td class="col-5">Tets Test Test Test Test Test Test Test</td><td class="col-1 right">50000.95</td><td class="col-1 right">1000.22</td></tr>
 			</tbody>
 		</table><br />
