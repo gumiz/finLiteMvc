@@ -24,9 +24,9 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult GetAccounts(int clientId)
+		public ActionResult GetAccounts(int clientId, int year)
 		{
-			var accounts = _factory.GetAccoutnsService().GetAccounts(clientId);
+			var accounts = _factory.GetAccoutnsService().GetAccounts(clientId, year);
 			return new JsonResult {Data = accounts};
 		}
 
@@ -45,11 +45,10 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Print(int clientId)
+		public ActionResult Print(int clientId, int year)
 		{
-			var pdfBytes = _factory.GetPrintService().GetAccounts(clientId);
-			var base64EncodedPDF = System.Convert.ToBase64String(pdfBytes);
-			return new JsonResult {Data = base64EncodedPDF, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+			var pdf = _factory.GetAccountsPrintService().GetPdf(clientId, year);
+			return new JsonResult {Data = pdf, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
 		}
 
 	}

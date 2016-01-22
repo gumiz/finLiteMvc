@@ -95,7 +95,7 @@ namespace Repository.Services
 
 		private void GetAccounts()
 		{
-			_accounts = _dbContext.Accounts.Where(c => c.ClientId.Equals(_clientId)).OrderBy(c => c.Name).ToList();
+			_accounts = _dbContext.Accounts.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).OrderBy(c => c.Name).ToList();
 		}
 
 		private void PrepareReport()

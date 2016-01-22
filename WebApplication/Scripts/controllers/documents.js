@@ -48,7 +48,7 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     var gotAccounts = function (accounts) {
         documents.data.accounts = accounts;
     };
-    repositoryService.getAccounts($scope.main.data.clientId, gotAccounts);
+    repositoryService.getAccounts($scope.main.data.clientId, documents.data.year, gotAccounts);
 
     documents.commands.refresh().then(function () {
         documents.data.datepicker = datepickerService.initDatePicker(documents.data.newDocument.Date);

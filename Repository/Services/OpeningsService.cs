@@ -27,7 +27,7 @@ namespace Repository.Services
 			GetAccounts();
 			GetOpenings();
 			AddNonExistantAccounts();
-			return _openings;
+			return _openings.OrderBy(x=>x.Name).ToList();
 		}
 		public void SaveOpenings(List<Opening> openings)
 		{
@@ -46,7 +46,7 @@ namespace Repository.Services
 
 		private void GetAccounts()
 		{
-			var accountsDao = _dbContext.Accounts.Where(c => c.ClientId.Equals(_clientId)).ToList();
+			var accountsDao = _dbContext.Accounts.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).ToList();
 			_accounts = Converter.ConvertList<AccountDao, Account>(accountsDao);
 		}
 

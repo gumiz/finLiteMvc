@@ -7,9 +7,7 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var showPdf = function (data) {
-      debugger;
       window.open("data:application/pdf;base64, " + data);
-//      window.open("data:application/pdf," + escape(data));
   };
 
   var saveOpenings = function(item, successFunc) {
@@ -20,16 +18,12 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doPost(urlService.openings.getOpenings, { clientId: clientId, year: year }).then(successFunc);
   };
 
-  var getAccounts = function(clientId, successFun) {
-      ajaxService.doPost(urlService.accounts.getAccounts, {clientId: clientId}).then(successFun);
+  var getAccounts = function(clientId, year, successFun) {
+      ajaxService.doPost(urlService.accounts.getAccounts, {clientId: clientId, year: year}).then(successFun);
   };
 
   var addAccount = function(item, successFunc) {
     ajaxService.doPostWithBlock(urlService.accounts.addAccount, item).then(successFunc);
-  };
-
-  var printAccounts = function (clientId) {
-      ajaxService.doGet(urlService.accounts.printAccounts + '?clientId='+ clientId).then(showPdf);
   };
 
   var deleteAccount = function (account, successFunc) {
@@ -60,6 +54,14 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doPost(urlService.clients.initData).then(successFunc);
   };
 
+  var printAccounts = function (clientId, year) {
+      ajaxService.doGet(urlService.accounts.printAccounts + '?clientId=' + clientId + '&year=' + year).then(showPdf);
+  };
+
+  var printOpenings = function (clientId, year) {
+      ajaxService.doGet(urlService.openings.printOpenings + '?clientId=' + clientId + '&year=' + year).then(showPdf);
+  };
+
   return {
     saveOpenings: saveOpenings,
     getOpenings: getOpenings,
@@ -67,12 +69,13 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     addAccount: addAccount,
     deleteAccount: deleteAccount,
     getAccounts: getAccounts,
-    printAccounts: printAccounts,
     addDocument: addDocument,
     deleteDocument: deleteDocument,
     getDocuments: getDocuments,
     getReports: getReports,
     getClients: getClients,
-    initData: initData
+    initData: initData,
+    printAccounts: printAccounts,
+    printOpenings: printOpenings
   }
 }]);

@@ -82,6 +82,8 @@
     <Compile Include="Domain\Opening.cs" />
     <Compile Include="Domain\Report.cs" />
     <Compile Include="Domain\ReportDocument.cs" />
+    <Compile Include="Services\OpeningsPrintService.cs" />
+    <Compile Include="Services\AccountsPrintService.cs" />
     <Compile Include="Services\AccountsService.cs" />
     <Compile Include="Domain\Account.cs" />
     <Compile Include="Factory.cs" />
@@ -92,7 +94,7 @@
     <Compile Include="Services\DataInitializatorService.cs" />
     <Compile Include="Services\DocumentsService.cs" />
     <Compile Include="Services\OpeningsService.cs" />
-    <Compile Include="Services\PrintService.cs" />
+    <Compile Include="Services\AbstractPrintService.cs" />
     <Compile Include="Services\ReportsService.cs" />
   </ItemGroup>
   <ItemGroup>

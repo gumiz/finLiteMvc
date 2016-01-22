@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using NUnit.Framework;
+using Repository;
 using Repository.DAL;
 using Repository.Domain;
 using Repository.Services;
@@ -27,5 +28,6 @@ namespace RepositoryTests
 			var accounts = Converter.ConvertList<AccountDao, Account>(accountsDao);
 			Assert.AreEqual(1, accounts.Count);
 		}
+
 	}
 }

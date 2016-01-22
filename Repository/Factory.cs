@@ -15,7 +15,8 @@ namespace Repository
 			DocumentsService = new DocumentsService(dbContext);
 			ReportsService = new ReportsService(dbContext);
 			DataInitializatorService = new DataInitializatorService(dbContext);
-			PrintService = new PrintService(this);
+			AccountsPrintService = new AccountsPrintService(this);
+			OpeningsPrintService = new OpeningsPrintService(this);
 		}
 
 		public AccountsService AccountsService { get; set; }
@@ -24,7 +25,8 @@ namespace Repository
 		public IDocumentsService DocumentsService { get; set; }
 		public IReportsService ReportsService { get; set; }
 		public IDataInitializatorService DataInitializatorService { get; set; }
-		public IPrintService PrintService { get; set; }
+		public IPrintService AccountsPrintService { get; set; }
+		public IPrintService OpeningsPrintService { get; set; }
 
 		public IAccountsService GetAccoutnsService()
 		{
@@ -56,9 +58,15 @@ namespace Repository
 			return ReportsService;
 		}
 
-		public IPrintService GetPrintService()
+		public IPrintService GetAccountsPrintService()
 		{
-			return PrintService;
+			return AccountsPrintService;
 		}
+
+		public IPrintService GetOpeningsPrintService()
+		{
+			return OpeningsPrintService;
+		}
+
 	}
 }

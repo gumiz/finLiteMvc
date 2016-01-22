@@ -30,5 +30,12 @@ namespace WebApplication.Controllers
 			_factory.GetOpeningsService().SaveOpenings(openings);
 			return new JsonResult { Data = true };
 		}
+
+		[HttpGet]
+		public ActionResult Print(int clientId, int year)
+		{
+			var pdf = _factory.GetOpeningsPrintService().GetPdf(clientId, year);
+			return new JsonResult { Data = pdf, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+		}
 	}
 }

@@ -1,7 +1,15 @@
 ﻿<div ng-controller="OpeningBalanceCtrl as openings">
 	<div class="row">
-		<label>rok:</label> <select style="width: 200px" class="form-control combo" ng-options="item as item for item in openings.data.allYears" ng-model="openings.data.year" ng-change="openings.commands.getData()" name="yearSelect" required></select>
+		<div class="col-md-4">
+			<label>rok:</label> <select style="width: 200px" class="form-control combo" ng-options="item as item for item in openings.data.allYears" ng-model="openings.data.year" ng-change="openings.commands.getData()" name="yearSelect" required></select>
+		</div>
+		<div class="col-md-8">
+			<div class="input-group col-xs-1 pull-right">
+				<button ng-click="openings.commands.print()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"> Drukuj</span></button>
+			</div>
+		</div>
 	</div>
+
 	<div class="row">
 		<table class="table table-striped">
 			<thead>

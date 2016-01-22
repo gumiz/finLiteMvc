@@ -8,6 +8,7 @@ namespace Repository.Abstract
 		IDataInitializatorService GetDataInitializatorService();
 		IDocumentsService GetDocumentsService();
 		IReportsService GetReportsService();
-		IPrintService GetPrintService();
+		IPrintService GetAccountsPrintService();
+		IPrintService GetOpeningsPrintService();
 	}
 }

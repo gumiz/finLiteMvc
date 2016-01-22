@@ -14,7 +14,7 @@ namespace Repository.DAL
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<AccountDao>().HasKey(c => new {c.Name, c.ClientId});
+			modelBuilder.Entity<AccountDao>().HasKey(c => new {c.Name, c.ClientId, c.Year});
 			modelBuilder.Entity<ClientDao>().HasKey(c => new {c.ClientId, c.Name});
 			modelBuilder.Entity<OpeningDao>().HasKey(c => new {c.Year, c.ClientId, c.Name});
 			modelBuilder.Entity<DocumentDao>().HasKey(c => new {c.Year, c.ClientId, c.Number, c.AutoNumber});

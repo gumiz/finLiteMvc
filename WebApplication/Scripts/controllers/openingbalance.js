@@ -37,4 +37,8 @@ angular.module('finLiteApp')
             fixDocumentProperties(openings.data.openings);
             repositoryService.saveOpenings(openings.data.openings, confirmSaved);
         };
+
+        openings.commands.print = function () {
+            repositoryService.printOpenings($scope.main.data.clientId, openings.data.year);
+        }
   }]);

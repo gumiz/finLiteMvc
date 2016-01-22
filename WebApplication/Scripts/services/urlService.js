@@ -40,8 +40,9 @@ appServices.factory('urlService', ['domService', function (domService) {
         openings: {
             index: createUrl(controllers.OpeningBalance, "Index"),
             getOpenings: createUrl(controllers.OpeningBalance, "GetOpenings"),
-            saveOpenings: createUrl(controllers.OpeningBalance, "SaveOpenings")
-        },
+            saveOpenings: createUrl(controllers.OpeningBalance, "SaveOpenings"),
+            printOpenings: createUrl(controllers.OpeningBalance, "Print")
+    },
         documents: {
             index: createUrl(controllers.Documents, "Index"),
             getDocuments: createUrl(controllers.Documents, "GetDocuments"),
