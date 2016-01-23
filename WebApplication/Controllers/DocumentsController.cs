@@ -38,5 +38,11 @@ namespace WebApplication.Controllers
 			return new JsonResult { Data = true };
 		}
 
+		[HttpGet]
+		public ActionResult Print(int clientId, int year)
+		{
+			var pdf = _factory.GetDocumentsPrintService().GetPdf(clientId, year);
+			return new JsonResult { Data = pdf, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+		}
 	}
 }

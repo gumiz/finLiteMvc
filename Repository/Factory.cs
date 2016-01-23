@@ -1,6 +1,7 @@
 ﻿using Repository.Abstract;
 using Repository.DAL;
 using Repository.Services;
+using Repository.Services.Printing;
 
 namespace Repository
 {
@@ -17,6 +18,7 @@ namespace Repository
 			DataInitializatorService = new DataInitializatorService(dbContext);
 			AccountsPrintService = new AccountsPrintService(this);
 			OpeningsPrintService = new OpeningsPrintService(this);
+			DocumentsPrintService = new DocumentsPrintService(this);
 		}
 
 		public AccountsService AccountsService { get; set; }
@@ -27,6 +29,7 @@ namespace Repository
 		public IDataInitializatorService DataInitializatorService { get; set; }
 		public IPrintService AccountsPrintService { get; set; }
 		public IPrintService OpeningsPrintService { get; set; }
+		public IPrintService DocumentsPrintService { get; set; }
 
 		public IAccountsService GetAccoutnsService()
 		{
@@ -68,5 +71,9 @@ namespace Repository
 			return OpeningsPrintService;
 		}
 
+		public IPrintService GetDocumentsPrintService()
+		{
+			return DocumentsPrintService;
+		}
 	}
 }

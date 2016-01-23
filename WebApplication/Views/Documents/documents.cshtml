@@ -12,7 +12,12 @@
 					</button>
 				</span>
 			</div>
-		</div>
+			<div class="col-xs-1 pull-right">
+			</div>
+			<div class="input-group col-xs-1 pull-right">
+					<button ng-click="documents.commands.print()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"> Drukuj</span></button>
+				</div>
+			</div>
 	</div>
 	<div class="row">
 		<table class="table table-striped">
@@ -22,9 +27,9 @@
 				<th class="col-xs-2 text-center">Data</th>
 				<th class="col-xs-2 text-center">Numer</th>
 				<th class="text-center">Treść</th>
-				<th class="col-xs-1 text-center" style="width: 12%">Kwota</th>
-				<th class="col-sm-1 text-center" style="width: 10%">Wn</th>
-				<th class="col-sm-1 text-center" style="width: 10%">Ma</th>
+				<th class="col-xs-1 text-right" style="width: 12%">Kwota</th>
+				<th class="col-sm-1" style="width: 10%">Wn</th>
+				<th class="col-sm-1" style="width: 10%">Ma</th>
 				<th class="col-xs-0 text-center"></th>
 			</tr>
 			</thead>
@@ -34,9 +39,9 @@
 				<td class="text-center">{{ac.Date | toDate }}</td>
 				<td>{{ac.Number}}</td>
 				<td>{{ac.Description}}</td>
-				<td class="text-right">{{ac.Price | toMoney}}</td>
-				<td class="text-center text-warning">{{ac.AccountDt}}</td>
-				<td class="text-center text-info">{{ac.AccountCt}}</td>
+				<td class="text-right bold">{{ac.Price | toMoney}}</td>
+				<td class="text-warning">{{ac.AccountDt}}</td>
+				<td class="text-info">{{ac.AccountCt}}</td>
 				<td style="text-align: center">
 					<button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-xs" ng-click="documents.commands.setItemToEdit(ac)">
 						<span class="glyphicon glyphicon-edit"></span>

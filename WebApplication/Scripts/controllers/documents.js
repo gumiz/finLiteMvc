@@ -73,4 +73,9 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
         dialogService.confirmation('Czy na pewno chcesz usunąć dokument?', deleteDocument(id));
     };
 
+    documents.commands.print = function () {
+        debugger;
+        repositoryService.printDocuments($scope.main.data.clientId, documents.data.year);
+    }
+
 }]);

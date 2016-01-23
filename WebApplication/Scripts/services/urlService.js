@@ -47,7 +47,8 @@ appServices.factory('urlService', ['domService', function (domService) {
             index: createUrl(controllers.Documents, "Index"),
             getDocuments: createUrl(controllers.Documents, "GetDocuments"),
             deleteDocument: createUrl(controllers.Documents, "DeleteDocument"),
-            addDocument: createUrl(controllers.Documents, "AddDocument")
+            addDocument: createUrl(controllers.Documents, "AddDocument"),
+            printDocuments: createUrl(controllers.Documents, "Print")
         },
         reports: {
             index: createUrl(controllers.Reports, "Index"),

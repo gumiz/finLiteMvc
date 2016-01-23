@@ -1,4 +1,4 @@
-﻿namespace Repository.Services
+﻿namespace Repository.Services.Printing
 {
 	public class AccountsPrintService : AbstractPrintService
 	{

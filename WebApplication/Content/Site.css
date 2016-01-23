@@ -72,3 +72,6 @@ textarea {
     width: 500px;
     max-width: 500px;
 }
+.bold {
+    font-weight: bold;
+}
