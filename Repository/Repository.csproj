@@ -82,6 +82,7 @@
     <Compile Include="Domain\Opening.cs" />
     <Compile Include="Domain\Report.cs" />
     <Compile Include="Domain\ReportDocument.cs" />
+    <Compile Include="Services\Printing\ReportsPrintService.cs" />
     <Compile Include="Services\Printing\DocumentsPrintService.cs" />
     <Compile Include="Services\Printing\OpeningsPrintService.cs" />
     <Compile Include="Services\Printing\AccountsPrintService.cs" />

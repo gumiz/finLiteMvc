@@ -29,9 +29,9 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td></td>
-					<td class="text-right"><b>{{openings.data.openings | total : 'Dt' | toMoney}}</b></td>
-					<td class="text-right"><b>{{openings.data.openings | total : 'Ct' | toMoney}}</b></td>
+					<td class="text-right">suma syntetyk:</td>
+					<td class="text-right"><b>{{openings.commands.getTotal("Dt") | toMoney}}</b></td>
+					<td class="text-right"><b>{{openings.commands.getTotal("Ct") | toMoney}}</b></td>
 				</tr>
 			</tbody>
 		</table>

@@ -1,7 +1,12 @@
-﻿namespace Repository.Services.Printing
+﻿using Repository.Domain;
+
+namespace Repository.Services.Printing
 {
 	public class OpeningsPrintService : AbstractPrintService
 	{
+		private double _sumDt;
+		private double _sumCt;
+
 		public OpeningsPrintService(Factory factory) : base(factory)
 		{
 		}
@@ -14,7 +19,18 @@
 			{
 				var dt = DecimalToString(ac.Dt);
 				var ct = DecimalToString(ac.Ct);
+				AddSums(ac);
                 Rows += $"<tr><td class=\"col-2\">{ac.Name}</td><td class=\"col-6\">{ac.Description}</td><td class=\"col-2 right\">{dt}</td><td class=\"col-2 right\">{ct}</td></tr>";
+			}
+			Rows += $"<tr><td class=\"col-2\"></td><td class=\"right col-6\">suma syntetyk:</td><td class=\"col-2 right bold\">"+ DecimalToString(_sumDt) + "</td><td class=\"col-2 right bold\">" + DecimalToString(_sumCt) + "</td></tr>";
+		}
+
+		private void AddSums(Opening ac)
+		{
+			if (ac.Name.Length == 3)
+			{
+				_sumDt += ac.Dt;
+				_sumCt += ac.Ct;
 			}
 		}
 

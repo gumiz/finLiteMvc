@@ -74,8 +74,6 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     };
 
     documents.commands.print = function () {
-        debugger;
         repositoryService.printDocuments($scope.main.data.clientId, documents.data.year);
     }
-
 }]);

@@ -19,6 +19,7 @@ namespace Repository
 			AccountsPrintService = new AccountsPrintService(this);
 			OpeningsPrintService = new OpeningsPrintService(this);
 			DocumentsPrintService = new DocumentsPrintService(this);
+			ReportsPrintService = new ReportsPrintService(this);
 		}
 
 		public AccountsService AccountsService { get; set; }
@@ -30,6 +31,7 @@ namespace Repository
 		public IPrintService AccountsPrintService { get; set; }
 		public IPrintService OpeningsPrintService { get; set; }
 		public IPrintService DocumentsPrintService { get; set; }
+		public IPrintService ReportsPrintService { get; set; }
 
 		public IAccountsService GetAccoutnsService()
 		{
@@ -74,6 +76,11 @@ namespace Repository
 		public IPrintService GetDocumentsPrintService()
 		{
 			return DocumentsPrintService;
+		}
+
+		public IPrintService GetReportsPrintService()
+		{
+			return ReportsPrintService;
 		}
 	}
 }

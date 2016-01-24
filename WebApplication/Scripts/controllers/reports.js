@@ -19,10 +19,13 @@ angular.module('finLiteApp').controller('reportsCtrl', ['$scope', 'repositorySer
     reports.commands.refresh();
 
     reports.commands.getClosing = function (value1, value2) {
-        debugger;
         var result = value1 - value2;
         if (result < 0) result = 0;
         return result;
+    }
+
+    reports.commands.print = function () {
+        repositoryService.printReports($scope.main.data.clientId, reports.data.year);
     }
 
 }]);

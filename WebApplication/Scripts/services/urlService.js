@@ -52,8 +52,9 @@ appServices.factory('urlService', ['domService', function (domService) {
         },
         reports: {
             index: createUrl(controllers.Reports, "Index"),
-            getReports: createUrl(controllers.Reports, "GetReports")
-    }
+            getReports: createUrl(controllers.Reports, "GetReports"),
+            printReports: createUrl(controllers.Reports, "Print")
+        }
 
     };
 }]);

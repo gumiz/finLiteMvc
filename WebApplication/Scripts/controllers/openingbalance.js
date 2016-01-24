@@ -41,4 +41,14 @@ angular.module('finLiteApp')
         openings.commands.print = function () {
             repositoryService.printOpenings($scope.main.data.clientId, openings.data.year);
         }
+
+        openings.commands.getTotal = function (propertyName) {
+            var sum = 0;
+            _.each(openings.data.openings, function (item) {
+                if (item.Name.length === 3)
+                    sum += Number(item[propertyName]);
+            });
+            return sum;
+        }
+
   }]);

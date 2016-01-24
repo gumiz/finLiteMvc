@@ -11,5 +11,6 @@ namespace Repository.Abstract
 		IPrintService GetAccountsPrintService();
 		IPrintService GetOpeningsPrintService();
 		IPrintService GetDocumentsPrintService();
+		IPrintService GetReportsPrintService();
 	}
 }
