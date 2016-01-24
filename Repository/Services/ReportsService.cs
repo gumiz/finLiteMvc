@@ -83,7 +83,7 @@ namespace Repository.Services
 				reportLambda.Invoke(_report).Add(new ReportDocument { Id = opening.Id, AutoNumber = "BO", Number = "BO", Price = openingsFunction.Invoke(opening) });
 
 			var allDocuments = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).ToList();
-			_documents = allDocuments.Where(c => documentProperty.Invoke(c).Equals(account.Name)).ToList();
+			_documents = allDocuments.Where(c => documentProperty.Invoke(c).Equals(account.Name)).OrderBy(x => x.AutoNumber).ToList();
 			foreach (var item in _documents)
 				reportLambda.Invoke(_report).Add(new ReportDocument { Id = item.Id, AutoNumber = item.AutoNumber.ToString(), Number = item.Number, Price = item.Price });
 		}
