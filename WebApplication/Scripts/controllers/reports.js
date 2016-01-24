@@ -6,12 +6,8 @@ angular.module('finLiteApp').controller('reportsCtrl', ['$scope', 'repositorySer
     reports.data = {};
     reports.commands = {};
 
-    reports.data.year = 2015;
-    reports.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
-
-
     reports.commands.refresh = function () {
-        repositoryService.getReports($scope.main.data.clientId, reports.data.year, function (items) {
+        repositoryService.getReports($scope.main.data.clientId, $scope.main.data.year, function (items) {
             reports.data.reports = items;
         });
     };
@@ -25,7 +21,7 @@ angular.module('finLiteApp').controller('reportsCtrl', ['$scope', 'repositorySer
     }
 
     reports.commands.print = function () {
-        repositoryService.printReports($scope.main.data.clientId, reports.data.year);
+        repositoryService.printReports($scope.main.data.clientId, $scope.main.data.year);
     }
 
 }]);

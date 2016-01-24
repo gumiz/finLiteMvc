@@ -248,6 +248,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\libs\accounting\accounting.js" />
+    <Content Include="Scripts\libs\angular-cookies\angular-cookies.js" />
     <Content Include="Scripts\libs\moment\moment.js" />
     <Content Include="Scripts\libs\underscore\underscore-min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />

@@ -8,18 +8,21 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     documents.data = {};
     documents.commands = {};
 
-    documents.data.year = 2015;
-    documents.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
-
     var cleanNewDocument = function () {
         documents.data.newDocument = { Price: 0, Date: dateUtils.getActualDate() };
     }
     cleanNewDocument();
 
+    var gotAccounts = function (accounts) {
+        documents.data.accounts = accounts;
+    };
+    repositoryService.getAccounts($scope.main.data.clientId, $scope.main.data.year, gotAccounts);
+
     documents.commands.refresh = function () {
         var def = $q.defer();
-        repositoryService.getDocuments($scope.main.data.clientId, documents.data.year, function (items) {
+        repositoryService.getDocuments($scope.main.data.clientId, $scope.main.data.year, function (items) {
             documents.data.documents = items;
+            repositoryService.getAccounts($scope.main.data.clientId, $scope.main.data.year, gotAccounts);
             def.resolve();
         });
         return def.promise;
@@ -45,11 +48,6 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
         };
     };
 
-    var gotAccounts = function (accounts) {
-        documents.data.accounts = accounts;
-    };
-    repositoryService.getAccounts($scope.main.data.clientId, documents.data.year, gotAccounts);
-
     documents.commands.refresh().then(function () {
         documents.data.datepicker = datepickerService.initDatePicker(documents.data.newDocument.Date);
     });
@@ -74,6 +72,6 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     };
 
     documents.commands.print = function () {
-        repositoryService.printDocuments($scope.main.data.clientId, documents.data.year);
+        repositoryService.printDocuments($scope.main.data.clientId, $scope.main.data.year);
     }
 }]);

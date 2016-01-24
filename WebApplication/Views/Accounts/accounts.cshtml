@@ -1,7 +1,6 @@
 ﻿<div ng-controller="AccountsCtrl as accounts">
 	<div class="row">
 		<div class="col-md-4">
-			<label>rok:</label> <select style="width: 200px" class="form-control combo" ng-options="item as item for item in accounts.data.allYears" ng-model="accounts.data.year" ng-change="accounts.refresh()" name="yearSelect" required></select>
 		</div>
 		<div class="col-md-8">
 			<div class="input-group col-xs-1 pull-right">

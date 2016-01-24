@@ -7,9 +7,6 @@ angular.module('finLiteApp')
         openings.data = {};
         openings.commands = {};
 
-        openings.data.year = 2015;
-        openings.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
-
         var fixDocumentProperties = function (items) {
             _.each(items, function(item) {
                 debugger;
@@ -23,7 +20,7 @@ angular.module('finLiteApp')
         }
 
         openings.commands.getData = function () {
-            repositoryService.getOpenings($scope.main.data.clientId, openings.data.year, function(data) {
+            repositoryService.getOpenings($scope.main.data.clientId, $scope.main.data.year, function (data) {
                 openings.data.openings = data;
             });
         }
@@ -39,7 +36,7 @@ angular.module('finLiteApp')
         };
 
         openings.commands.print = function () {
-            repositoryService.printOpenings($scope.main.data.clientId, openings.data.year);
+            repositoryService.printOpenings($scope.main.data.clientId, $scope.main.data.year);
         }
 
         openings.commands.getTotal = function (propertyName) {

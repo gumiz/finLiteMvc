@@ -1,7 +1,6 @@
 ﻿<div ng-controller="documentsCtrl as documents" class="row">
 	<div class="row">
 		<div class="col-md-4">
-			<label>rok:</label> <select style="width: 200px" class="form-control combo" ng-options="item as item for item in documents.data.allYears" ng-model="documents.data.year" ng-change="documents.commands.refresh()" name="yearSelect" required></select>
 		</div>
 		<div class="col-md-8">
 			<div class="input-group col-xs-3 pull-right">
