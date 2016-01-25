@@ -32,7 +32,7 @@ namespace WebApplication
 					  "~/Content/bootstrap.css",
 					  "~/Content/ngDialog/ngDialog.css",
 					  "~/Content/ngDialog/ngDialog-theme-default.css",
-					  "~/Content/angular-growl-v2/angular-growl.css",
+					  "~/Content/angular-growl/angular-growl.min.css",
 					  "~/Content/site.css"));
 
 			bundles.Add(new ScriptBundle("~/bundles/angular").Include(

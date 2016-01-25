@@ -22,6 +22,10 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doPost(urlService.accounts.getAccounts, {clientId: clientId, year: year}).then(successFun);
   };
 
+  var rewriteAccountsWithLastYear = function (clientId, year, successFun) {
+      ajaxService.doPost(urlService.accounts.rewriteAccountsWithLastYear, { clientId: clientId, year: year }).then(successFun);
+  };
+
   var addAccount = function(item, successFunc) {
     ajaxService.doPostWithBlock(urlService.accounts.addAccount, item).then(successFunc);
   };
@@ -77,6 +81,7 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
     addAccount: addAccount,
     deleteAccount: deleteAccount,
     getAccounts: getAccounts,
+    rewriteAccountsWithLastYear: rewriteAccountsWithLastYear,
     addDocument: addDocument,
     deleteDocument: deleteDocument,
     getDocuments: getDocuments,

@@ -4,7 +4,7 @@
 		</div>
 		<div class="col-md-8">
 			<div class="input-group col-xs-1 pull-right">
-				<button ng-click="accounts.print()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"> Drukuj</span></button>
+				<button ng-click="accounts.commands.print()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"> Drukuj</span></button>
 			</div>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 					<td>{{ac.Name}}</td>
 					<td>{{ac.Description}}</td>
 					<td class="text-center">
-						<button ng-click="accounts.deleteAccount(ac)" class="btn btn-danger btn-xs" style="width: 30px"><span class="glyphicon glyphicon-remove"></span></button>
+						<button ng-click="accounts.commands.deleteAccount(ac)" class="btn btn-danger btn-xs" style="width: 30px"><span class="glyphicon glyphicon-remove"></span></button>
 					</td>
 				</tr>
 			</tbody>
@@ -32,15 +32,24 @@
 			<thead>
 			</thead>
 			<tbody>
+			<tr>
+				<td class="col-md-1">
+					<input class="form-control" ng-model="accounts.newAccount.Name" placeholder="konto"/>
+				</td>
+				<td class="col-md-8">
+					<input class="form-control" ng-model="accounts.newAccount.Description" placeholder="opis"/>
+				</td>
+				<td class="col-xs-0 text-right">
+					<button ng-click="accounts.commands.addAccount()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Konto</button>
+				</td>
+			</tr>
 				<tr>
 					<td class="col-md-1">
-						<input class="form-control" ng-model="accounts.newAccount.Name" placeholder="konto" />
 					</td>
 					<td class="col-md-8">
-						<input class="form-control" ng-model="accounts.newAccount.Description" placeholder="opis" />
 					</td>
-					<td class="col-xs-0 text-center">
-						<button ng-click="accounts.addAccount()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Konto</button>
+					<td class="col-xs-0 text-right">
+						<button ng-click="accounts.commands.rewriteAccountsWithLastYear()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-repeat"> Dodaj plan zeszłoroczny</span></button>
 					</td>
 				</tr>
 			</tbody>

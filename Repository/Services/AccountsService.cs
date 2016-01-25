@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Repository.Abstract;
 using Repository.DAL;
@@ -33,6 +34,19 @@ namespace Repository.Services
 		{
 			var accountDao = dbContext.Accounts.Where(x => x.ClientId.Equals(account.ClientId) && x.Year.Equals(account.Year)).FirstOrDefault(x => x.Name.Equals(account.Name));
 			dbContext.Accounts.Remove(accountDao);
+			dbContext.SaveChanges();
+		}
+
+		public void RewriteAccountsWithLastYear(int clientId, int year)
+		{
+			var accounts = new List<AccountDao>();
+//			var actualAccounts = dbContext.Accounts.Where(x => x.ClientId.Equals(clientId) && x.Year.Equals(year));
+			var oldAccounts = dbContext.Accounts.Where(x => x.ClientId.Equals(clientId) && x.Year.Equals(year-1));
+			foreach (var a in oldAccounts)
+				accounts.Add(new AccountDao {ClientId = a.ClientId, Year = a.Year+1, Name = a.Name, Description = a.Description});
+//			dbContext.Accounts.RemoveRange(actualAccounts);
+			foreach (var a in accounts)
+				dbContext.Accounts.AddOrUpdate(a);
 			dbContext.SaveChanges();
 		}
 	}

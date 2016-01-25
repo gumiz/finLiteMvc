@@ -44,6 +44,13 @@ namespace WebApplication.Controllers
 			return new JsonResult { Data = true };
 		}
 
+		[HttpPost]
+		public ActionResult RewriteAccountsWithLastYear(int clientId, int year)
+		{
+			_factory.GetAccoutnsService().RewriteAccountsWithLastYear(clientId, year);
+			return new JsonResult { Data = true };
+		}
+
 		[HttpGet]
 		public ActionResult Print(int clientId, int year)
 		{
