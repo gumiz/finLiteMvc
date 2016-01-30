@@ -37,9 +37,9 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
         window.location = getUrl(urlService.accounts.index);
     }
 
-    main.commands.initData = function() {
-        repositoryService.initData();
-    };
+//    main.commands.initData = function() {
+//        repositoryService.initData();
+//    };
 
     main.commands.getUrlAccounts = function () {
         return getUrl(urlService.accounts.index);
