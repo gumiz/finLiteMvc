@@ -49,6 +49,7 @@ appServices.factory('urlService', ['domService', function (domService) {
             getDocuments: createUrl(controllers.Documents, "GetDocuments"),
             deleteDocument: createUrl(controllers.Documents, "DeleteDocument"),
             addDocument: createUrl(controllers.Documents, "AddDocument"),
+            updateDocument: createUrl(controllers.Documents, "UpdateDocument"),
             printDocuments: createUrl(controllers.Documents, "Print")
         },
         reports: {

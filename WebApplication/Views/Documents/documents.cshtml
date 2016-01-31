@@ -116,7 +116,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-2 text-right">Numer:</div>
-						<div class="col-md-8"><input ng-model="documents.data.editItem.Number" class="form-wide-300"/></div>
+						<div class="col-md-8"><input ng-disabled="true" ng-model="documents.data.editItem.Number" class="form-wide-300"/></div>
 					</div>
 					<br />
 					<div class="row">
@@ -132,17 +132,17 @@
 					</div>
 					
 					<div class="row" style="margin-top: 20px">
-						<div class="col-md-2 text-right">Wn:</div>
+						<div class="col-md-2 text-right text-warning">Wn:</div>
 						<div class="col-md-10">
-							<select class="form-control smallAcc form-wide-500" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+							<select class="form-control smallAcc form-wide-500" style="color: #f47c3c;" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
 									ng-model="documents.data.editItem.AccountDt" required></select>
 						</div>
 					</div>
 					<div class="row" style="margin-top: 20px">
-						<div class="col-md-2 text-right">Ma:</div>
+						<div class="col-md-2 text-right text-info">Ma:</div>
 						<div class="col-md-10">
-							<select class="form-control smallAcc form-wide-500" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
-									ng-model="documents.data.editItem.AccountDt" required></select>
+							<select class="form-control smallAcc form-wide-500" style="color: #29abe0;" ng-options="item.Name as item.Name + ': ' + item.Description for item in documents.data.accounts"
+									ng-model="documents.data.editItem.AccountCt" required></select>
 						</div>
 					</div>
 

@@ -29,17 +29,22 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     };
     
     var fixDocumentProperties = function (item) {
-        if (item.Price) {
-            item.Price = item.Price.replace(".", ",");
+        if (typeof item.Price === "string") {
+           item.Price = item.Price.replace(".", ",");
         }
         item.Date = dateUtils.dateToString(item.Date);
     }
 
     documents.commands.addDocument = function () {
-        fixDocumentProperties(documents.data.newDocument);
-        documents.data.newDocument.ClientId = $scope.main.data.clientId;
-        repositoryService.addDocument(documents.data.newDocument, documents.commands.refresh);
-        cleanNewDocument();
+        debugger;
+        if ($scope.main.data.year !== documents.data.newDocument.Date.getFullYear()) {
+            notify.error("Data dokumentu niezgodna z wybranym rokiem obrotowym");
+        } else {
+            fixDocumentProperties(documents.data.newDocument);
+            documents.data.newDocument.ClientId = $scope.main.data.clientId;
+            repositoryService.addDocument(documents.data.newDocument, documents.commands.refresh);
+            cleanNewDocument();
+        }
     };
 
     var deleteDocument = function (id) {
@@ -59,7 +64,7 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
 
     documents.commands.edit = function () {
         fixDocumentProperties(documents.data.editItem);
-        repositoryService.addDocument(documents.data.editItem, function (){
+        repositoryService.updateDocument(documents.data.editItem, function (){
             documents.commands.refresh();
             notify.info("Dokument został zmieniony.");
         });

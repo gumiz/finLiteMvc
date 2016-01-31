@@ -38,6 +38,13 @@ namespace WebApplication.Controllers
 			return new JsonResult { Data = true };
 		}
 
+		[HttpPost]
+		public ActionResult UpdateDocument(Document document)
+		{
+			_factory.GetDocumentsService().UpdateDocument(document);
+			return new JsonResult { Data = true };
+		}
+
 		[HttpGet]
 		public ActionResult Print(int clientId, int year)
 		{

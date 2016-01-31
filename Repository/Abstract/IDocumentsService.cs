@@ -8,5 +8,6 @@ namespace Repository.Abstract
 		IList<Document> GetDocuments(int year, int clientId);
 		void DeleteDocument(int id);
 		void AddDocument(Document document);
+		void UpdateDocument(Document document);
 	}
 }

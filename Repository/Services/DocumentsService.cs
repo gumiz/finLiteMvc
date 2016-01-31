@@ -37,7 +37,19 @@ namespace Repository.Services
 			document.Year = document.Date.Year;
 			SetAutoNumber(document);
 			var documentDao = Converter.Convert<Document, DocumentDao>(document);
-			_dbContext.Documents.AddOrUpdate(documentDao);
+			_dbContext.Documents.Add(documentDao);
+			_dbContext.SaveChanges();
+		}
+
+		public void UpdateDocument(Document document)
+		{
+			var dao = _dbContext.Documents.FirstOrDefault(c => c.Id.Equals(document.Id));
+			dao.AccountCt = document.AccountCt;
+			dao.AccountDt = document.AccountDt;
+			dao.Number = document.Number;
+			dao.Description = document.Description;
+			dao.Date = document.Date;
+			dao.Price = document.Price;
 			_dbContext.SaveChanges();
 		}
 
