@@ -31,6 +31,8 @@ namespace Repository.Services
 			PrepareReport();
 			GetAccounts();
 
+			AccountsGrouping();
+
 			foreach (var account in _accounts)
 			{
 				_report = new Report { AccountName = account.Name, Dt = new List<ReportDocument>(), Ct = new List<ReportDocument>() };
@@ -47,6 +49,11 @@ namespace Repository.Services
 			}
 
 			return _result;
+		}
+
+		private void AccountsGrouping()
+		{
+			var test = _accounts.GroupBy(x => x.Name.Substring(0, 3)).ToList();
 		}
 
 		private void CalculateSums()
@@ -79,11 +86,10 @@ namespace Repository.Services
 
 		private void GetAccountDocumentsForAccountSide(AccountDao account, Func<Report, IList<ReportDocument>> reportLambda, Func<OpeningDao, double> openingsFunction, Func<DocumentDao, string> documentProperty )
 		{
-			foreach (var opening in _openings)
-				reportLambda.Invoke(_report).Add(new ReportDocument { Id = opening.Id, AutoNumber = "BO", Number = "BO", Price = openingsFunction.Invoke(opening) });
+			reportLambda.Invoke(_report).Add(new ReportDocument { Id = 0, AutoNumber = "BO", Number = "BO", Price = _openings.Sum(openingsFunction) });
 
 			var allDocuments = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).ToList();
-			_documents = allDocuments.Where(c => documentProperty.Invoke(c).Equals(account.Name)).OrderBy(x => x.AutoNumber).ToList();
+			_documents = allDocuments.Where(c => documentProperty.Invoke(c).StartsWith(account.Name)).OrderBy(x => x.AutoNumber).ToList();
 			foreach (var item in _documents)
 				reportLambda.Invoke(_report).Add(new ReportDocument { Id = item.Id, AutoNumber = item.AutoNumber.ToString(), Number = item.Number, Price = item.Price });
 		}

@@ -40,11 +40,9 @@ namespace Repository.Services
 		public void RewriteAccountsWithLastYear(int clientId, int year)
 		{
 			var accounts = new List<AccountDao>();
-//			var actualAccounts = dbContext.Accounts.Where(x => x.ClientId.Equals(clientId) && x.Year.Equals(year));
 			var oldAccounts = dbContext.Accounts.Where(x => x.ClientId.Equals(clientId) && x.Year.Equals(year-1));
 			foreach (var a in oldAccounts)
 				accounts.Add(new AccountDao {ClientId = a.ClientId, Year = a.Year+1, Name = a.Name, Description = a.Description});
-//			dbContext.Accounts.RemoveRange(actualAccounts);
 			foreach (var a in accounts)
 				dbContext.Accounts.AddOrUpdate(a);
 			dbContext.SaveChanges();

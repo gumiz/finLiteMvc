@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Repository;
 using Repository.Abstract;
 using Repository.DAL;
+using Repository.Services;
 
 namespace RepositoryTests
 {
@@ -15,8 +16,6 @@ namespace RepositoryTests
 
 		public ReportsServiceTest()
 		{
-			var factory = Substitute.For<IFactory>();
-			_service = factory.GetReportsService();
 		}
 
 		[Test]
@@ -30,6 +29,16 @@ namespace RepositoryTests
 		private List<DocumentDao> LambdaTest(List<DocumentDao> documents, Func<DocumentDao, string> documentProperty)
 		{
 			return documents.Where(c=>documentProperty.Invoke(c).Equals("100")).ToList();
+		}
+
+		[Test]
+		public void ReportExpensiveTest()
+		{
+			var factory = new Factory();
+			var service = factory.GetReportsService();
+			var result = service.GetReports(2015, 1);
+
+			Assert.True(true);
 		}
 	}
 }
