@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CreatorsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
@@ -229,6 +230,7 @@
     <None Include="Properties\PublishProfiles\northend.pubxml" />
     <None Include="Properties\PublishProfiles\notekAni.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\controllers\profitLoss.js" />
     <Content Include="Scripts\controllers\accounts.js" />
     <Content Include="Scripts\controllers\documents.js" />
     <Content Include="Scripts\controllers\login.js" />
@@ -306,6 +308,7 @@
     <Content Include="Views\Reports\reports.cshtml" />
     <Content Include="Views\Documents\documents.cshtml" />
     <Content Include="Views\OpeningBalance\openingBalance.cshtml" />
+    <Content Include="Views\Creators\profitLoss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

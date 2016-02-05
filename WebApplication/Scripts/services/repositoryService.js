@@ -78,24 +78,34 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doGet(urlService.reports.printReports + '?clientId=' + clientId + '&year=' + year).then(showPdf);
   };
 
+  var getProfitLossItems = function (successFun) {
+      ajaxService.doPost(urlService.creators.getProfitLossItems, {}).then(successFun);
+  };
+
+  var printProfitLoss = function (clientId, year) {
+      ajaxService.doGet(urlService.creators.printProfitLoss + '?clientId=' + clientId + '&year=' + year).then(showPdf);
+  };
+
   return {
-    saveOpenings: saveOpenings,
-    getOpenings: getOpenings,
-    getIdFromUrl: getIdFromUrl,
-    addAccount: addAccount,
-    deleteAccount: deleteAccount,
-    getAccounts: getAccounts,
-    rewriteAccountsWithLastYear: rewriteAccountsWithLastYear,
-    addDocument: addDocument,
-    updateDocument: updateDocument,
-    deleteDocument: deleteDocument,
-    getDocuments: getDocuments,
-    getReports: getReports,
-    getClients: getClients,
-    initData: initData,
-    printAccounts: printAccounts,
-    printOpenings: printOpenings,
-    printDocuments: printDocuments,
-    printReports: printReports
-  }
+        saveOpenings: saveOpenings,
+        getOpenings: getOpenings,
+        getIdFromUrl: getIdFromUrl,
+        addAccount: addAccount,
+        deleteAccount: deleteAccount,
+        getAccounts: getAccounts,
+        rewriteAccountsWithLastYear: rewriteAccountsWithLastYear,
+        addDocument: addDocument,
+        updateDocument: updateDocument,
+        deleteDocument: deleteDocument,
+        getDocuments: getDocuments,
+        getReports: getReports,
+        getClients: getClients,
+        initData: initData,
+        printAccounts: printAccounts,
+        printOpenings: printOpenings,
+        printDocuments: printDocuments,
+        printReports: printReports,
+        getProfitLossItems: getProfitLossItems,
+        printProfitLoss: printProfitLoss
+}
 }]);

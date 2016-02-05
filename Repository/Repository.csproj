@@ -71,17 +71,30 @@
     <Compile Include="Abstract\IFactory.cs" />
     <Compile Include="Abstract\IOpeningsService.cs" />
     <Compile Include="Abstract\IPrintService.cs" />
+    <Compile Include="Abstract\IProfitLossService.cs" />
     <Compile Include="Abstract\IReportsService.cs" />
     <Compile Include="DAL\AccountDao.cs" />
     <Compile Include="DAL\ClientDao.cs" />
     <Compile Include="DAL\DefaultContext.cs" />
+    <Compile Include="DAL\ProfitAndLossReportItemDao.cs" />
     <Compile Include="DAL\DocumentDao.cs" />
     <Compile Include="DAL\OpeningDao.cs" />
     <Compile Include="Domain\Client.cs" />
     <Compile Include="Domain\Document.cs" />
     <Compile Include="Domain\Opening.cs" />
+    <Compile Include="Domain\ProfitAndLossReportItem.cs" />
     <Compile Include="Domain\Report.cs" />
     <Compile Include="Domain\ReportDocument.cs" />
+    <Compile Include="Migrations\201602051939027_InitialMigration.cs" />
+    <Compile Include="Migrations\201602051939027_InitialMigration.Designer.cs">
+      <DependentUpon>201602051939027_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602052223458_ProfitAndLossReport.cs" />
+    <Compile Include="Migrations\201602052223458_ProfitAndLossReport.Designer.cs">
+      <DependentUpon>201602052223458_ProfitAndLossReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Services\Printing\ProfitAndLossPrintService.cs" />
     <Compile Include="Services\Printing\ReportsPrintService.cs" />
     <Compile Include="Services\Printing\DocumentsPrintService.cs" />
     <Compile Include="Services\Printing\OpeningsPrintService.cs" />
@@ -97,6 +110,7 @@
     <Compile Include="Services\DocumentsService.cs" />
     <Compile Include="Services\OpeningsService.cs" />
     <Compile Include="Services\Printing\AbstractPrintService.cs" />
+    <Compile Include="Services\ProfitLossService.cs" />
     <Compile Include="Services\ReportsService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +119,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602051939027_InitialMigration.resx">
+      <DependentUpon>201602051939027_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602052223458_ProfitAndLossReport.resx">
+      <DependentUpon>201602052223458_ProfitAndLossReport.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

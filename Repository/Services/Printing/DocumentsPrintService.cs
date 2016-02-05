@@ -16,13 +16,13 @@ namespace Repository.Services.Printing
 			{
 				var price = DecimalToString(item.Price);
 				Rows += String.Format("<tr style=\"font-size: 0.5em\">" +
-				                      "<th style=\"width:2%\">{0}</th>" +
-									  "<th style=\"width:12%\">{1}</th>" +
-									  "<th style=\"width:10%\">{2}</th>" +
-									  "<th>{3}</th>" +
-									  "<th style=\"width:12%\" class=\"right\">{4}</th>" +
-									  "<th style=\"width:12%\" class=\"right\">{5}</th>" +
-									  "<th style=\"width:12%\" class=\"right bold\">{6}</th>" +
+				                      "<td style=\"width:2%\">{0}</td>" +
+									  "<td style=\"width:12%\">{1}</td>" +
+									  "<td style=\"width:10%\">{2}</td>" +
+									  "<td>{3}</td>" +
+									  "<td style=\"width:12%\" class=\"right\">{4}</td>" +
+									  "<td style=\"width:12%\" class=\"right\">{5}</td>" +
+									  "<td style=\"width:12%\" class=\"right bold\">{6}</td>" +
 				                      "</tr>", item.AutoNumber, DateToString(item.Date), item.Number, item.Description, item.AccountDt, item.AccountCt, DecimalToString(item.Price));
 			}
 		}

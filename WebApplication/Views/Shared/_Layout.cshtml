@@ -30,7 +30,19 @@
 					<li ng-class="main.commands.getClass('/OpeningBalance')"><a ng-href="{{main.commands.getUrlOpenings()}}" target = "_self">Bilans otwarcia</a></li>
 					<li ng-class="main.commands.getClass('/Documents')"><a ng-href="{{main.commands.getUrlDocuments()}}" target = "_self">Dokumenty</a></li>
 					<li ng-class="main.commands.getClass('/Reports')"><a ng-href="{{main.commands.getUrlReports()}}" target = "_self">Raporty</a></li>
-@*					<li><button style="margin-top: 16px; margin-left: 50px"ng-click="main.commands.initData()">Reset DataBase</button></li>*@
+					@*					<li><button style="margin-top: 16px; margin-left: 50px"ng-click="main.commands.initData()">Reset DataBase</button></li>*@
+					<li>
+						<div class="dropdown" style="margin-top: 8px;">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								Wydruki
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li ng-class="main.commands.getClass('/Creators')"><a ng-href="{{main.commands.getUrlCreatorsProfitLoss()}}" target="_self">Rachunek wyników</a></li>
+								<li role="separator" class="divider"></li>
+							</ul>
+						</div>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>

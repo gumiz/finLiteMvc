@@ -7,7 +7,8 @@ appServices.factory('urlService', ['domService', function (domService) {
         Documents: 'Documents',
         Reports: 'Reports',
         OpeningBalance: 'OpeningBalance',
-        Clients: 'Clients'
+        Clients: 'Clients',
+        Creators: 'Creators'
 };
 
     var getBasePath = function () {
@@ -56,7 +57,13 @@ appServices.factory('urlService', ['domService', function (domService) {
             index: createUrl(controllers.Reports, "Index"),
             getReports: createUrl(controllers.Reports, "GetReports"),
             printReports: createUrl(controllers.Reports, "Print")
+        },
+        creators: {
+            profitLoss: createUrl(controllers.Creators, "ProfitLoss"),
+            getProfitLossItems: createUrl(controllers.Creators, "GetProfitLossItems"),
+            printProfitLoss: createUrl(controllers.Creators, "PrintProfitLoss")
         }
+
 
     };
 }]);

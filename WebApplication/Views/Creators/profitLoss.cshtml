@@ -1,0 +1,32 @@
+﻿<div ng-controller="ProfitLossCtrl as profitLoss">
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-8">
+			<div class="input-group col-xs-1 pull-right">
+				<button ng-click="profitLoss.commands.print()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"> Drukuj</span></button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="col-md-1">Numer</th>
+					<th class="col-md-7">Nazwa</th>
+					<th class="col-md-4">Stan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in profitLoss.data.items">
+					<td class="{{item.BoldCss}}">{{item.Number}}</td>
+					<td class="{{item.BoldCss}}">{{item.Description}}</td>
+					<td>
+						<input class="form-control input-sm" ng-model="item.Formula" placeholder="wzór" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

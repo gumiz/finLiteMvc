@@ -1,15 +1,14 @@
 ﻿using System.Data.Entity;
+using Repository.Migrations;
 
 namespace Repository.DAL
 {
 	public class DefaultContext : DbContext
 	{
-//		public DefaultContext(): base("defaultConnectionFactory")
 		public DefaultContext(): base("PostgresConnection")
 		{
-			Database.SetInitializer<DefaultContext>(new CreateDatabaseIfNotExists<DefaultContext>());
-//			Database.SetInitializer<DefaultContext>(new CreateDatabaseIfNotExists<DefaultContext>());
-//			Database.SetInitializer<DefaultContext>(new DropCreateDatabaseIfModelChanges<DefaultContext>());
+			//			Database.SetInitializer<DefaultContext>(new CreateDatabaseIfNotExists<DefaultContext>());
+			Database.SetInitializer(new MigrateDatabaseToLatestVersion<DefaultContext, Configuration>("PostgresConnection"));
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -18,15 +17,13 @@ namespace Repository.DAL
 			modelBuilder.Entity<ClientDao>().HasKey(c => new {c.ClientId, c.Name});
 			modelBuilder.Entity<OpeningDao>().HasKey(c => new {c.Year, c.ClientId, c.Name});
 			modelBuilder.Entity<DocumentDao>().HasKey(c => new {c.Year, c.ClientId, c.Number, c.AutoNumber});
-
-//			modelBuilder.Entity<DysponentDao>().HasRequired<DysponentGroupDao>(x => x.DysponentGroup)
-//			.WithMany(y => y.Dysponents)
-//			.HasForeignKey(x => x.Group);
+			modelBuilder.Entity<ProfitAndLossReportItemDao>().HasKey(c => new {c.Id});
 		}
 
 		public DbSet<AccountDao> Accounts{ get; set; }
 		public DbSet<ClientDao> Clients { get; set; }
 		public DbSet<OpeningDao> Openings { get; set; }
 		public DbSet<DocumentDao> Documents { get; set; }
+		public DbSet<ProfitAndLossReportItemDao> ProfitLossReport {get; set; }
 	}
 }
