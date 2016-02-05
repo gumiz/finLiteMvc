@@ -7,7 +7,9 @@
 
 
             function formatter(value) {
-                return moneyService.convertMoney(value);
+                var result = moneyService.convertMoney(value);
+                el.val(result);
+                return result;
             }
 
             ngModelCtrl.$formatters.push(formatter);
