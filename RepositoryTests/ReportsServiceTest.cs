@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NSubstitute;
 using NUnit.Framework;
 using Repository;
 using Repository.Abstract;
 using Repository.DAL;
-using Repository.Services;
 
 namespace RepositoryTests
 {

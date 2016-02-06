@@ -83,6 +83,7 @@
     <Compile Include="Domain\Document.cs" />
     <Compile Include="Domain\Opening.cs" />
     <Compile Include="Domain\ProfitAndLossReportItem.cs" />
+    <Compile Include="Domain\ProfitAndLossReportValues.cs" />
     <Compile Include="Domain\Report.cs" />
     <Compile Include="Domain\ReportDocument.cs" />
     <Compile Include="Migrations\201602051939027_InitialMigration.cs" />
