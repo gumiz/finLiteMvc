@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +7,14 @@ namespace Repository.DAL
 	public class ProfitAndLossReportItemDao
 	{
 		[Key, Column("ID"), Required]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
+
+		[Column("CLIENT_ID"), Required]
+		public int ClientId { get; set; }
+
+		[Column("ROW_ID"), Required]
+		public int RowId { get; set; }
 
 		[Column("NUMBER"), Required]
 		public string Number { get; set; }
@@ -18,5 +24,11 @@ namespace Repository.DAL
 
 		[Column("FORMULA")]
 		public string Formula { get; set; }
+
+		[Column("READONLY"), Required]
+		public bool IsReadOnly { get; set; }
+
+		[Column("BOLD"), Required]
+		public bool IsBold { get; set; }
 	}
 }

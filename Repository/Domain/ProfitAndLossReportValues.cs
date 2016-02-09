@@ -2,7 +2,7 @@ namespace Repository.Domain
 {
 	public class ProfitAndLossReportValues
 	{
-		public int Id { get; set; }
+		public int RowId { get; set; }
 
 		public string Number { get; set; }
 
@@ -10,5 +10,6 @@ namespace Repository.Domain
 
 		public double Balance1 { get; set; }
 		public double Balance2 { get; set; }
+		public bool IsBold { get; set; }
 	}
 }

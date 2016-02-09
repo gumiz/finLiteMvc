@@ -13,7 +13,7 @@ namespace Repository.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602052223458_ProfitAndLossReport"; }
+            get { return "201602092156331_ProfitAndLossReport"; }
         }
         
         string IMigrationMetadata.Source

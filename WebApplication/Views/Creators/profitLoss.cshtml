@@ -9,20 +9,22 @@
 		</div>
 	</div>
 	<div class="row">
-		<table class="table table-striped">
+		<table class="table">
 			<thead>
 				<tr>
+					<th class="col-md-1">LP</th>
 					<th class="col-md-1">Numer</th>
 					<th class="col-md-7">Nazwa</th>
 					<th class="col-md-4">Stan</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="item in profitLoss.data.items">
-					<td class="{{item.BoldCss}}">{{item.Number}}</td>
-					<td class="{{item.BoldCss}}">{{item.Description}}</td>
+				<tr ng-repeat="item in profitLoss.data.items" ng-class="{bold: item.IsBold, secondary: item.IsReadOnly}">
+					<td>{{$index}}</td>
+					<td>{{item.Number}}</td>
+					<td>{{item.Description}}</td>
 					<td>
-						<input class="form-control input-sm" ng-model="item.Formula" placeholder="wzór" />
+						<input ng-disabled="item.IsReadOnly" class="form-control input-sm" ng-model="item.Formula" placeholder="wzór" />
 					</td>
 				</tr>
 			</tbody>

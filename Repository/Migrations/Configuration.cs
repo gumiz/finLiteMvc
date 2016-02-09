@@ -10,7 +10,9 @@ namespace Repository.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<Repository.DAL.DefaultContext>
     {
-        public Configuration()
+	    private DefaultContext _context;
+
+	    public Configuration()
         {
             AutomaticMigrationsEnabled = false;
             ContextKey = "Repository.DAL.DefaultContext";
@@ -18,29 +20,10 @@ namespace Repository.Migrations
 
         protected override void Seed(Repository.DAL.DefaultContext context)
         {
-	        if (context.ProfitLossReport.ToList().Count == 0) {
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 1, Number = "A", Formula = "", Description = "Przychody z działalności statutowej"});
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 2, Number = "I", Formula = "", Description = "Składki brutto określone statutem" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 3, Number = "II",Formula = "", Description = "Inne przychody określone statutem" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 4, Number = "B", Formula = "", Description = "Koszty realizacji zadań statutowych" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 5, Number = "C", Formula = "", Description = "Wynik finansowy na działalności statutowej[A - B]" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 6, Number = "D", Formula = "", Description = "Koszty administracyjne" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 7, Number = "1", Formula = "", Description = "Zużycie materiałów i energii" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 8, Number = "2", Formula = "", Description = "Usługi obce" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 9, Number = "3", Formula = "", Description = "Podatki i opłaty" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 10, Number = "4", Formula = "", Description = "Wynagrodzenia oraz ubezpieczenia społeczne i inne świadczenia" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 11, Number = "5", Formula = "", Description = "Amortyzacja" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 12, Number = "6", Formula = "", Description = "Pozostałe" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 13, Number = "E", Formula = "", Description = "Pozostałe przychody" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 14, Number = "F", Formula = "", Description = "Pozostałe koszty" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 15, Number = "G", Formula = "", Description = "Przychody finansowe" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 16, Number = "H", Formula = "", Description = "Koszty finansowe" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 17, Number = "I", Formula = "", Description = "Wynik finansowy brutto na całokształcie działalności[C - D + E - F + G - H]" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 18, Number = "J", Formula = "", Description = "Zyski i straty nadzwyczajne" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 19, Number = "K", Formula = "", Description = "Wynik finansowy ogółem[I + J]" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 20, Number = "I", Formula = "", Description = "Różnica zwiększająca koszty roku następnego[wielkość ujemna]" });
-				context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { Id = 21, Number = "II",Formula = "", Description = "Różnica zwiększająca przychody roku następnego[wielkość dodatnia]" });
-			}
+	        _context = context;
+	        var clients = context.Clients.ToList();
+	        foreach (var client in clients)
+		        SeedProfitAndLossReportForClient(client.ClientId);
 			try
 			{
 				context.SaveChanges();
@@ -73,5 +56,31 @@ namespace Repository.Migrations
 			//    );
 			//
 		}
-    }
+
+	    private void SeedProfitAndLossReportForClient(int clientId)
+	    {
+		    if (_context.ProfitLossReport.ToList().Count != 0) return;
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 1, ClientId = clientId, IsBold = true, IsReadOnly = true, Number = "A", Formula = "", Description = "Przychody z działalności statutowej" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 2, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "I", Formula = "", Description = "Składki brutto określone statutem" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 3, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "II", Formula = "", Description = "Inne przychody określone statutem" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 4, ClientId = clientId, IsBold = true, IsReadOnly = false, Number = "B", Formula = "", Description = "Koszty realizacji zadań statutowych" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 5, ClientId = clientId, IsBold = true, IsReadOnly = true, Number = "C", Formula = "", Description = "Wynik finansowy na działalności statutowej[A - B]" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 6, ClientId = clientId, IsBold = true, IsReadOnly = true, Number = "D", Formula = "", Description = "Koszty administracyjne" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 7, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "1", Formula = "", Description = "Zużycie materiałów i energii" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 8, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "2", Formula = "", Description = "Usługi obce" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 9, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "3", Formula = "", Description = "Podatki i opłaty" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 10, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "4", Formula = "", Description = "Wynagrodzenia oraz ubezpieczenia społeczne i inne świadczenia" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 11, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "5", Formula = "", Description = "Amortyzacja" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 12, ClientId = clientId, IsBold = false, IsReadOnly = false, Number = "6", Formula = "", Description = "Pozostałe" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 13, ClientId = clientId, IsBold = true, IsReadOnly = false, Number = "E", Formula = "", Description = "Pozostałe przychody" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 14, ClientId = clientId, IsBold = true, IsReadOnly = false, Number = "F", Formula = "", Description = "Pozostałe koszty" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 15, ClientId = clientId, IsBold = true, IsReadOnly = false, Number = "G", Formula = "", Description = "Przychody finansowe" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 16, ClientId = clientId, IsBold = true, IsReadOnly = false, Number = "H", Formula = "", Description = "Koszty finansowe" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 17, ClientId = clientId, IsBold = true, IsReadOnly = true, Number = "I", Formula = "", Description = "Wynik finansowy brutto na całokształcie działalności[C - D + E - F + G - H]" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 18, ClientId = clientId, IsBold = true, IsReadOnly = false, Number = "J", Formula = "", Description = "Zyski i straty nadzwyczajne" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 19, ClientId = clientId, IsBold = true, IsReadOnly = true, Number = "K", Formula = "", Description = "Wynik finansowy ogółem[I + J]" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 20, ClientId = clientId, IsBold = false, IsReadOnly = true, Number = "I", Formula = "", Description = "Różnica zwiększająca koszty roku następnego[wielkość ujemna]" });
+			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 21, ClientId = clientId, IsBold = false, IsReadOnly = true, Number = "II", Formula = "", Description = "Różnica zwiększająca przychody roku następnego[wielkość dodatnia]" });
+		}
+	}
 }

@@ -90,9 +90,13 @@
     <Compile Include="Migrations\201602051939027_InitialMigration.Designer.cs">
       <DependentUpon>201602051939027_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602052223458_ProfitAndLossReport.cs" />
-    <Compile Include="Migrations\201602052223458_ProfitAndLossReport.Designer.cs">
-      <DependentUpon>201602052223458_ProfitAndLossReport.cs</DependentUpon>
+    <Compile Include="Migrations\201602092156331_ProfitAndLossReport.cs" />
+    <Compile Include="Migrations\201602092156331_ProfitAndLossReport.Designer.cs">
+      <DependentUpon>201602092156331_ProfitAndLossReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602092211512_ProfitAndLossReport_BoldColumn.cs" />
+    <Compile Include="Migrations\201602092211512_ProfitAndLossReport_BoldColumn.Designer.cs">
+      <DependentUpon>201602092211512_ProfitAndLossReport_BoldColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\Printing\ProfitAndLossPrintService.cs" />
@@ -124,9 +128,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602051939027_InitialMigration.resx">
       <DependentUpon>201602051939027_InitialMigration.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602052223458_ProfitAndLossReport.resx">
-      <DependentUpon>201602052223458_ProfitAndLossReport.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602092156331_ProfitAndLossReport.resx">
+      <DependentUpon>201602092156331_ProfitAndLossReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602092211512_ProfitAndLossReport_BoldColumn.resx">
+      <DependentUpon>201602092211512_ProfitAndLossReport_BoldColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

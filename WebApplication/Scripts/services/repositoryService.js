@@ -78,8 +78,8 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doGet(urlService.reports.printReports + '?clientId=' + clientId + '&year=' + year).then(showPdf);
   };
 
-  var getProfitLossItems = function (successFun) {
-      ajaxService.doPost(urlService.creators.getProfitLossItems, {}).then(successFun);
+  var getProfitLossItems = function (clientId, successFun) {
+      ajaxService.doPost(urlService.creators.getProfitLossItems, { clientId: clientId }).then(successFun);
   };
 
   var printProfitLoss = function (clientId, year) {

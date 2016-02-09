@@ -8,7 +8,7 @@ namespace Repository.Services.Printing
 	{
 		protected readonly Factory Factory;
 		private string _html;
-		private string _user;
+		protected string User;
 		protected int ClientdId;
 		protected int Year;
 		protected string Title;
@@ -45,10 +45,10 @@ namespace Repository.Services.Printing
 
 		protected abstract void GetTableClass();
 
-		private void GetUser()
+		protected virtual void GetUser()
 		{
 			var client = Factory.GetClientsService().GetClients().FirstOrDefault(x => x.ClientId.Equals(ClientdId));
-			_user = client != null ? client.Description : "";
+			User = client != null ? client.Description : "";
 		}
 
 		private void PopulateHtml()
@@ -57,7 +57,7 @@ namespace Repository.Services.Printing
 			_html = _html.Replace("{{tableClass}}", TableClass);
 			_html = _html.Replace("{{headerRow}}", HeaderRow);
 			_html = _html.Replace("{{rows}}", Rows);
-			_html = _html.Replace("{{user}}", _user);
+			_html = _html.Replace("{{user}}", User);
 		}
 
 

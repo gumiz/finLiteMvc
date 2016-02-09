@@ -40,7 +40,7 @@ angular.module('finLiteApp').controller('AccountsCtrl', ['$scope', 'repositorySe
     };
 
     accController.commands.rewriteAccountsWithLastYear = function () {
-        dialogService.confirmation('Ta funkcja \ obecny plan kont (' + $scope.main.data.year + '),<br /> kontami roku poprzedniego.<br /><br />Czy na pewno chcesz dodać zeszłoroczne konta?', rewriteAccountsWithLastYear());
+        dialogService.confirmation('Ta funkcja uzupełni obecny plan kont (' + $scope.main.data.year + '),<br /> kontami roku poprzedniego.<br /><br />Czy na pewno chcesz dodać zeszłoroczne konta?', rewriteAccountsWithLastYear());
     };
 
 

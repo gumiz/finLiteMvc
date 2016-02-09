@@ -18,9 +18,9 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult GetProfitLossItems()
+		public ActionResult GetProfitLossItems(int clientId)
 		{
-			var result = _factory.GetProfitLossService().GetItems();
+			var result = _factory.GetProfitLossService().GetItems(clientId);
 			return new JsonResult {Data = result};
 		}
 

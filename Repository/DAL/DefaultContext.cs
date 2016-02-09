@@ -17,7 +17,7 @@ namespace Repository.DAL
 			modelBuilder.Entity<ClientDao>().HasKey(c => new {c.ClientId, c.Name});
 			modelBuilder.Entity<OpeningDao>().HasKey(c => new {c.Year, c.ClientId, c.Name});
 			modelBuilder.Entity<DocumentDao>().HasKey(c => new {c.Year, c.ClientId, c.Number, c.AutoNumber});
-			modelBuilder.Entity<ProfitAndLossReportItemDao>().HasKey(c => new {c.Id});
+			modelBuilder.Entity<ProfitAndLossReportItemDao>().HasKey(c => new {c.Id, c.ClientId});
 		}
 
 		public DbSet<AccountDao> Accounts{ get; set; }

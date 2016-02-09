@@ -5,7 +5,7 @@ namespace Repository.Abstract
 {
 	public interface IProfitLossService
 	{
-		IList<ProfitAndLossReportItem> GetItems();
+		IList<ProfitAndLossReportItem> GetItems(int clientId);
 		IList<ProfitAndLossReportValues> GetValues(int clientId, int year);
 	}
 }
