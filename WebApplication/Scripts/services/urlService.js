@@ -61,6 +61,7 @@ appServices.factory('urlService', ['domService', function (domService) {
         creators: {
             profitLoss: createUrl(controllers.Creators, "ProfitLoss"),
             getProfitLossItems: createUrl(controllers.Creators, "GetProfitLossItems"),
+            saveProfitLossItems: createUrl(controllers.Creators, "SaveProfitLossItems"),
             printProfitLoss: createUrl(controllers.Creators, "PrintProfitLoss")
         }
 

@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201602092211512_ProfitAndLossReport_BoldColumn.Designer.cs">
       <DependentUpon>201602092211512_ProfitAndLossReport_BoldColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602101606473_ClientsAddress.cs" />
+    <Compile Include="Migrations\201602101606473_ClientsAddress.Designer.cs">
+      <DependentUpon>201602101606473_ClientsAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\Printing\ProfitAndLossPrintService.cs" />
     <Compile Include="Services\Printing\ReportsPrintService.cs" />
@@ -137,6 +141,9 @@
     <EmbeddedResource Include="Migrations\201602092211512_ProfitAndLossReport_BoldColumn.resx">
       <DependentUpon>201602092211512_ProfitAndLossReport_BoldColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602101606473_ClientsAddress.resx">
+      <DependentUpon>201602101606473_ClientsAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

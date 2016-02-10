@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Repository.Abstract;
+using Repository.Domain;
 
 namespace WebApplication.Controllers
 {
@@ -22,6 +24,13 @@ namespace WebApplication.Controllers
 		{
 			var result = _factory.GetProfitLossService().GetItems(clientId);
 			return new JsonResult {Data = result};
+		}
+
+		[HttpPost]
+		public ActionResult SaveProfitLossItems(int clientId, IList<ProfitAndLossReportItem> items )
+		{
+			_factory.GetProfitLossService().SaveItems(clientId, items);
+			return new JsonResult { Data = true };
 		}
 
 		[HttpGet]

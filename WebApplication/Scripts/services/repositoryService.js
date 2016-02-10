@@ -86,6 +86,10 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doGet(urlService.creators.printProfitLoss + '?clientId=' + clientId + '&year=' + year).then(showPdf);
   };
 
+  var saveProfitLossItems = function (clientId, items, successFunc) {
+      ajaxService.doPostWithBlock(urlService.creators.saveProfitLossItems, { clientId: clientId, items: items }).then(successFunc);
+  };
+
   return {
         saveOpenings: saveOpenings,
         getOpenings: getOpenings,
@@ -106,6 +110,7 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
         printDocuments: printDocuments,
         printReports: printReports,
         getProfitLossItems: getProfitLossItems,
+        saveProfitLossItems: saveProfitLossItems,
         printProfitLoss: printProfitLoss
 }
 }]);

@@ -17,5 +17,8 @@ namespace Repository.DAL
 
 		[Column("DESCRIPTION"), Required]
 		public string Description { get; set; }
+
+		[Column("ADDRESS"), Required]
+		public string Address { get; set; }
 	}
 }

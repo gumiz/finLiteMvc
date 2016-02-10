@@ -12,7 +12,6 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="col-md-1">LP</th>
 					<th class="col-md-1">Numer</th>
 					<th class="col-md-7">Nazwa</th>
 					<th class="col-md-4">Stan</th>
@@ -20,7 +19,6 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in profitLoss.data.items" ng-class="{bold: item.IsBold, secondary: item.IsReadOnly}">
-					<td>{{$index}}</td>
 					<td>{{item.Number}}</td>
 					<td>{{item.Description}}</td>
 					<td>
@@ -29,6 +27,11 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
+	<div class="row">
+		<div class="pull-right">
+			<button ng-click="profitLoss.commands.save()" class="btn btn-success right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+		</div>
 	</div>
 
 </div>

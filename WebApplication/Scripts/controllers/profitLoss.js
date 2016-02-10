@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 angular.module('finLiteApp').controller('ProfitLossCtrl', ['$scope', 'repositoryService', 'dialogService', 'notify', function ($scope, repositoryService, dialogService, notify) {
 
     var pcController = this;
@@ -16,6 +16,14 @@ angular.module('finLiteApp').controller('ProfitLossCtrl', ['$scope', 'repository
 
     pcController.commands.print = function () {
         repositoryService.printProfitLoss($scope.main.data.clientId, $scope.main.data.year);
+    };
+
+    var confirmSaved = function () {
+        notify.info("Zapisano Rachunek wyników");
+    }
+
+    pcController.commands.save = function () {
+        repositoryService.saveProfitLossItems($scope.main.data.clientId, pcController.data.items, confirmSaved);
     };
 
 }]);

@@ -22,7 +22,7 @@ namespace Repository.Migrations
         {
 	        _context = context;
 	        var clients = context.Clients.ToList();
-	        foreach (var client in clients)
+			foreach (var client in clients)
 		        SeedProfitAndLossReportForClient(client.ClientId);
 			try
 			{

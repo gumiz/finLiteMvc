@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Repository.Abstract;
 using Repository.DAL;
@@ -16,6 +17,7 @@ namespace Repository.Services
 		private List<DocumentDao> _documentsOld;
 		private int _clientId;
 		private int _year;
+		private IList<ProfitAndLossReportItem> _items;
 
 		public ProfitLossService(DefaultContext dbContext)
 		{
@@ -27,6 +29,19 @@ namespace Repository.Services
 			var itemsDao = _dbContext.ProfitLossReport.Where(c=>c.ClientId.Equals(clientId)).OrderBy(c=>c.RowId).ToList();
 			var items = Converter.ConvertList<ProfitAndLossReportItemDao, ProfitAndLossReportItem>(itemsDao);
 			return items;
+		}
+
+		public void SaveItems(int clientId, IList<ProfitAndLossReportItem> items)
+		{
+			var result = _dbContext.ProfitLossReport.Where(c=>c.ClientId.Equals(clientId)).ToList();
+			foreach (var row in result)
+			{
+				var newItem = items.FirstOrDefault(c => c.Id.Equals(row.Id));
+				if (newItem != null)
+					row.Formula = newItem.Formula;
+				_dbContext.ProfitLossReport.AddOrUpdate(row);
+			}
+			_dbContext.SaveChanges();
 		}
 
 		public IList<ProfitAndLossReportValues> GetValues(int clientId, int year)
@@ -47,15 +62,18 @@ namespace Repository.Services
 			_formulas = GetItems(_clientId);
 			foreach (var formula in _formulas)
 			{
-				if (formula.Formula == null) continue;
-				var accounts = UndressFormula(formula.Formula);
 				double sum = 0;
 				double sumOld = 0;
-				foreach (var decAcc in accounts)
+				if (formula.Formula != null)
 				{
-					if (decAcc.Side == null) continue;
-					sum += _documents.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price)*decAcc.Multiplier;
-					sumOld += _documentsOld.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price)*decAcc.Multiplier;
+					var accounts = UndressFormula(formula.Formula);
+					foreach (var decAcc in accounts)
+					{
+						if (decAcc.Side == null) continue;
+						sum += _documents.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price)*decAcc.Multiplier;
+						sumOld += _documentsOld.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price)*
+						          decAcc.Multiplier;
+					}
 				}
 				_result.Add(new ProfitAndLossReportValues
 				{
