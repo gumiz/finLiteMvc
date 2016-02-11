@@ -1,8 +1,9 @@
 namespace Repository.Domain
 {
-	public class ProfitAndLossReportValues
+	public class BalanceReportValues
 	{
 		public int RowId { get; set; }
+		public string Type { get; set; }
 		public string Number { get; set; }
 		public string Description { get; set; }
 		public double Balance1 { get; set; }

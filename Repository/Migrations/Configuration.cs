@@ -21,12 +21,15 @@ namespace Repository.Migrations
         protected override void Seed(Repository.DAL.DefaultContext context)
         {
 	        _context = context;
-	        var clients = context.Clients.ToList();
-			foreach (var client in clients)
+	        var clients = _context.Clients.ToList();
+	        foreach (var client in clients)
+	        {
 		        SeedProfitAndLossReportForClient(client.ClientId);
-			try
+		        SeedBalanceReportForClient(client.ClientId);
+	        }
+	        try
 			{
-				context.SaveChanges();
+				_context.SaveChanges();
 			}
 			catch (DbEntityValidationException e)
 			{
@@ -57,7 +60,43 @@ namespace Repository.Migrations
 			//
 		}
 
-	    private void SeedProfitAndLossReportForClient(int clientId)
+	    private void SeedBalanceReportForClient(int clientId)
+	    {
+			if (_context.BalanceReport.ToList().Count != 0) return;
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 1, ClientId = clientId, IsBold = true, IsReadOnly = true, Type = "AKTYWA", Number = "A", Description = "Aktywa trwałe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 2, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "I", Description = "Wartości niematerialne i prawne"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 3, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "II", Description = "Rzeczowe aktywa trwałe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 4, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "III",Description = "Należności długoterminowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 5, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "IV", Description = "Inwestycje długoterminowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 6, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "V", Description = "Długoterminowe rozliczenia międzyokresowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 7, ClientId = clientId, IsBold = true, IsReadOnly = true, Type = "AKTYWA", Number = "B", Description = "Aktywa obrotowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 8, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "I", Description = "Zapasy rzeczowych aktywów obrotowych"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 9, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "II", Description = "Należności krótkoterminowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 10, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "III", Description = "Inwestycje krótkoterminowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 11, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "1", Description = "Środki pieniężne"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 12, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "AKTYWA", Number = "2", Description = "Pozostałe aktywa finansowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 13, ClientId = clientId, IsBold = true, IsReadOnly = true, Type = "AKTYWA", Number = "C", Description = "Krótkoterminowe rozliczenia międzyokresowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 14, ClientId = clientId, IsBold = true, IsReadOnly = true, Type = "AKTYWA", Number = "", Description = "SUMA AKTYWÓW"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 15, ClientId = clientId, IsBold = true, IsReadOnly = true, Type = "PASYWA", Number = "A", Description = "Fundusze własne"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 16, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "I", Description = "Fundusz statutowy"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 17, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "II", Description = "Fundusz z aktualizacji wyceny"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 18, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "III", Description = "Wynik finansowy netto za rok obrotowy"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 19, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "1", Description = "Nadwyżka przychodów nad kosztami[wielkość dodatnia]"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 20, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "2", Description = "Nadwyżka kosztów nad przychodami[wielkość ujemna]"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 21, ClientId = clientId, IsBold = true, IsReadOnly = true, Type = "PASYWA", Number = "B", Description = "Zobowiązania i rezerwy na zobowiązania"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 22, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "I", Description = "Zobowiązania długoterminowe z tytułu kredytów i pożyczek"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 23, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "II", Description = "Zobowiązania krótkoterminowe i fundusze specjalne"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 24, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "1", Description = "Kredyty i pożyczki"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 25, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "2", Description = "Inne zobowiązania"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 26, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "3", Description = "Fundusze specjalne"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 27, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "III",Description = "Rezerwy na zobowiązania"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 28, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "IV", Description = "Rozliczenia międzyokresowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 29, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "1", Description = "Rozliczenia międzyokresowe przychodów"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 30, ClientId = clientId, IsBold = false, IsReadOnly = false, Type = "PASYWA", Number = "2", Description = "Inne rozl.międzyokresowe"});
+			_context.BalanceReport.AddOrUpdate(new BalanceReportItemDao { RowId = 31, ClientId = clientId, IsBold = false, IsReadOnly = true, Type = "PASYWA", Number = "", Description = "SUMA PASYWÓW"});
+		}
+
+		private void SeedProfitAndLossReportForClient(int clientId)
 	    {
 		    if (_context.ProfitLossReport.ToList().Count != 0) return;
 			_context.ProfitLossReport.AddOrUpdate(new ProfitAndLossReportItemDao { RowId = 1, ClientId = clientId, IsBold = true, IsReadOnly = true, Number = "A", Formula = "", Description = "Przychody z działalności statutowej" });

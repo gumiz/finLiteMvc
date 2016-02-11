@@ -1,0 +1,44 @@
+﻿<div ng-controller="BalanceCtrl as balance">
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-8">
+			<div class="input-group col-xs-1 pull-right">
+				<button ng-click="balance.commands.print()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"> Drukuj</span></button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-md-1">Numer</th>
+					<th class="col-md-7">Nazwa</th>
+					<th class="col-md-4">Stan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td colspan="3" class="bold secondary text-center">AKTYWA</td></tr>
+				<tr ng-repeat="item in balance.data.items.Actives" ng-class="{bold: item.IsBold, secondary: item.IsReadOnly}">
+					<td>{{item.Number}}</td>
+					<td>{{item.Description}}</td>
+					<td><input ng-disabled="item.IsReadOnly" class="form-control input-sm" ng-model="item.Formula" placeholder="wzór" /></td>
+				</tr>
+				<tr><td colspan="3" class=""></td></tr>
+				<tr><td colspan="3" class=""></td></tr>
+				<tr><td colspan="3" class="bold secondary text-center">PASYWA</td></tr>
+				<tr ng-repeat="item in balance.data.items.Passives" ng-class="{bold: item.IsBold, secondary: item.IsReadOnly}">
+					<td>{{item.Number}}</td>
+					<td>{{item.Description}}</td>
+					<td><input ng-disabled="item.IsReadOnly" class="form-control input-sm" ng-model="item.Formula" placeholder="wzór" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<div class="pull-right">
+			<button ng-click="balance.commands.save()" class="btn btn-success right"><span class="glyphicon glyphicon-ok"></span> Zapisz</button>
+		</div>
+	</div>
+
+</div>

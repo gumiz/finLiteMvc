@@ -56,5 +56,8 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
     main.commands.getUrlCreatorsProfitLoss = function () {
         return getUrl(urlService.creators.profitLoss);
     }
+    main.commands.getUrlCreatorsBalance = function () {
+        return getUrl(urlService.creators.balance);
+    }
 
 }]);

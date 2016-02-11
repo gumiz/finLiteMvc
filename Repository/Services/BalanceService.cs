@@ -8,43 +8,55 @@ using Repository.Domain;
 
 namespace Repository.Services
 {
-	public class ProfitLossService : IProfitLossService
+	public class BalanceService : IBalanceService
 	{
 		private readonly DefaultContext _dbContext;
 		private List<DocumentDao> _documents;
-		private IList<ProfitAndLossReportItem> _formulas;
-		private List<ProfitAndLossReportValues> _result;
+		private IList<BalanceReportItem> _formulas;
+		private List<BalanceReportValues> _result;
 		private List<DocumentDao> _documentsOld;
 		private int _clientId;
 		private int _year;
-		private IList<ProfitAndLossReportItem> _items;
+		private IList<BalanceReportItem> _items;
 
-		public ProfitLossService(DefaultContext dbContext)
+		public BalanceService(DefaultContext dbContext)
 		{
 			_dbContext = dbContext;
 		}
 
-		public IList<ProfitAndLossReportItem> GetItems(int clientId)
+		public IList<BalanceReportItem> GetAllItems(int clientId)
 		{
-			var itemsDao = _dbContext.ProfitLossReport.Where(c=>c.ClientId.Equals(clientId)).OrderBy(c=>c.RowId).ToList();
-			var items = Converter.ConvertList<ProfitAndLossReportItemDao, ProfitAndLossReportItem>(itemsDao);
+			var itemsDao = _dbContext.BalanceReport.Where(c => c.ClientId.Equals(clientId)).OrderBy(c => c.RowId).ToList();
+			var items = Converter.ConvertList<BalanceReportItemDao, BalanceReportItem>(itemsDao);
 			return items;
 		}
 
-		public void SaveItems(int clientId, IList<ProfitAndLossReportItem> items)
+		public BalanceItems GetItems(int clientId)
 		{
-			var result = _dbContext.ProfitLossReport.Where(c=>c.ClientId.Equals(clientId)).ToList();
+			var itemsDao = _dbContext.BalanceReport.Where(c => c.ClientId.Equals(clientId)).OrderBy(c => c.RowId).ToList();
+			var items = Converter.ConvertList<BalanceReportItemDao, BalanceReportItem>(itemsDao);
+			var result = new BalanceItems
+			{
+				Actives = items.Where(c => c.Type.ToUpper().Equals("AKTYWA")).ToList(),
+				Passives = items.Where(c => c.Type.ToUpper().Equals("PASYWA")).ToList()
+			};
+			return result;
+		}
+
+		public void SaveItems(int clientId, IList<BalanceReportItem> items)
+		{
+			var result = _dbContext.BalanceReport.Where(c => c.ClientId.Equals(clientId)).ToList();
 			foreach (var row in result)
 			{
 				var newItem = items.FirstOrDefault(c => c.Id.Equals(row.Id));
 				if (newItem != null)
 					row.Formula = newItem.Formula;
-				_dbContext.ProfitLossReport.AddOrUpdate(row);
+				_dbContext.BalanceReport.AddOrUpdate(row);
 			}
 			_dbContext.SaveChanges();
 		}
 
-		public IList<ProfitAndLossReportValues> GetValues(int clientId, int year)
+		public IList<BalanceReportValues> GetValues(int clientId, int year)
 		{
 			_clientId = clientId;
 			_year = year;
@@ -56,10 +68,10 @@ namespace Repository.Services
 
 		private void GetRowsWithValues()
 		{
-			_result = new List<ProfitAndLossReportValues>();
+			_result = new List<BalanceReportValues>();
 			_documents = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).ToList();
 			_documentsOld = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year - 1)).ToList();
-			_formulas = GetItems(_clientId);
+			_formulas = GetAllItems(_clientId);
 			foreach (var formula in _formulas)
 			{
 				double sum = 0;
@@ -70,12 +82,12 @@ namespace Repository.Services
 					foreach (var decAcc in accounts)
 					{
 						if (decAcc.Side == null) continue;
-						sum += _documents.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price)*decAcc.Multiplier;
-						sumOld += _documentsOld.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price)*
+						sum += _documents.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price) * decAcc.Multiplier;
+						sumOld += _documentsOld.Where(c => decAcc.Side.Invoke(c).StartsWith(decAcc.Name)).Sum(c => c.Price) *
 						          decAcc.Multiplier;
 					}
 				}
-				_result.Add(new ProfitAndLossReportValues
+				_result.Add(new BalanceReportValues
 				{
 					RowId = formula.RowId,
 					IsBold = formula.IsBold,
@@ -89,7 +101,7 @@ namespace Repository.Services
 
 		private void SortRows()
 		{
-			_result = _result.OrderBy(c=>c.RowId).ToList();
+			_result = _result.OrderBy(c => c.RowId).ToList();
 		}
 		private void CalculateSummaries()
 		{
@@ -137,7 +149,7 @@ namespace Repository.Services
 					else
 						side = x => x.AccountCt;
 				}
-				result.Add(new DecodedAccount {Name = acc, Side = side, Multiplier = multiplier});
+				result.Add(new DecodedAccount { Name = acc, Side = side, Multiplier = multiplier });
 			}
 			return result;
 		}

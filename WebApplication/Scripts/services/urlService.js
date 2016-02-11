@@ -62,8 +62,12 @@ appServices.factory('urlService', ['domService', function (domService) {
             profitLoss: createUrl(controllers.Creators, "ProfitLoss"),
             getProfitLossItems: createUrl(controllers.Creators, "GetProfitLossItems"),
             saveProfitLossItems: createUrl(controllers.Creators, "SaveProfitLossItems"),
-            printProfitLoss: createUrl(controllers.Creators, "PrintProfitLoss")
-        }
+            printProfitLoss: createUrl(controllers.Creators, "PrintProfitLoss"),
+            balance: createUrl(controllers.Creators, "Balance"),
+            getBalanceItems: createUrl(controllers.Creators, "GetBalanceItems"),
+            saveBalanceItems: createUrl(controllers.Creators, "SaveBalanceItems"),
+            printBalance: createUrl(controllers.Creators, "PrintBalance")
+    }
 
 
     };

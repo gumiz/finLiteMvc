@@ -19,6 +19,11 @@ namespace WebApplication.Controllers
 			return View("profitLoss");
 		}
 
+		public ActionResult Balance()
+		{
+			return View("balance");
+		}
+
 		[HttpPost]
 		public ActionResult GetProfitLossItems(int clientId)
 		{
@@ -40,5 +45,25 @@ namespace WebApplication.Controllers
 			return new JsonResult { Data = pdf, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 		}
 
+		[HttpPost]
+		public ActionResult GetBalanceItems(int clientId)
+		{
+			var result = _factory.GetBalanceService().GetItems(clientId);
+			return new JsonResult { Data = result };
+		}
+
+		[HttpPost]
+		public ActionResult SaveBalanceItems(int clientId, IList<BalanceReportItem> items)
+		{
+			_factory.GetBalanceService().SaveItems(clientId, items);
+			return new JsonResult { Data = true };
+		}
+
+		[HttpGet]
+		public ActionResult PrintBalance(int clientId, int year)
+		{
+			var pdf = _factory.GetBalancePrintService().GetPdf(clientId, year);
+			return new JsonResult { Data = pdf, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+		}
 	}
 }

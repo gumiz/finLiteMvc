@@ -18,6 +18,7 @@ namespace Repository.DAL
 			modelBuilder.Entity<OpeningDao>().HasKey(c => new {c.Year, c.ClientId, c.Name});
 			modelBuilder.Entity<DocumentDao>().HasKey(c => new {c.Year, c.ClientId, c.Number, c.AutoNumber});
 			modelBuilder.Entity<ProfitAndLossReportItemDao>().HasKey(c => new {c.Id, c.ClientId});
+			modelBuilder.Entity<BalanceReportItemDao>().HasKey(c => new {c.Id, c.ClientId});
 		}
 
 		public DbSet<AccountDao> Accounts{ get; set; }
@@ -25,5 +26,6 @@ namespace Repository.DAL
 		public DbSet<OpeningDao> Openings { get; set; }
 		public DbSet<DocumentDao> Documents { get; set; }
 		public DbSet<ProfitAndLossReportItemDao> ProfitLossReport {get; set; }
+		public DbSet<BalanceReportItemDao> BalanceReport {get; set; }
 	}
 }

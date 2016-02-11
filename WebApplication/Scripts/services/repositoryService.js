@@ -90,7 +90,18 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
       ajaxService.doPostWithBlock(urlService.creators.saveProfitLossItems, { clientId: clientId, items: items }).then(successFunc);
   };
 
-  return {
+  var getBalanceItems = function (clientId, successFun) {
+      ajaxService.doPost(urlService.creators.getBalanceItems, { clientId: clientId }).then(successFun);
+  };
+
+  var printBalance = function (clientId, year) {
+      ajaxService.doGet(urlService.creators.printBalance + '?clientId=' + clientId + '&year=' + year).then(showPdf);
+  };
+
+  var saveBalanceItems = function (clientId, items, successFunc) {
+      ajaxService.doPostWithBlock(urlService.creators.saveBalanceItems, { clientId: clientId, items: items }).then(successFunc);
+  };
+    return {
         saveOpenings: saveOpenings,
         getOpenings: getOpenings,
         getIdFromUrl: getIdFromUrl,
@@ -111,6 +122,9 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
         printReports: printReports,
         getProfitLossItems: getProfitLossItems,
         saveProfitLossItems: saveProfitLossItems,
-        printProfitLoss: printProfitLoss
+        printProfitLoss: printProfitLoss,
+        getBalanceItems: getBalanceItems,
+        saveBalanceItems: saveBalanceItems,
+        printBalance: printBalance
 }
 }]);

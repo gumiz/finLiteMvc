@@ -230,6 +230,7 @@
     <None Include="Properties\PublishProfiles\northend.pubxml" />
     <None Include="Properties\PublishProfiles\notekAni.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\controllers\balance.js" />
     <Content Include="Scripts\controllers\profitLoss.js" />
     <Content Include="Scripts\controllers\accounts.js" />
     <Content Include="Scripts\controllers\documents.js" />
@@ -309,6 +310,7 @@
     <Content Include="Views\Documents\documents.cshtml" />
     <Content Include="Views\OpeningBalance\openingBalance.cshtml" />
     <Content Include="Views\Creators\profitLoss.cshtml" />
+    <Content Include="Views\Creators\balance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

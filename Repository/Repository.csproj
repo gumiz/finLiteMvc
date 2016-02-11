@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBalanceService.cs" />
     <Compile Include="Abstract\IClientsService.cs" />
     <Compile Include="Abstract\IDataInitializatorService.cs" />
     <Compile Include="Abstract\IDocumentsService.cs" />
@@ -74,12 +75,17 @@
     <Compile Include="Abstract\IProfitLossService.cs" />
     <Compile Include="Abstract\IReportsService.cs" />
     <Compile Include="DAL\AccountDao.cs" />
+    <Compile Include="DAL\BalanceReportItemDao.cs" />
     <Compile Include="DAL\ClientDao.cs" />
     <Compile Include="DAL\DefaultContext.cs" />
     <Compile Include="DAL\ProfitAndLossReportItemDao.cs" />
     <Compile Include="DAL\DocumentDao.cs" />
     <Compile Include="DAL\OpeningDao.cs" />
+    <Compile Include="Domain\BalanceItems.cs" />
+    <Compile Include="Domain\BalanceReportItem.cs" />
+    <Compile Include="Domain\BalanceReportValues.cs" />
     <Compile Include="Domain\Client.cs" />
+    <Compile Include="Domain\DecodedAccount.cs" />
     <Compile Include="Domain\Document.cs" />
     <Compile Include="Domain\Opening.cs" />
     <Compile Include="Domain\ProfitAndLossReportItem.cs" />
@@ -102,7 +108,21 @@
     <Compile Include="Migrations\201602101606473_ClientsAddress.Designer.cs">
       <DependentUpon>201602101606473_ClientsAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602111912163_BalanceReport.cs" />
+    <Compile Include="Migrations\201602111912163_BalanceReport.Designer.cs">
+      <DependentUpon>201602111912163_BalanceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602111917297_BalanceReport_Type.cs" />
+    <Compile Include="Migrations\201602111917297_BalanceReport_Type.Designer.cs">
+      <DependentUpon>201602111917297_BalanceReport_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602111921491_BalanceReport_NumberNotRequired.cs" />
+    <Compile Include="Migrations\201602111921491_BalanceReport_NumberNotRequired.Designer.cs">
+      <DependentUpon>201602111921491_BalanceReport_NumberNotRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Services\BalanceService.cs" />
+    <Compile Include="Services\Printing\BalancePrintService.cs" />
     <Compile Include="Services\Printing\ProfitAndLossPrintService.cs" />
     <Compile Include="Services\Printing\ReportsPrintService.cs" />
     <Compile Include="Services\Printing\DocumentsPrintService.cs" />
@@ -144,6 +164,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602101606473_ClientsAddress.resx">
       <DependentUpon>201602101606473_ClientsAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602111912163_BalanceReport.resx">
+      <DependentUpon>201602111912163_BalanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602111917297_BalanceReport_Type.resx">
+      <DependentUpon>201602111917297_BalanceReport_Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602111921491_BalanceReport_NumberNotRequired.resx">
+      <DependentUpon>201602111921491_BalanceReport_NumberNotRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,8 +5,8 @@ namespace Repository.Abstract
 {
 	public interface IProfitLossService
 	{
-		IList<ProfitAndLossReportItem> GetItems(int clientId);
 		void SaveItems(int clientId, IList<ProfitAndLossReportItem> items);
+		IList<ProfitAndLossReportItem> GetItems(int clientId);
 		IList<ProfitAndLossReportValues> GetValues(int clientId, int year);
 	}
 }
