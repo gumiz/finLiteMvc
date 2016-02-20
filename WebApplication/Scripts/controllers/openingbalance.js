@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('finLiteApp')
-  .controller('OpeningBalanceCtrl', ['$scope', 'repositoryService', 'dialogService', function ($scope, repositoryService, dialogService) {
+  .controller('OpeningBalanceCtrl', ['$scope', 'repositoryService', 'notify', function ($scope, repositoryService, notify) {
 
         var openings = this;
         openings.data = {};
@@ -9,7 +9,6 @@ angular.module('finLiteApp')
 
         var fixDocumentProperties = function (items) {
             _.each(items, function(item) {
-                debugger;
                 if (typeof item.Dt === "string") {
                     item.Dt = item.Dt.replace(".", ",");
                 }
@@ -27,7 +26,7 @@ angular.module('finLiteApp')
         openings.commands.getData();
 
         var confirmSaved = function () {
-            dialogService.showMessage("Zapisano bilans otwarcia");
+            notify.info("Zapisano bilans otwarcia");
         }
 
         openings.commands.saveOpenings = function () {

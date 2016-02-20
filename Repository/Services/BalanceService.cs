@@ -18,6 +18,8 @@ namespace Repository.Services
 		private int _clientId;
 		private int _year;
 		private IList<BalanceReportItem> _items;
+		private List<OpeningDao> _openings;
+		private List<OpeningDao> _openingsOld;
 
 		public BalanceService(DefaultContext dbContext)
 		{
@@ -72,8 +74,13 @@ namespace Repository.Services
 		private void GetRowsWithValues()
 		{
 			_result = new List<BalanceReportValues>();
+
 			_documents = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).ToList();
+			AddOpeningsToDocuments(_documents, _year);
+
 			_documentsOld = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year - 1)).ToList();
+			AddOpeningsToDocuments(_documentsOld, _year-1);
+
 			_formulas = GetAllItems(_clientId);
 			foreach (var formula in _formulas)
 			{
@@ -100,6 +107,16 @@ namespace Repository.Services
 					Balance1 = sumOld,
 					Balance2 = sum
 				});
+			}
+		}
+
+		private void AddOpeningsToDocuments(List<DocumentDao> documents, int year)
+		{
+			var openings = _dbContext.Openings.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(year)).ToList();
+			foreach (var opening in openings)
+			{
+				documents.Add(new DocumentDao {AccountDt = opening.Name, AccountCt = "", Price = opening.Dt});
+				documents.Add(new DocumentDao {AccountCt = opening.Name, AccountDt = "", Price = opening.Ct});
 			}
 		}
 

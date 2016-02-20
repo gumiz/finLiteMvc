@@ -5,7 +5,7 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
 
     main.data = {};
     main.commands = {};
-    main.data.allYears = [2015, 2016, 2017, 2018, 2019, 2020];
+    main.data.allYears = [2014, 2015, 2016, 2017, 2018, 2019, 2020];
 
     main.data.year = Number($cookies['finliteYear']);
     if (!main.data.year)
