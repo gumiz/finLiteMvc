@@ -22,6 +22,11 @@ namespace Repository.Services.Printing
 			Factory = factory;
 		}
 
+		public string GetHtml()
+		{
+			return _html;
+		}
+
 		public string GetPdf(int clientId, int year)
 		{
 			ClientdId = clientId;

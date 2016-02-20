@@ -53,7 +53,7 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult SaveBalanceItems(int clientId, IList<BalanceReportItem> items)
+		public ActionResult SaveBalanceItems(int clientId, BalanceItems items)
 		{
 			_factory.GetBalanceService().SaveItems(clientId, items);
 			return new JsonResult { Data = true };

@@ -5,7 +5,7 @@ namespace Repository.Abstract
 {
 	public interface IBalanceService
 	{
-		void SaveItems(int clientId, IList<BalanceReportItem> items);
+		void SaveItems(int clientId, BalanceItems items);
 		BalanceItems GetItems(int clientId);
         IList<BalanceReportItem> GetAllItems(int clientId);
 		IList<BalanceReportValues> GetValues(int clientId, int year);

@@ -43,12 +43,15 @@ namespace Repository.Services
 			return result;
 		}
 
-		public void SaveItems(int clientId, IList<BalanceReportItem> items)
+		public void SaveItems(int clientId, BalanceItems items)
 		{
+			var flatenedItems = new List<BalanceReportItem>();
+			flatenedItems.AddRange(items.Actives);
+			flatenedItems.AddRange(items.Passives);
 			var result = _dbContext.BalanceReport.Where(c => c.ClientId.Equals(clientId)).ToList();
 			foreach (var row in result)
 			{
-				var newItem = items.FirstOrDefault(c => c.Id.Equals(row.Id));
+				var newItem = flatenedItems.FirstOrDefault(c => c.Id.Equals(row.Id));
 				if (newItem != null)
 					row.Formula = newItem.Formula;
 				_dbContext.BalanceReport.AddOrUpdate(row);
@@ -92,6 +95,7 @@ namespace Repository.Services
 					RowId = formula.RowId,
 					IsBold = formula.IsBold,
 					Number = formula.Number,
+					Type = formula.Type,
 					Description = formula.Description,
 					Balance1 = sumOld,
 					Balance2 = sum
@@ -101,28 +105,44 @@ namespace Repository.Services
 
 		private void SortRows()
 		{
-			_result = _result.OrderBy(c => c.RowId).ToList();
+			_result = _result.OrderBy(c=>c.Type).ThenBy(x=>x.RowId).ToList();
 		}
+
 		private void CalculateSummaries()
 		{
-			_result[0].Balance1 = _result[1].Balance1 + _result[2].Balance1;
-			_result[4].Balance1 = _result[0].Balance1 - _result[3].Balance1;
-			_result[5].Balance1 = _result[6].Balance1 + _result[7].Balance1 + _result[8].Balance1 + _result[9].Balance1 + _result[10].Balance1 + _result[11].Balance1;
-			_result[16].Balance1 = _result[4].Balance1 - _result[5].Balance1 + _result[12].Balance1 - _result[13].Balance1 + _result[14].Balance1 - _result[15].Balance1;
-			_result[18].Balance1 = _result[16].Balance1 + _result[17].Balance1;
-			_result[19].Balance1 = _result[18].Balance1 < 0 ? -_result[18].Balance1 : 0;
-			_result[20].Balance1 = _result[18].Balance1 >= 0 ? _result[18].Balance1 : 0;
-
-			_result[0].Balance2 = _result[1].Balance2 + _result[2].Balance2;
-			_result[4].Balance2 = _result[0].Balance2 - _result[3].Balance2;
-			_result[5].Balance2 = _result[6].Balance2 + _result[7].Balance2 + _result[8].Balance2 + _result[9].Balance2 + _result[10].Balance2 + _result[11].Balance2;
-			_result[16].Balance2 = _result[4].Balance2 - _result[5].Balance2 + _result[12].Balance2 - _result[13].Balance2 + _result[14].Balance2 - _result[15].Balance2;
-			_result[18].Balance2 = _result[16].Balance2 + _result[17].Balance2;
-			_result[19].Balance2 = _result[18].Balance2 < 0 ? -_result[18].Balance2 : 0;
-			_result[20].Balance2 = _result[18].Balance2 >= 0 ? _result[18].Balance2 : 0;
-
+			CalculateActives();
+			CalculatePassives();
 		}
 
+		private void CalculateActives()
+		{
+			_result[0].Balance1 = _result[1].Balance1 + _result[2].Balance1 + _result[3].Balance1 + _result[4].Balance1 + _result[5].Balance1;
+			_result[6].Balance1 = _result[7].Balance1 + _result[8].Balance1 + _result[10].Balance1 + _result[11].Balance1;
+			_result[9].Balance1 = _result[10].Balance1 + _result[11].Balance1;
+			_result[13].Balance1 = _result[0].Balance1 + _result[6].Balance1 + _result[12].Balance1;
+
+			_result[0].Balance2 = _result[1].Balance2 + _result[2].Balance2 + _result[3].Balance2 + _result[4].Balance2 + _result[5].Balance2;
+			_result[6].Balance2 = _result[7].Balance2 + _result[8].Balance2 + _result[10].Balance2 + _result[11].Balance2;
+			_result[9].Balance2 = _result[10].Balance2 + _result[11].Balance2;
+			_result[13].Balance2 = _result[0].Balance2 + _result[6].Balance2 + _result[12].Balance2;
+		}
+
+		private void CalculatePassives()
+		{
+			_result[14].Balance1 = _result[15].Balance1 + _result[16].Balance1 + _result[18].Balance1 + _result[19].Balance1;
+			_result[17].Balance1 = _result[18].Balance1 + _result[19].Balance1;
+			_result[20].Balance1 = _result[21].Balance1 + _result[23].Balance1 + _result[24].Balance1 + _result[25].Balance1 + _result[26].Balance1 + _result[28].Balance1 + _result[29].Balance1;
+			_result[22].Balance1 = _result[23].Balance1 + _result[24].Balance1 + _result[25].Balance1;
+			_result[27].Balance1 = _result[28].Balance1 + _result[29].Balance1;
+			_result[30].Balance1 = _result[14].Balance1 + _result[20].Balance1;
+
+			_result[14].Balance2 = _result[15].Balance2 + _result[16].Balance2 + _result[18].Balance2 + _result[19].Balance2;
+			_result[17].Balance2 = _result[18].Balance2 + _result[19].Balance2;
+			_result[20].Balance2 = _result[21].Balance2 + _result[23].Balance2 + _result[24].Balance2 + _result[25].Balance2 + _result[26].Balance2 + _result[28].Balance2 + _result[29].Balance2;
+			_result[22].Balance2 = _result[23].Balance2 + _result[24].Balance2 + _result[25].Balance2;
+			_result[27].Balance2 = _result[28].Balance2 + _result[29].Balance2;
+			_result[30].Balance2 = _result[14].Balance2 + _result[20].Balance2;
+		}
 
 		private IList<DecodedAccount> UndressFormula(string formula)
 		{

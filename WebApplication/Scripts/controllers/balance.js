@@ -23,6 +23,7 @@ angular.module('finLiteApp').controller('BalanceCtrl', ['$scope', 'repositorySer
     }
 
     balanceController.commands.save = function () {
+        debugger;
         repositoryService.saveBalanceItems($scope.main.data.clientId, balanceController.data.items, confirmSaved);
     };
 

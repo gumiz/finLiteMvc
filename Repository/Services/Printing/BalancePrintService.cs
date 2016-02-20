@@ -1,37 +1,48 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Repository.Domain;
 
 namespace Repository.Services.Printing
 {
 	public class BalancePrintService : AbstractPrintService
 	{
+		private IList<BalanceReportValues> _items;
+
 		public BalancePrintService(Factory factory) : base(factory)
 		{
+		}
+
+		protected override void GetHeaderRow()
+		{
+			HeaderRow = $"<tr><th colspan=\"4\" class=\"center bold fixedColor\">AKTYWA</th></tr>";
+			HeaderRow += $"<tr><th class=\"col-1\"></th><th class=\"col-5\">Treœæ</th><th class=\"col-3 right\">Kwota [w z³]<br/>Stan na {EndOfPrevYear}</th><th class=\"col-3 right\">Kwota [w z³]<br/>Stan na {EndOfThisYear}</th></tr>";
 		}
 
 		protected override void GetRows()
 		{
 			Rows = "";
-			var items = Factory.GetBalanceService().GetValues(ClientdId, Year);
-			foreach (var ac in items)
-			{
-				var bold = ac.IsBold ? "bold" : "";
-				Rows += $"<tr class=\"{bold}\"><td class=\"col-1\">{ac.Number}</td><td class=\"col-5\">{ac.Description}</td></td><td class=\"col-3 right\">{DecimalToString(ac.Balance1)}</td><td class=\"col-3 right\">{DecimalToString(ac.Balance2)}</td></tr>";
-			}
+			_items = Factory.GetBalanceService().GetValues(ClientdId, Year);
+			GetRowsOfSelectedType("AKTYWA");
+			Rows += $"<tr><th colspan=\"4\" class=\"center bold fixedColor\">PASYWA</th></tr>";
+			Rows += $"<tr><th class=\"col-1\"></th><th class=\"col-5\">Treœæ</th><th class=\"col-3 right\">Kwota [w z³]<br/>Stan na {EndOfPrevYear}</th><th class=\"col-3 right\">Kwota [w z³]<br/>Stan na {EndOfThisYear}</th></tr>";
+			GetRowsOfSelectedType("PASYWA");
 		}
 
-		protected override void GetHeaderRow()
+		private void GetRowsOfSelectedType(string type)
 		{
-			var from = DateToString(new DateTime(Year - 1, 12, 31));
-			var to = DateToString(new DateTime(Year, 12, 31));
-			HeaderRow = $"<tr><th class=\"col-1\"></th><th class=\"col-5\">Treœæ</th><th class=\"col-3 right\">Kwota [w z³]<br/>Stan na {from}</th><th class=\"col-3 right\">Kwota [w z³]<br/>Stan na {to}</th></tr>";
+			var typeItems = _items.Where(c => c.Type.Equals(type)).ToList();
+			foreach (var ac in typeItems)
+			{
+				var bold = ac.IsBold ? "bold" : "";
+				Rows += $"<tr class=\"{bold}\"><td class=\"col-1\">{ac.Number}</td><td class=\"col-5\">{ac.Description}</td><td class=\"col-3 right\">{DecimalToString(ac.Balance1)}</td><td class=\"col-3 right\">{DecimalToString(ac.Balance2)}</td></tr>";
+			}
 		}
 
 		protected override void GetTitle()
 		{
-			var from = DateToString(new DateTime(Year, 1, 1));
-			var to = DateToString(new DateTime(Year, 12, 31));
-			Title = $"Rachunek wyników za rok {Year} tj. za okres od {from} do {to}";
+			var date = DateToString(new DateTime(Year, 12, 31));
+			Title = $"Bilans na {date}";
 		}
 
 		protected override void GetTableClass()
@@ -45,7 +56,7 @@ namespace Repository.Services.Printing
 			var client = Factory.GetClientsService().GetClients().FirstOrDefault(x => x.ClientId.Equals(ClientdId));
 			if (client == null) return;
 			var address = client.Address != "" ? client.Address : "-uzupe³nij adres klienta-";
-			User = client.Description + "<br/><br/>" + address;
+			User = client.Description + "<br/>" + address + "<br/><br/>";
 		}
 
 	}
