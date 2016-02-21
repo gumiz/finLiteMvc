@@ -1,15 +1,24 @@
 'use strict';
 
-angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryService', 'dialogService', 'notify', 'datepickerService', 'dateUtils', '$q',
-    function ($scope, repositoryService, dialogService, notify, datepickerService, dateUtils, $q) {
+angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryService', 'dialogService', 'notify', 'datepickerService', 'dateUtils', '$q', 'cookieService',
+    function ($scope, repositoryService, dialogService, notify, datepickerService, dateUtils, $q, cookieService) {
 
     var documents = this;
 
-    documents.data = {};
+    documents.data = {
+        newDocument: {}
+    };
     documents.commands = {};
 
+    var getLastUsedDate = function() {
+        var result = cookieService.getValue("documentDate");
+        if (!result)
+            result = dateUtils.getActualDate();
+        return result;
+    }
+
     var cleanNewDocument = function () {
-        documents.data.newDocument = { Price: 0, Date: dateUtils.getActualDate() };
+        documents.data.newDocument = { Price: 0, Date: getLastUsedDate() };
     }
     cleanNewDocument();
 
@@ -36,10 +45,10 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     }
 
     documents.commands.addDocument = function () {
-        debugger;
         if ($scope.main.data.year !== documents.data.newDocument.Date.getFullYear()) {
             notify.error("Data dokumentu niezgodna z wybranym rokiem obrotowym");
         } else {
+            cookieService.setValue("documentDate", documents.data.newDocument.Date);
             fixDocumentProperties(documents.data.newDocument);
             documents.data.newDocument.ClientId = $scope.main.data.clientId;
             repositoryService.addDocument(documents.data.newDocument, documents.commands.refresh);

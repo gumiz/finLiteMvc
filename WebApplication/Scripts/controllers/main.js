@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'repositoryService', 'urlService', '$cookies', function ($scope, $location, repositoryService, urlService, $cookies) {
+angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'repositoryService', 'urlService', 'cookieService', function ($scope, $location, repositoryService, urlService, cookieService) {
     var main = this;
 
     main.data = {};
     main.commands = {};
     main.data.allYears = [2014, 2015, 2016, 2017, 2018, 2019, 2020];
 
-    main.data.year = Number($cookies['finliteYear']);
+    main.data.year = Number(cookieService.getValue("finliteYear"));
     if (!main.data.year)
         main.data.year = 2015;
 
@@ -33,7 +33,7 @@ angular.module('finLiteApp').controller('MainCtrl', ['$scope', '$location', 'rep
     }
 
     main.refresh = function () {
-        $cookies.finliteYear = main.data.year;
+        cookieService.setValue("finliteYear", main.data.year);
         window.location = getUrl(urlService.accounts.index);
     }
 
