@@ -37,6 +37,8 @@ namespace Repository.Services
 			document.Year = document.Date.Year;
 			SetAutoNumber(document);
 			var documentDao = Converter.Convert<Document, DocumentDao>(document);
+			if (documentDao.AccountDt == null) documentDao.AccountDt = "";
+			if (documentDao.AccountCt == null) documentDao.AccountCt = "";
 			_dbContext.Documents.Add(documentDao);
 			_dbContext.SaveChanges();
 		}

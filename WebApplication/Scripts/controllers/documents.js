@@ -45,7 +45,8 @@ angular.module('finLiteApp').controller('documentsCtrl', ['$scope', 'repositoryS
     }
 
     documents.commands.addDocument = function () {
-        if ($scope.main.data.year !== documents.data.newDocument.Date.getFullYear()) {
+        debugger;
+        if ($scope.main.data.year !== dateUtils.convertDate(documents.data.newDocument.Date).getFullYear()) {
             notify.error("Data dokumentu niezgodna z wybranym rokiem obrotowym");
         } else {
             cookieService.setValue("documentDate", documents.data.newDocument.Date);
