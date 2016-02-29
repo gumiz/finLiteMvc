@@ -6,6 +6,7 @@
 		public int ClientId { get; set; }
 		public int Year { get; set; }
 		public string Name { get; set; }
+		public string CleanName => Name.Replace("-", "");
 		public string Description { get; set; }
 		public double Ct { get; set; }
 		public double Dt { get; set; }

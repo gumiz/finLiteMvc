@@ -9,15 +9,15 @@ namespace Repository
 	{
 		public Factory()
 		{
-			var dbContext = new DefaultContext();
-			AccountsService = new AccountsService(dbContext);
-			ClientsService = new ClientsService(dbContext);
-			OpeningsService = new OpeningsService(dbContext);
-			DocumentsService = new DocumentsService(dbContext);
-			ReportsService = new ReportsService(dbContext);
-			DataInitializatorService = new DataInitializatorService(dbContext);
-			ProfitLossService = new ProfitLossService(dbContext);
-			BalanceService = new BalanceService(dbContext);
+			DbContext = new DefaultContext();
+			AccountsService = new AccountsService(DbContext);
+			ClientsService = new ClientsService(DbContext);
+			OpeningsService = new OpeningsService(DbContext);
+			DocumentsService = new DocumentsService(DbContext);
+			ReportsService = new ReportsService(DbContext);
+			DataInitializatorService = new DataInitializatorService(DbContext);
+			ProfitLossService = new ProfitLossService(this);
+			BalanceService = new BalanceService(this);
 			AccountsPrintService = new AccountsPrintService(this);
 			OpeningsPrintService = new OpeningsPrintService(this);
 			DocumentsPrintService = new DocumentsPrintService(this);
@@ -26,6 +26,7 @@ namespace Repository
 			BalancePrintService = new BalancePrintService(this);
 		}
 
+		public DefaultContext DbContext { get; set; }
 		public AccountsService AccountsService { get; set; }
 		public IClientsService ClientsService { get; set; }
 		public IOpeningsService OpeningsService { get; set; }
@@ -40,6 +41,11 @@ namespace Repository
 		public IProfitLossService ProfitLossService { get; set; }
 		public IBalanceService BalanceService { get; set; }
 		public IPrintService BalancePrintService { get; set; }
+
+		public DefaultContext GetDbContext()
+		{
+			return DbContext;
+		}
 
 		public IAccountsService GetAccoutnsService()
 		{

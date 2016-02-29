@@ -17,11 +17,12 @@ namespace Repository.Services
 		private List<DocumentDao> _documentsOld;
 		private int _clientId;
 		private int _year;
-		private IList<ProfitAndLossReportItem> _items;
+		private readonly Factory _factory;
 
-		public ProfitLossService(DefaultContext dbContext)
+		public ProfitLossService(Factory factory)
 		{
-			_dbContext = dbContext;
+			_factory = factory;
+			_dbContext = _factory.GetDbContext();
 		}
 
 		public IList<ProfitAndLossReportItem> GetItems(int clientId)
@@ -57,8 +58,13 @@ namespace Repository.Services
 		private void GetRowsWithValues()
 		{
 			_result = new List<ProfitAndLossReportValues>();
+
 			_documents = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year)).ToList();
+			AddOpeningsToDocuments(_documents, _year);
+
 			_documentsOld = _dbContext.Documents.Where(c => c.ClientId.Equals(_clientId) && c.Year.Equals(_year - 1)).ToList();
+			AddOpeningsToDocuments(_documentsOld, _year - 1);
+
 			_formulas = GetItems(_clientId);
 			foreach (var formula in _formulas)
 			{
@@ -84,6 +90,16 @@ namespace Repository.Services
 					Balance1 = sumOld,
 					Balance2 = sum
 				});
+			}
+		}
+
+		private void AddOpeningsToDocuments(List<DocumentDao> documents, int year)
+		{
+			var openingsWithoutDoubles = _factory.GetOpeningsService().GetOpeningsWithoutDoubles(_clientId, year);
+			foreach (var opening in openingsWithoutDoubles)
+			{
+				documents.Add(new DocumentDao { AccountDt = opening.Name, AccountCt = "", Price = opening.Dt });
+				documents.Add(new DocumentDao { AccountCt = opening.Name, AccountDt = "", Price = opening.Ct });
 			}
 		}
 

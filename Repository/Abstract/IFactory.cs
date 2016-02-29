@@ -1,7 +1,10 @@
+using Repository.DAL;
+
 namespace Repository.Abstract
 {
 	public interface IFactory
 	{
+		DefaultContext GetDbContext();
 		IAccountsService GetAccoutnsService();
 		IClientsService GetClientsService();
 		IOpeningsService GetOpeningsService();

@@ -17,6 +17,7 @@ namespace Repository.DAL
 
 		[Column("NAME"), Required]
 		public string Name { get; set; }
+		public string CleanName => Name.Replace("-", "");
 
 		[Column("DESCRIPTION"), Required]
 		public string Description { get; set; }

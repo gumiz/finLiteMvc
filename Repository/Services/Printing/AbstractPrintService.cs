@@ -75,7 +75,14 @@ namespace Repository.Services.Printing
 		protected virtual void GetHtmlBase(int clientId)
 		{
 			Html = "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><title>FinLite</title>" +
-					"<style>.float-clear{clear: both}.float-left{float: left}.float-right{float: right}body{color:#039;}.fontXs{font-size: 0.8em}.bold{font-weight: bold}.right{text-align: right}.center{text-align: center}.col-1{width:8%}.col-2{width:16%}.col-3{width:24%}.col-4{width:32%}.col-5{width:40%}.col-6{width:50%}.col-7{width:58%}.col-8{width:66%}.col-9{width:75%}.col-10{width:83%}.col-11{width:92%}.col-12{width:100%}#one-column-emphasis{font-size:11px;text-align:left;border-collapse:collapse;margin:5px;}#one-column-emphasis th{font-size:12px;font-weight:normal;color:#039;padding:8px 15px;}#one-column-emphasis td{color:#669;border-top:1px solid #e8edff;padding:6px 15px;}.oce-first{background:#d0dafd;border-right:10px solid transparent;border-left:10px solid transparent;}#one-column-emphasis tr:hover td{color:#339;background:#eff2ff;}.title{font-weight:bold; font-size: 1.2em}.title-small{font-size: 1.1em}tbody tr:nth-child(odd){background-color: #dfd7ca;}.fixedColor{background-color: #dfd7ca}</style>" +
+					"<style>.float-clear{clear: both}.float-left{float: left}.float-right{float: right}body{color:#039;}.fontXs{font-size: 0.8em}.bold{font-weight: bold}" +
+			       ".right{text-align: right}.center{text-align: center}.col-1{width:8%}.col-2{width:16%}.col-3{width:24%}.col-4{width:32%}.col-5{width:40%}.col-6{width:50%}" +
+			       ".col-7{width:58%}.col-8{width:66%}.col-9{width:75%}.col-10{width:83%}.col-11{width:92%}.col-12{width:100%}" +
+			       "#one-column-emphasis{font-size:12px;text-align:left;border-collapse:collapse;margin:5px;}" +
+			       "#one-column-emphasis th{font-size:12px;font-weight:normal;color:#039;padding:8px 15px;}#one-column-emphasis td{color:#669;border-top:1px solid #e8edff;" +
+			       "padding:6px 15px;}.oce-first{background:#d0dafd;border-right:10px solid transparent;border-left:10px solid transparent;}#one-column-emphasis tr:hover td{color:#339;" +
+			       "background:#eff2ff;}.title{font-weight:bold; font-size: 1.2em}.title-small{font-size: 1.1em}tbody tr:nth-child(odd){background-color: #dfd7ca;}" +
+			       ".fixedColor{background-color: #dfd7ca}</style>" +
 			        "</head><body><div>" +
 					"<div class=\"float-left col-5 title\">{{title}}</div><div class=\"float-right col-7 right title-small\">{{user}}</div><table class=\"float-clear {{tableClass}} bold\" id=\"one-column-emphasis\">" +
 			        "<thead>" +

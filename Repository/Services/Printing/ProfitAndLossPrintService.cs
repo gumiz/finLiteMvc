@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Repository.Services.Printing
 {
@@ -26,7 +27,8 @@ namespace Repository.Services.Printing
 
 		protected override void GetTitle()
 		{
-			Title = $"Rachunek wyników za rok {Year} tj. za okres od {EndOfPrevYear} do {EndOfThisYear}";
+			var startOfThisYear =  DateToString(new DateTime(Year, 1, 1));
+			Title = $"Rachunek wyników za rok {Year} tj. za okres od {startOfThisYear} do {EndOfThisYear}";
 		}
 
 		protected override void GetTableClass()

@@ -29,6 +29,20 @@ namespace Repository.Services
 			AddNonExistantAccounts();
 			return _openings.OrderBy(x=>x.Name).ToList();
 		}
+
+		public IEnumerable<Opening> GetOpeningsWithoutDoubles(int clientId, int year)
+		{
+			var openings = _dbContext.Openings.Where(c => c.ClientId.Equals(clientId) && c.Year.Equals(year)).ToList();
+			var openingsWithoutDoubles = new List<OpeningDao>();
+			foreach (var opening in openings)
+			{
+				var openingsLike = openings.Where(c => c.CleanName.StartsWith(opening.CleanName));
+				if (openingsLike.Count() == 1) openingsWithoutDoubles.Add(opening);
+			}
+			var result = Converter.ConvertList<OpeningDao, Opening>(openingsWithoutDoubles);
+			return result;
+		}
+
 		public void SaveOpenings(List<Opening> openings)
 		{
 			_openings = openings;
