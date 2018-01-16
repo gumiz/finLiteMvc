@@ -7,7 +7,10 @@ angular.module('finLiteApp').service('repositoryService', ['$http', 'ajaxService
   };
 
   var showPdf = function (data) {
-      window.open("data:application/pdf;base64, " + data);
+    //window.open("data:application/pdf;base64, " + data);
+	//above is not working anymore in win10: https://stackoverflow.com/questions/2805330/opening-pdf-string-in-new-window-with-javascript
+	var pdfWindow = window.open("")
+	pdfWindow.document.write("<iframe width='100%' height='100%' src='data:application/pdf;base64, " + encodeURI(data)+"'></iframe>")
   };
 
   var saveOpenings = function(item, successFunc) {
